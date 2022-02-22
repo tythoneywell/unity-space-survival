@@ -530,7 +530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 679131852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afe5ce185f54984dbf3400e4faf9316, type: 3}
+  m_Script: {fileID: 11500000, guid: 10e930b8f75f4044fb9b8821e9e35158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &700504545 stripped
@@ -566,8 +566,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05, z: 0.7079716}
-  m_Center: {x: 0, y: 0, z: 0.14601421}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &700504549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700504545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e930b8f75f4044fb9b8821e9e35158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,9 +855,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,22 +927,6 @@ Transform:
   m_Father: {fileID: 1456087444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 438a62b51f232da43a8313677ee5df76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  rigidBody: {fileID: 0}
-  camera: {fileID: 0}
-  sensitivity: {x: 0, y: 0}
 --- !u!1 &1055627864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1124,7 @@ GameObject:
   - component: {fileID: 1456087446}
   - component: {fileID: 1456087447}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1221,10 +1216,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1456087440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 438a62b51f232da43a8313677ee5df76, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a1dd3360503a6741af3e829019adc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 1456087444}
   rigidBody: {fileID: 1456087446}
   camera: {fileID: 963194227}
   sensitivity: {x: 0.3, y: 0.1}

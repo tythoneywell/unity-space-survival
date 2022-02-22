@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighlightScript : MonoBehaviour
+abstract public class BaseObject : MonoBehaviour
 {
-    private Color startcolor;
-    private Renderer rend;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
+
     // Update is called once per frame
     void Update()
     {
         
     }
+    abstract public void onInteract(GameObject presser);
 }
