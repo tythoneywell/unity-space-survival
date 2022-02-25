@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 8724339947705506184}
   - component: {fileID: 7888149529745749468}
   - component: {fileID: 2207033014764483974}
-  - component: {fileID: 3286543674040828012}
+  - component: {fileID: 7115710318126579816}
   m_Layer: 0
   m_Name: PlayerParent
   m_TagString: Untagged
@@ -316,10 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1dd3360503a6741af3e829019adc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unbound: 1
   lookSensitivity: {x: 0.3, y: 0.3}
   walkingSpeed: 5
-  jumpSpeed: 2.5
-  gravity: 5
+  jumpSpeed: 6
   debugJump: 0
 --- !u!114 &2207033014764483974
 MonoBehaviour:
@@ -456,8 +456,8 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2080325949016583519}
---- !u!65 &3286543674040828012
-BoxCollider:
+--- !u!136 &7115710318126579816
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -466,8 +466,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6805476731860048952
 GameObject:
