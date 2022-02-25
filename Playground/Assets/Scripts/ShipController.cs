@@ -13,7 +13,7 @@ public class ShipController : MonoBehaviour
     float turnSpeed = 30;
 
     AsteroidField asteroidField;
-    PlayerInShip player;
+    Player player;
 
     float targetSpeed;
     Vector3 shipTurnRate;
@@ -23,7 +23,7 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         asteroidField = GameObject.Find("AsteroidField").GetComponent<AsteroidField>();
-        player = GameObject.Find("Player").GetComponent<PlayerInShip>();
+        player = GameObject.Find("PlayerParent").GetComponent<Player>();
     }
 
     void FixedUpdate()

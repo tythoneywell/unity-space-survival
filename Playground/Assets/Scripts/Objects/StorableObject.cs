@@ -22,7 +22,7 @@ public class StorableObject : BaseObject
     }
     public override void onInteract(GameObject presser){
         Player player = (Player)presser.GetComponent("Player");
-        bool res = player.addToInventory(new ItemStack(new ScrapMetalItem(), 10));
-        Debug.Log(res);
+        bool res = player.AddToInventory(new ItemStack(new ScrapMetalItem(), 10));
+        Debug.Log("WasAddedToInv: " + res);
     }
 }
