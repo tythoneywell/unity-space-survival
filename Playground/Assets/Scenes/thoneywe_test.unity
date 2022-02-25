@@ -321,6 +321,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 336674117}
     m_Modifications:
+    - target: {fileID: 3286543674040828012, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3989150846785809448, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_Name
@@ -339,12 +344,12 @@ PrefabInstance:
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
@@ -354,17 +359,17 @@ PrefabInstance:
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6939176864055628078, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
@@ -381,12 +386,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7888149529745749468, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8168931147729554697, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3286543674040828012, guid: 09737e48434b4124ba8ac4bb9f3fcf04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 09737e48434b4124ba8ac4bb9f3fcf04, type: 3}
 --- !u!1 &308122667
 GameObject:
@@ -2222,6 +2233,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &1720123300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5059274072396137288, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+    type: 3}
+  m_PrefabInstance: {fileID: 210786717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1720123302
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720123300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1758892518
 GameObject:
   m_ObjectHideFlags: 0

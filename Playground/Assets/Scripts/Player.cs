@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player : MonoBehaviour
+public class Player : GravityWellObject
 {
     // Tweakable params
     [SerializeField]
@@ -11,46 +11,50 @@ public class Player : MonoBehaviour
     float walkingSpeed = 5f;
     [SerializeField]
     float jumpSpeed = 2.5f;
-    [SerializeField]
-    float gravity = 5f;
+    // Overrode this to use the physics system's built-in gravity (can be tweaked in-editor)
+    //[SerializeField]
+    float gravity;
     [SerializeField]
     bool debugJump = false;
+
+    // Private constants (the same as tweakable params, only I don't want them to show up in-editor.)
+    const float collisionRadius = 0.8f;
+
     // Private refs
-    Camera camera;
+    Camera playerCamera;
     Inventory inventory;
 
+    // Private vars
     bool isWalking = false;
-    
     bool grounded = true;
+
+    float vertLookAngle = 0f;
+
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
+
     
     void Start()
     {
-        camera = Camera.main;
+        gravity = -Physics.gravity.y;
+        playerCamera = gameObject.GetComponentInChildren<Camera>();
         this.inventory = new Inventory();
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
-    public void UpdateFromShip()
-    {
-        // If parent has changed, make sure we're aligned with them.
-        if (transform.up != transform.parent.up)
-        {
-            transform.rotation = transform.parent.rotation;
-        }
 
+    public override void ManualFixedUpdate()
+    {
         // If in the air, move through the air and check if we've landed
         if (!grounded)
         {
-            vspeed = Mathf.Max(-20, vspeed - gravity * Time.deltaTime);
-            Vector3 moveDir = new Vector3(hspeed.x, vspeed, hspeed.y) * Time.deltaTime;
-            TryJumpDirection(moveDir); // grounded updated if landed
+            vspeed = Mathf.Max(-20, vspeed - gravity * Time.fixedDeltaTime);
+            Vector3 moveDir = new Vector3(hspeed.x, vspeed, hspeed.y) * Time.fixedDeltaTime;
+            TryJumpDirection(moveDir); // grounded flag updated if landed
         }
         if (grounded) // DO NOT MAKE ELSE
         {
             vspeed = 0;
-            Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.deltaTime;
+            Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.fixedDeltaTime;
             TryWalkDirection(moveDir);
         }
     }
@@ -112,7 +116,10 @@ public class Player : MonoBehaviour
         {
             Vector2 direction = context.ReadValue<Vector2>();
             gameObject.transform.Rotate(new Vector3(0, direction.x * lookSensitivity.x, 0));
-            camera.transform.Rotate(new Vector3(direction.y * -1 * lookSensitivity.y, 0, 0));
+
+            vertLookAngle += lookSensitivity.y * -direction.y;
+            vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
+            playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
         }
     }
     
@@ -166,12 +173,10 @@ public class Player : MonoBehaviour
     }
     void WallCollide(Vector3 prevPos)
     {
-        float bodyThickness = 0.8f;
-
         RaycastHit hit;
         Vector3 revisedPos = transform.position;
         int infiniteBreak = 0;
-        while (Physics.SphereCast(prevPos, bodyThickness, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos)))
+        while (Physics.SphereCast(prevPos, collisionRadius, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos)))
         {
             infiniteBreak += 1;
             if (infiniteBreak > 200)
@@ -179,8 +184,19 @@ public class Player : MonoBehaviour
                 Debug.Log("Player is being crushed.");
                 break;
             }
-            revisedPos += Vector3.Project((hit.point + (bodyThickness + 0.04f) * hit.normal) - revisedPos, hit.normal);
+            revisedPos += Vector3.Project((hit.point + (collisionRadius + 0.01f) * hit.normal) - revisedPos, hit.normal);
         }
+        while (Physics.SphereCast(prevPos, collisionRadius - 0.1f, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos) + 0.1f))
+        {
+            infiniteBreak += 1;
+            if (infiniteBreak > 200)
+            {
+                Debug.Log("Player is being crushed.");
+                break;
+            }
+            revisedPos += Vector3.Project((hit.point + (collisionRadius + 0.01f) * hit.normal) - revisedPos, hit.normal);
+        }
+
         transform.Translate(revisedPos - transform.position, Space.World);
     }
 

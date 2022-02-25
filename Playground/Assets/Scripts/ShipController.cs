@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShipController : MonoBehaviour
+public class ShipController : GravityWell
 {
     [SerializeField]
     public float baseSpeed = 600;
@@ -13,7 +13,6 @@ public class ShipController : MonoBehaviour
     float turnSpeed = 30;
 
     AsteroidField asteroidField;
-    Player player;
 
     float targetSpeed;
     Vector3 shipTurnRate;
@@ -23,16 +22,14 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         asteroidField = GameObject.Find("AsteroidField").GetComponent<AsteroidField>();
-        player = GameObject.Find("PlayerParent").GetComponent<Player>();
     }
 
-    void FixedUpdate()
+    protected override void ManualFixedUpdate()
     {
-        player.UpdateFromShip();
-        transform.Rotate(turnSpeed * shipTurnRate * Time.deltaTime);
+        transform.Rotate(turnSpeed * shipTurnRate * Time.fixedDeltaTime);
 
-        speedVec += targetSpeed * transform.forward * Time.deltaTime;
-        speedVec *= Mathf.Pow(1 / (1 + baseFriction), Time.deltaTime);
+        speedVec += targetSpeed * transform.forward * Time.fixedDeltaTime;
+        speedVec *= Mathf.Pow(1 / (1 + baseFriction), Time.fixedDeltaTime);
 
         asteroidField.PanField(speedVec);
     }
