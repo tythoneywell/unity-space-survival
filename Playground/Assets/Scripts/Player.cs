@@ -67,12 +67,11 @@ public class Player : MonoBehaviour
             {
                 // Get the object that was hit.
                 GameObject hitObject = rayHit.collider.gameObject;
-                // Check if it is storable
-                if (hitObject.GetComponent("StorableObject") != null)
+                // Check if it is InteractableObject
+                InteractableObject obj = hitObject.GetComponent<InteractableObject>();
+                if (obj != null)
                 {
-                    BaseObject obj = (BaseObject)hitObject.GetComponent("StorableObject");
                     obj.onInteract(gameObject);
-                    Destroy(hitObject);
                 }
                 else
                 {
