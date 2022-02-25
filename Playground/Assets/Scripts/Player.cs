@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     float jumpSpeed = 2.5f;
     [SerializeField]
     float gravity = 5f;
-    [SerializeField]
-    bool debugJump = false;
     // Private refs
     Camera camera;
     Inventory inventory;
@@ -120,7 +118,7 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            if (grounded || debugJump)
+            if (grounded)
             {
                 grounded = false;
                 vspeed = jumpSpeed;
