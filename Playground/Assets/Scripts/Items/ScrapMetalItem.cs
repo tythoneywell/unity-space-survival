@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ScrapMetalItem : Item
 {
-    //public Texture texture = Texture();
-    public ScrapMetalItem() : base(null, "scrap_metal", 64) {
+    public ScrapMetalItem() : base("scrap_metal", 64) {
         
     }
     // Start is called before the first frame update

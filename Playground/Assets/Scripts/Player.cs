@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+ using UnityEngine.UI;
+
 public class Player : GravityWellObject
 {
     // Tweakable params
@@ -16,13 +18,15 @@ public class Player : GravityWellObject
     float gravity;
     [SerializeField]
     bool debugJump = false;
+    [SerializeField]
+    Texture testDebug;
 
     // Private constants (the same as tweakable params, only I don't want them to show up in-editor.)
     const float collisionRadius = 0.8f;
-
     // Private refs
     Camera playerCamera;
     Inventory inventory;
+    double currentSlot = 1;
 
     // Private vars
     bool isWalking = false;
@@ -32,18 +36,22 @@ public class Player : GravityWellObject
 
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
-
-    
+    GameObject activeSlot;
+    GameObject UI;
     void Start()
     {
+        activeSlot = GameObject.Find("ActiveSlot");
+        UI = GameObject.Find("UI");
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
         this.inventory = new Inventory();
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     public override void ManualFixedUpdate()
     {
+        Vector3 slotPos = activeSlot.transform.position;
+        slotPos.x = 140 + 45*((int)currentSlot-1);
+        activeSlot.transform.position = slotPos;
         // If in the air, move through the air and check if we've landed
         if (!grounded)
         {
@@ -86,7 +94,25 @@ public class Player : GravityWellObject
             }
         }
     }
-    
+    public void SelectSlot(InputAction.CallbackContext context){
+        if(context.performed){
+            Debug.Log("SELECT");
+            Debug.Log("Pre: " + currentSlot);
+            currentSlot = (int)context.ReadValue<System.Single>();
+            Debug.Log("Post: " + currentSlot);
+        }
+    }
+    public void Scroll(InputAction.CallbackContext context){
+        Debug.Log("SCROLL");
+        if(context.performed){
+            currentSlot += context.ReadValue<Vector2>().y * -0.005f;
+            if (currentSlot < 1){
+                currentSlot = 1;
+            } else if (currentSlot > 9){
+                currentSlot = 9;
+            }
+        }
+    }
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 dir = context.ReadValue<Vector2>();
@@ -205,6 +231,7 @@ public class Player : GravityWellObject
         Inventory tempInventory = this.inventory;
         bool result = tempInventory.addItem(stack);
         this.inventory = tempInventory;
+
         return result;
     }
 

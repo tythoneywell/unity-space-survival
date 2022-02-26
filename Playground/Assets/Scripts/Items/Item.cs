@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Item
 {
-    Texture texture;
     public string regName;
     public int maxStackSize;
-    public Item(Texture texture, string name, int maxStack){
-        this.texture = texture;
+    public Item(string name, int maxStack){
         this.regName = name;
         this.maxStackSize = maxStack;
     }
@@ -24,6 +22,6 @@ public class Item
         
     }
     public static Item empty(){
-        return new Item(null, "empty", 0);
+        return new Item("empty", 0);
     }
 }
