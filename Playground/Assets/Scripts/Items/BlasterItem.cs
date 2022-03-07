@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+public class BlasterItem : Item
 {
-    public string regName;
-    public int maxStackSize;
-    public Item(string name, int maxStack){
-        this.regName = name;
-        this.maxStackSize = maxStack;
+    public BlasterItem() : base("blaster", 1) {
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -20,8 +17,5 @@ public class Item
     void Update()
     {
         
-    }
-    public static Item Empty(){
-        return new Item("empty", 0);
     }
 }

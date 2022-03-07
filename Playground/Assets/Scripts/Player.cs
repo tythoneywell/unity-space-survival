@@ -17,10 +17,9 @@ public class Player : GravityWellObject
     //[SerializeField]
     float gravity;
     [SerializeField]
-    bool debugJump = false;
+    bool debugJump = true;
     [SerializeField]
     Texture testDebug;
-
     // Private constants (the same as tweakable params, only I don't want them to show up in-editor.)
     const float collisionRadius = 0.8f;
     // Private refs
@@ -30,27 +29,44 @@ public class Player : GravityWellObject
 
     // Private vars
     bool isWalking = false;
+    [SerializeField]
     bool grounded = true;
 
     float vertLookAngle = 0f;
-
+    GameObject rightHand;
+    Quaternion rightHandRot;
+    GameObject currItem;
+    Registry registry;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
     GameObject activeSlot;
     GameObject UI;
     void Start()
     {
+        rightHand = GameObject.Find("RightArm");
+        registry = GameObject.Find("Registry").GetComponent<Registry>();
+        currItem = GameObject.Instantiate(registry.get("empty"), rightHand.transform.position, Quaternion.identity);
         activeSlot = GameObject.Find("ActiveSlot");
         UI = GameObject.Find("UI");
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
+        rightHandRot = transform.rotation;
+
         this.inventory = new Inventory();
         Cursor.lockState = CursorLockMode.Locked;
     }
     public override void ManualFixedUpdate()
     {
+        string expectedItemName = inventory.getItem((int)currentSlot-1).regName + "(Clone)";
+        if (!currItem.name.Equals(expectedItemName)){
+            Destroy(GameObject.Find(currItem.name));
+            // Registry Unimplemented
+            GameObject currentPrefab = registry.get(inventory.getItem((int)currentSlot-1).regName);
+            currItem = GameObject.Instantiate(currentPrefab, rightHand.transform.position, Quaternion.identity);
+        }
+
         Vector3 slotPos = activeSlot.transform.position;
-        slotPos.x = 140 + 45*((int)currentSlot-1);
+        slotPos.x = 128 + 40*((int)currentSlot - 1);
         activeSlot.transform.position = slotPos;
         // If in the air, move through the air and check if we've landed
         if (!grounded)
@@ -65,9 +81,22 @@ public class Player : GravityWellObject
             Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.fixedDeltaTime;
             TryWalkDirection(moveDir);
         }
+        updateCurrentItem();
     }
 
     /* Input */
+    public void Use(InputAction.CallbackContext context){
+        if (context.performed){
+            if (currItem.name.Equals("empty(Clone)")){
+                //Empty hand action
+            } else {
+                StorableObject item = currItem.GetComponent<StorableObject>();
+                if (item != null){
+                    item.onUse(gameObject);
+                }
+            }
+        }
+    }
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -96,14 +125,10 @@ public class Player : GravityWellObject
     }
     public void SelectSlot(InputAction.CallbackContext context){
         if(context.performed){
-            Debug.Log("SELECT");
-            Debug.Log("Pre: " + currentSlot);
             currentSlot = (int)context.ReadValue<System.Single>();
-            Debug.Log("Post: " + currentSlot);
         }
     }
     public void Scroll(InputAction.CallbackContext context){
-        Debug.Log("SCROLL");
         if(context.performed){
             currentSlot += context.ReadValue<Vector2>().y * -0.005f;
             if (currentSlot < 1){
@@ -133,8 +158,17 @@ public class Player : GravityWellObject
                 hspeed = Vector2.zero;
             }
         }
+        
     }
-    
+    void updateCurrentItem(){
+        currItem.transform.position = rightHand.transform.position;
+        currItem.transform.rotation = transform.rotation;
+        Rigidbody rb = currItem.GetComponent<Rigidbody>();
+        if (rb != null){
+            Destroy(rb);
+        }
+        
+    }
     public void Look(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -145,6 +179,9 @@ public class Player : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
+            
+            updateCurrentItem();
+
         }
     }
     

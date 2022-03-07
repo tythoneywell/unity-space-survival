@@ -28,4 +28,7 @@ public class StorableObject : InteractableObject
         }
         Debug.Log("WasAddedToInv: " + res);
     }
+    public virtual void onUse(GameObject presser){
+        
+    }
 }

@@ -42,7 +42,7 @@ public class ItemStack
         }
     }
     public static ItemStack empty(){
-        Item empty = Item.empty();
+        Item empty = Item.Empty();
         ItemStack curr_stack = new ItemStack(empty, 0);
         curr_stack.regName = "empty";
         return curr_stack;
