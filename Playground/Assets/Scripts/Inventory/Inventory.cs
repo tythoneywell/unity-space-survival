@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Inventory
 {
-    ItemStack[] hotbar = new ItemStack[9];
-    ItemStack[] inventory = new ItemStack[27];
-   public Inventory(){
+    ItemStack[] hotbar;
+    ItemStack[] inventory;
+    public Inventory()
+    {
+        hotbar = new ItemStack[9];
+        inventory = new ItemStack[27];
         for (int i = 0; i < 27; i++){
             if (i < 9) {
-                hotbar[i] = ItemStack.empty();
+                hotbar[i] = ItemStack.GetEmpty();
             }
-            inventory[i] = ItemStack.empty();
+            inventory[i] = ItemStack.GetEmpty();
         }
-   }
-    // Start is called before the first frame updates
+    }
+
     public bool addItem(ItemStack stack){
         //Attempt to add to existing hotbar stack
         for(int i = 0; i < 9; i++){
             ItemStack hotbarSlot = hotbar[i];
-            if (hotbarSlot.regName.Equals(stack.regName)){
+            if (hotbarSlot.item.itemName == stack.item.itemName)
+            {
                 bool result = hotbarSlot.incrementStack(stack.count);
                 hotbar[i] = hotbarSlot;
                 return result;
@@ -28,7 +32,8 @@ public class Inventory
         //Attempt to add to existing inventory stack
         for(int i = 0; i < 27; i++) {
             ItemStack invSlot = inventory[i];
-            if (invSlot.regName.Equals(stack.regName)){
+            if (invSlot.item.itemName == stack.item.itemName)
+            {
                 bool result = invSlot.incrementStack(stack.count);
                 inventory[i] = invSlot;
                 return result;
@@ -37,7 +42,8 @@ public class Inventory
         //Attempt to add to empty hotbar stack
         for(int i = 0; i < 9; i++){
             ItemStack hotbarSlot = hotbar[i];
-            if (hotbarSlot.regName.Equals("empty")){
+            if (hotbarSlot.item.itemName == null)
+            {
                 hotbar[i] = stack;
                 return true;
             }
@@ -45,31 +51,22 @@ public class Inventory
         //Attempt to add to empty inventory stack
         for(int i = 0; i < 27; i++){
             ItemStack invSlot = inventory[i];
-            if (invSlot.regName.Equals("empty")){
+            if (invSlot.item.itemName == null)
+            {
                 inventory[i] = stack;
                 return true;
             }
         }
         return false;
     }
-    public ItemStack getItem(int index){
-        if (index < 0 || index >= 36){
-            return ItemStack.empty();
+    public ItemStack GetItem(int index){
+        if (index < 0 || index >= 36) {
+            return ItemStack.GetEmpty();
         }
-        if (index < 9){
+        if (index < 9) {
             return hotbar[index];
         } else {
             return inventory[index - 9];
         }
-    }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

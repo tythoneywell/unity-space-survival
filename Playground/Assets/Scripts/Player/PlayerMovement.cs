@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
  using UnityEngine.UI;
 
-public class Player : GravityWellObject
+public class PlayerMovement : GravityWellObject
 {
     // Tweakable params
     [SerializeField]
@@ -24,8 +24,6 @@ public class Player : GravityWellObject
     const float collisionRadius = 0.8f;
     // Private refs
     Camera playerCamera;
-    Inventory inventory;
-    double currentSlot = 1;
 
     // Private vars
     bool isWalking = false;
@@ -33,41 +31,17 @@ public class Player : GravityWellObject
     bool grounded = true;
 
     float vertLookAngle = 0f;
-    GameObject rightHand;
-    Quaternion rightHandRot;
-    GameObject currItem;
-    Registry registry;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
-    GameObject activeSlot;
-    GameObject UI;
     void Start()
     {
-        rightHand = GameObject.Find("RightArm");
-        registry = GameObject.Find("Registry").GetComponent<Registry>();
-        currItem = GameObject.Instantiate(registry.get("empty"), rightHand.transform.position, Quaternion.identity);
-        activeSlot = GameObject.Find("ActiveSlot");
-        UI = GameObject.Find("UI");
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
-        rightHandRot = transform.rotation;
 
-        this.inventory = new Inventory();
         Cursor.lockState = CursorLockMode.Locked;
     }
     public override void ManualFixedUpdate()
     {
-        string expectedItemName = inventory.getItem((int)currentSlot-1).regName + "(Clone)";
-        if (!currItem.name.Equals(expectedItemName)){
-            Destroy(GameObject.Find(currItem.name));
-            // Registry Unimplemented
-            GameObject currentPrefab = registry.get(inventory.getItem((int)currentSlot-1).regName);
-            currItem = GameObject.Instantiate(currentPrefab, rightHand.transform.position, Quaternion.identity);
-        }
-
-        Vector3 slotPos = activeSlot.transform.position;
-        slotPos.x = 128 + 40*((int)currentSlot - 1);
-        activeSlot.transform.position = slotPos;
         // If in the air, move through the air and check if we've landed
         if (!grounded)
         {
@@ -81,63 +55,9 @@ public class Player : GravityWellObject
             Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.fixedDeltaTime;
             TryWalkDirection(moveDir);
         }
-        updateCurrentItem();
     }
 
     /* Input */
-    public void Use(InputAction.CallbackContext context){
-        if (context.performed){
-            if (currItem.name.Equals("empty(Clone)")){
-                //Empty hand action
-            } else {
-                StorableObject item = currItem.GetComponent<StorableObject>();
-                if (item != null){
-                    item.onUse(gameObject);
-                }
-            }
-        }
-    }
-    public void Interact(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            float rayDistance = 1000.0f;
-            // Ray from the center of the viewport.
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            RaycastHit rayHit;
-            // Check if we hit something.
-            if (Physics.Raycast(ray, out rayHit, rayDistance))
-            {
-                // Get the object that was hit.
-                GameObject hitObject = rayHit.collider.gameObject;
-                // Check if it is InteractableObject
-                InteractableObject obj = hitObject.GetComponent<InteractableObject>();
-                if (obj != null)
-                {
-                    obj.onInteract(gameObject);
-                }
-                else
-                {
-                    Debug.Log("No Interactable Object Found");
-                }
-            }
-        }
-    }
-    public void SelectSlot(InputAction.CallbackContext context){
-        if(context.performed){
-            currentSlot = (int)context.ReadValue<System.Single>();
-        }
-    }
-    public void Scroll(InputAction.CallbackContext context){
-        if(context.performed){
-            currentSlot += context.ReadValue<Vector2>().y * -0.005f;
-            if (currentSlot < 1){
-                currentSlot = 1;
-            } else if (currentSlot > 9){
-                currentSlot = 9;
-            }
-        }
-    }
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 dir = context.ReadValue<Vector2>();
@@ -160,15 +80,6 @@ public class Player : GravityWellObject
         }
         
     }
-    void updateCurrentItem(){
-        currItem.transform.position = rightHand.transform.position;
-        currItem.transform.rotation = transform.rotation;
-        Rigidbody rb = currItem.GetComponent<Rigidbody>();
-        if (rb != null){
-            Destroy(rb);
-        }
-        
-    }
     public void Look(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -179,9 +90,6 @@ public class Player : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
-            
-            updateCurrentItem();
-
         }
     }
     
@@ -189,7 +97,7 @@ public class Player : GravityWellObject
     {
         if (context.performed)
         {
-            if (grounded)
+            if (grounded || debugJump)
             {
                 grounded = false;
                 vspeed = jumpSpeed;
@@ -261,15 +169,4 @@ public class Player : GravityWellObject
 
         transform.Translate(revisedPos - transform.position, Space.World);
     }
-
-    /* Inventory System */
-    public bool AddToInventory(ItemStack stack)
-    {
-        Inventory tempInventory = this.inventory;
-        bool result = tempInventory.addItem(stack);
-        this.inventory = tempInventory;
-
-        return result;
-    }
-
 }

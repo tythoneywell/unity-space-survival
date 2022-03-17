@@ -10,6 +10,7 @@ public class AsteroidField : MonoBehaviour
     [SerializeField]
     Vector3 baseDrift = new Vector3(10, 2, -30);
 
+    [SerializeField]
     float initMinSpawnDist = 100;
     [SerializeField]
     float minSpawnDist = 600;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8372150538213258176}
   - component: {fileID: 1956240855586970931}
   m_Layer: 0
-  m_Name: Registry
+  m_Name: ItemRegistry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33818acf8e966594f86a9b68e9b4e834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blasterRef: {fileID: 919132149155446097, guid: 094b36bf685cdcf4ea6641d0fe48f885,
-    type: 3}
-  emptyRef: {fileID: 7955939499206645749}
-  scrapMetalRef: {fileID: 919132149155446097, guid: d629e53c9d830c24f9428cf37cb2cb6a,
-    type: 3}
+  itemList:
+  - {fileID: 11400000, guid: a8da9e51aeae7b140879bbf6a74ea5cd, type: 2}
+  - {fileID: 11400000, guid: 63090f22bb01b0b499bc593879c50761, type: 2}
+  - {fileID: 11400000, guid: 68e4609c97e4eab45bce897de6c0742b, type: 2}
+  - {fileID: 11400000, guid: 441739c94cef22643b1321782986c459, type: 2}
 --- !u!1 &7955939499206645749
 GameObject:
   m_ObjectHideFlags: 0
