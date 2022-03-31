@@ -38,7 +38,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public bool AddToInventory(ItemStack stack)
     {
-        return inventory.addItem(stack);
+        return inventory.AddItemNoIndex(stack);
     }
     public void Interact(InputAction.CallbackContext context)
     {

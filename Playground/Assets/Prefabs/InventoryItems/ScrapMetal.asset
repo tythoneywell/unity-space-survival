@@ -16,4 +16,4 @@ MonoBehaviour:
   displayName: Scrap Metal
   maxStackSize: 64
   model: {fileID: 919132149155446097, guid: d629e53c9d830c24f9428cf37cb2cb6a, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f09bed25b8f10154f92418d877905366, type: 3}

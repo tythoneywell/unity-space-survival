@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: blaster
   displayName: Blaster
   maxStackSize: 1
-  model: {fileID: 7239686654309226462, guid: 5321196fdeb87ea48a3a0497f38cd63d, type: 3}
+  model: {fileID: 919132149155446097, guid: 4e1e863e3fed34d5885607cd39ba2e6d, type: 3}
   sprite: {fileID: 0}
