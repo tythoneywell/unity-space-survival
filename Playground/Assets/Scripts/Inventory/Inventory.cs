@@ -109,6 +109,19 @@ public class Inventory
             }
         }
     }
+    public ItemStack[] ToArray(){
+        ItemStack[] inv = new ItemStack[36];
+        int counter = 0;
+        foreach (ItemStack stack in hotbar){
+            inv[counter] = stack;
+            counter += 1;
+        }
+        foreach (ItemStack stack in inventory){
+            inv[counter] = stack;
+            counter += 1;
+        }
+        return inv;
+    }
     public ItemStack GetItem(int index){
         if (index < 0 || index >= 36) {
             return ItemStack.GetEmpty();
