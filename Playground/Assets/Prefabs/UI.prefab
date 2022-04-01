@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2134121}
   - component: {fileID: 2134120}
   m_Layer: 5
-  m_Name: InventoryBar (1)
+  m_Name: InventoryBarTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1449492395}
   - component: {fileID: 1449492394}
   m_Layer: 5
-  m_Name: InventoryBar (2)
+  m_Name: InventoryBarMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 2078181139}
   - component: {fileID: 2078181138}
   m_Layer: 5
-  m_Name: InventoryBar (3)
+  m_Name: InventoryBarBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 7751492449007480221}
   - component: {fileID: 8162906980190343141}
   m_Layer: 5
-  m_Name: InventoryBar (2)
+  m_Name: ExternalMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 5387720763442688263}
   - component: {fileID: 448052455217558084}
   m_Layer: 5
-  m_Name: InventoryBar (3)
+  m_Name: ExternalBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 3265268059023472320}
   - component: {fileID: 3225236675990998469}
   m_Layer: 5
-  m_Name: InventoryBar
+  m_Name: Hotbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 8257733816272900900}
   - component: {fileID: 1044787059870570935}
   m_Layer: 5
-  m_Name: InventoryBar (1)
+  m_Name: ExternalTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

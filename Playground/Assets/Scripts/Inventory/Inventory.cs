@@ -109,6 +109,19 @@ public class Inventory
             }
         }
     }
+    public ItemStack[] ToArray(){
+        ItemStack[] inv = new ItemStack[36];
+        int counter = 0;
+        foreach (ItemStack stack in hotbar){
+            inv[counter] = stack;
+            counter += 1;
+        }
+        foreach (ItemStack stack in inventory){
+            inv[counter] = stack;
+            counter += 1;
+        }
+        return inv;
+    }
     public ItemStack GetItem(int index){
         if (index < 0 || index >= 36) {
             return ItemStack.GetEmpty();
@@ -130,7 +143,7 @@ public class Inventory
         if (index < 9)
         {
             ItemStack stackToRemove = hotbar[index];
-            if (stackToRemove.count < amount)
+            if (stackToRemove.count <= amount)
             {
                 hotbar[index] = ItemStack.GetEmpty();
                 return stackToRemove;
@@ -144,7 +157,7 @@ public class Inventory
         else
         {
             ItemStack stackToRemove = inventory[index - 9];
-            if (stackToRemove.count < amount)
+            if (stackToRemove.count <= amount)
             {
                 inventory[index - 9] = ItemStack.GetEmpty();
                 return stackToRemove;
