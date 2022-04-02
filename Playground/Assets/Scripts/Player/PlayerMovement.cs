@@ -20,6 +20,8 @@ public class PlayerMovement : GravityWellObject
     bool debugJump = true;
     [SerializeField]
     Texture testDebug;
+    GameObject rightHand;
+    GameObject leftHand;
     // Private constants (the same as tweakable params, only I don't want them to show up in-editor.)
     const float collisionRadius = 0.8f;
     // Private refs
@@ -30,11 +32,14 @@ public class PlayerMovement : GravityWellObject
     [SerializeField]
     bool grounded = true;
 
-    float vertLookAngle = 0f;
+    public float vertLookAngle = 0f;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
     void Start()
     {
+        rightHand = GameObject.Find("RightArmParent");
+        leftHand = GameObject.Find("LeftArm");
+
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
 
@@ -90,6 +95,9 @@ public class PlayerMovement : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
+            gameObject.GetComponent<PlayerInteraction>().UpdateCurrentItem();
+
+
         }
     }
     
@@ -131,8 +139,10 @@ public class PlayerMovement : GravityWellObject
         RaycastHit hit;
         if (Physics.SphereCast(destination + transform.up, 0.5f, -transform.up, out hit, 1.5f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
-            //Debug.Log("landed");
-            grounded = true;
+            //Prevents Jumping off items
+            if (hit.transform.gameObject.GetComponent<DroppedItem>() == null){
+                grounded = true;
+            }
         }
         else
         {

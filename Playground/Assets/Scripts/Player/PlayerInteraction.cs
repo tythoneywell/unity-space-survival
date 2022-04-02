@@ -116,7 +116,13 @@ public class PlayerInteraction : MonoBehaviour
 
         UpdateCurrentItem();
     }
-    void UpdateCurrentItem()
+    public void SetCurrentItemRotation(Vector3 eulers){
+        if (heldItemModel != null){
+            heldItemModel.transform.localRotation = Quaternion.Euler(eulers);
+        }
+
+    }
+    public void UpdateCurrentItem()
     {
         // Update UI
         Vector3 slotPos = activeSlot.localPosition;
@@ -145,8 +151,11 @@ public class PlayerInteraction : MonoBehaviour
         if (heldItemModel.GetComponent<DroppedItem>() != null)
             heldItemModel.GetComponent<DroppedItem>().enabled = false;
 
+
         heldItemModel.transform.position = rightHand.transform.position;
-        heldItemModel.transform.rotation = transform.rotation;
+        Quaternion rotModifier = Quaternion.Euler(0,0,0);
+        SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
+
 
         }
 }
