@@ -112,7 +112,7 @@ public class PlayerMovement : GravityWellObject
         Vector3 destination = transform.position + transform.rotation * dir;
 
         RaycastHit hit;
-        if (Physics.SphereCast(destination, 0.5f, -transform.up, out hit, 1.3f))
+        if (Physics.SphereCast(destination, 0.5f, -transform.up, out hit, 1.3f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             Vector3 prevPos = transform.position;
             transform.Translate(dir + Vector3.up * (0.5f - hit.distance));
@@ -129,7 +129,7 @@ public class PlayerMovement : GravityWellObject
         Vector3 destination = transform.position + transform.rotation * dir;
 
         RaycastHit hit;
-        if (Physics.SphereCast(destination + transform.up, 0.5f, -transform.up, out hit, 1.5f))
+        if (Physics.SphereCast(destination + transform.up, 0.5f, -transform.up, out hit, 1.5f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             //Debug.Log("landed");
             grounded = true;
@@ -146,7 +146,7 @@ public class PlayerMovement : GravityWellObject
         RaycastHit hit;
         Vector3 revisedPos = transform.position;
         int infiniteBreak = 0;
-        while (Physics.SphereCast(prevPos, collisionRadius, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos)))
+        while (Physics.SphereCast(prevPos, collisionRadius, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos), Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             infiniteBreak += 1;
             if (infiniteBreak > 200)
@@ -156,7 +156,7 @@ public class PlayerMovement : GravityWellObject
             }
             revisedPos += Vector3.Project((hit.point + (collisionRadius + 0.01f) * hit.normal) - revisedPos, hit.normal);
         }
-        while (Physics.SphereCast(prevPos, collisionRadius - 0.1f, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos) + 0.1f))
+        while (Physics.SphereCast(prevPos, collisionRadius - 0.1f, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos) + 0.1f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             infiniteBreak += 1;
             if (infiniteBreak > 200)

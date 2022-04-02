@@ -9,7 +9,7 @@ public class DroppedItemSpawner : MonoBehaviour
 
     void Start()
     {
-        Instantiate(item.MakeDroppedInstance(1), transform.position, transform.rotation);
+        Instantiate(item.MakeDroppedInstance(1, null), transform.position, transform.rotation);
 
         Destroy(gameObject);
     }

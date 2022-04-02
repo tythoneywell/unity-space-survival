@@ -40,6 +40,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         return inventory.AddItemNoIndex(stack);
     }
+    public void RemoveCurrentFromInv(int number = 1){
+        inventory.RemoveItem(currentSlot - 1, number);
+        UpdateCurrentItem();
+    }
+    public ItemStack getCurrentItem(){
+        return inventory.GetItem(currentSlot - 1);
+    }
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -79,7 +86,7 @@ public class PlayerInteraction : MonoBehaviour
             }
             else
             {
-                heldItem.Use();
+                heldItem.Use(this);
             }
         }
     }
@@ -121,13 +128,18 @@ public class PlayerInteraction : MonoBehaviour
 
         // Show new held item
         ItemData itemData = inventory.GetItem(currentSlot - 1).item;
-        if (itemData.itemName == null) return;
+        if (itemData.itemName == null){
+            heldItem = itemData;
+            return; 
+        } 
 
         heldItem = itemData;
 
         GameObject itemPrefab = itemData.model;
         heldItemModel = Instantiate(itemPrefab, transform);
         heldItemModel.transform.Translate(0, 1, 1);
+        if (heldItemModel.GetComponent<Rigidbody>() != null)
+            Destroy(heldItemModel.GetComponent<Rigidbody>());
         if (heldItemModel.GetComponent<Collider>() != null)
             heldItemModel.GetComponent<Collider>().enabled = false;
         if (heldItemModel.GetComponent<DroppedItem>() != null)

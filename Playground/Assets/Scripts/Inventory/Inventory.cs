@@ -143,7 +143,7 @@ public class Inventory
         if (index < 9)
         {
             ItemStack stackToRemove = hotbar[index];
-            if (stackToRemove.count < amount)
+            if (stackToRemove.count <= amount)
             {
                 hotbar[index] = ItemStack.GetEmpty();
                 return stackToRemove;
@@ -157,7 +157,7 @@ public class Inventory
         else
         {
             ItemStack stackToRemove = inventory[index - 9];
-            if (stackToRemove.count < amount)
+            if (stackToRemove.count <= amount)
             {
                 inventory[index - 9] = ItemStack.GetEmpty();
                 return stackToRemove;
