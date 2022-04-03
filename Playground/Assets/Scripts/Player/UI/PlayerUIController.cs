@@ -30,15 +30,16 @@ public class PlayerUIController : MonoBehaviour
     {
         main = this;
         emptySprite = emptySpriteInspector;
+
+        playerHotbarSlots = playerHotbarObject.GetComponentInChildren<InventoryGridManager>();
+        playerInventorySlots = playerInventoryObject.GetComponentInChildren<InventoryGridManager>();
+        externalInventorySlots = externalInventoryObject.GetComponentInChildren<InventoryGridManager>();
     }
 
     void Start()
     {
         activeSlotPosition = GameObject.Find("ActiveSlot").GetComponent<RectTransform>();
-
-        playerHotbarSlots = playerHotbarObject.GetComponentInChildren<InventoryGridManager>();
-        playerInventorySlots = playerInventoryObject.GetComponentInChildren<InventoryGridManager>();
-        externalInventorySlots = externalInventoryObject.GetComponentInChildren<InventoryGridManager>();
+        StartCoroutine(DelayedUpdateInventory());
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -123,5 +124,11 @@ public class PlayerUIController : MonoBehaviour
                 playerInventorySlots.gridSprites[i].sprite = emptySprite.GetComponent<Image>().sprite;
             }
         }
+    }
+
+    IEnumerator DelayedUpdateInventory()
+    {
+        yield return null;
+        UpdateInventory();
     }
 }

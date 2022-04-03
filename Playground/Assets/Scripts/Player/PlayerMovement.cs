@@ -103,7 +103,7 @@ public class PlayerMovement : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
-            PlayerInteraction.main.SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
+            //PlayerInteraction.main.SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
 
 
         }

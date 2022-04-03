@@ -18,7 +18,11 @@ public class PlayerInteraction : MonoBehaviour
 
     PlayerUIController UI;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        main = this;
+    }
+
     void Start()
     {
         rightHand = GameObject.Find("RightArm");
@@ -29,13 +33,8 @@ public class PlayerInteraction : MonoBehaviour
 
         inventory = new Inventory();
         heldItem = inventory.GetItem(0).item;
-        UI.UpdateInventory();
     }
 
-    void Awake()
-    {
-        main = this;
-    }
 
     public bool AddToInventory(ItemStack stack)
     {
@@ -145,14 +144,14 @@ public class PlayerInteraction : MonoBehaviour
         ItemData itemData = inventory.GetItem(currentSlotIdx - 1).item;
         if (itemData.itemName == null){
             heldItem = itemData;
-            return; 
+            return;
         }
 
         heldItem = itemData;
 
         GameObject itemPrefab = itemData.model;
-        heldItemModel = Instantiate(itemPrefab, transform);
-        heldItemModel.transform.Translate(0, 1, 1);
+        heldItemModel = Instantiate(itemPrefab, rightHand.transform.parent);
+        //heldItemModel.transform.Translate(0, 1, 1);
         if (heldItemModel.GetComponent<Rigidbody>() != null)
             Destroy(heldItemModel.GetComponent<Rigidbody>());
         if (heldItemModel.GetComponent<Collider>() != null)
@@ -162,9 +161,7 @@ public class PlayerInteraction : MonoBehaviour
 
 
         heldItemModel.transform.position = rightHand.transform.position;
-        Quaternion rotModifier = Quaternion.Euler(0,0,0);
-        SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
-
-
+        //Quaternion rotModifier = Quaternion.Euler(0,0,0);
+        //SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
     }
 }

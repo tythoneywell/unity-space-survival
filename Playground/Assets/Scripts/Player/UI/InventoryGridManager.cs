@@ -31,7 +31,7 @@ public class InventoryGridManager : MonoBehaviour
             {
                 GameObject newSprite = Instantiate(PlayerUIController.emptySprite, rTransform);
                 gridSprites[i + j * slotCountX] = newSprite.GetComponent<Image>();
-                newSprite.GetComponent<RectTransform>().anchoredPosition =new Vector2(
+                newSprite.GetComponent<RectTransform>().anchoredPosition = new Vector2(
                     rTransform.rect.xMin + ((float)i + 0.5f) / slotCountX * rTransform.rect.width,
                     rTransform.rect.yMin + ((float)j + 0.5f) / slotCountY * rTransform.rect.height);
                 newSprite.GetComponent<RectTransform>().sizeDelta = new Vector2(
