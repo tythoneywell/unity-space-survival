@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : GravityWellObject
 {
+    public static PlayerMovement main;
+
     // Tweakable params
     [SerializeField]
     Vector2 lookSensitivity;
@@ -35,6 +37,12 @@ public class PlayerMovement : GravityWellObject
     public float vertLookAngle = 0f;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
+
+    void Awake()
+    {
+        main = this;
+    }
+
     void Start()
     {
         rightHand = GameObject.Find("RightArmParent");
@@ -95,7 +103,7 @@ public class PlayerMovement : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
-            gameObject.GetComponent<PlayerInteraction>().UpdateCurrentItem();
+            PlayerInteraction.main.SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
 
 
         }

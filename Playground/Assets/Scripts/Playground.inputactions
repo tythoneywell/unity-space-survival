@@ -54,7 +54,7 @@
                     "name": "Scroll",
                     "type": "Value",
                     "id": "89620c27-80dc-42e7-bd00-dd9e35f9305a",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -63,6 +63,15 @@
                     "name": "Use",
                     "type": "Button",
                     "id": "a78d149d-bd90-4320-b9e3-aae30d497ffa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "f72a3cff-652f-4ff7-9bb7-5b399cb3e3fe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -375,6 +384,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9d8d9c7-f26e-42d5-9b05-6bc9b5611ecd",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

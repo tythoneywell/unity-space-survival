@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    Inventory inventory;
-    int currentSlot = 1;
+    public static PlayerInteraction main;
+
+    public Inventory inventory;
+    int currentSlotIdx = 1;
 
     GameObject rightHand;
     Quaternion rightHandRot;
@@ -14,26 +16,25 @@ public class PlayerInteraction : MonoBehaviour
     GameObject heldItemModel;
     ItemRegistry registry;
 
-    RectTransform activeSlot;
-    GameObject UI;
+    PlayerUIController UI;
 
     // Start is called before the first frame update
     void Start()
     {
         rightHand = GameObject.Find("RightArm");
         registry = GameObject.Find("ItemRegistry").GetComponent<ItemRegistry>();
-        activeSlot = GameObject.Find("ActiveSlot").GetComponent<RectTransform>();
-        UI = GameObject.Find("UI");
+        UI = GameObject.Find("UI").GetComponent<PlayerUIController>();
 
         rightHandRot = transform.rotation;
 
         inventory = new Inventory();
         heldItem = inventory.GetItem(0).item;
+        UI.UpdateInventory();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
+        main = this;
     }
 
     public bool AddToInventory(ItemStack stack)
@@ -41,11 +42,11 @@ public class PlayerInteraction : MonoBehaviour
         return inventory.AddItemNoIndex(stack);
     }
     public void RemoveCurrentFromInv(int number = 1){
-        inventory.RemoveItem(currentSlot - 1, number);
+        inventory.RemoveItem(currentSlotIdx - 1, number);
         UpdateCurrentItem();
     }
     public ItemStack getCurrentItem(){
-        return inventory.GetItem(currentSlot - 1);
+        return inventory.GetItem(currentSlotIdx - 1);
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -94,7 +95,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (context.performed)
         {
-            currentSlot = (int)context.ReadValue<System.Single>();
+            currentSlotIdx = (int)context.ReadValue<System.Single>();
         }
 
         UpdateCurrentItem();
@@ -103,14 +104,14 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (context.performed)
         {
-            currentSlot += (int)(context.ReadValue<Vector2>().y * -0.005f);
-            if (currentSlot < 1)
+            currentSlotIdx += context.ReadValue<Vector2>().y > 0 ? 1 : -1;
+            if (currentSlotIdx < 1)
             {
-                currentSlot = 1;
+                currentSlotIdx = 1;
             }
-            else if (currentSlot > 9)
+            else if (currentSlotIdx > 9)
             {
-                currentSlot = 9;
+                currentSlotIdx = 9;
             }
         }
 
@@ -122,22 +123,30 @@ public class PlayerInteraction : MonoBehaviour
         }
 
     }
+
+    public void ToggleInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            UI.ToggleShowInventory();
+            UpdateCurrentItem();
+        }
+    }
     public void UpdateCurrentItem()
     {
         // Update UI
-        Vector3 slotPos = activeSlot.localPosition;
-        slotPos.x = -220 + 55 * ((int)currentSlot - 1);
-        activeSlot.localPosition = slotPos;
+        UI.SetHotbarActiveSlot(currentSlotIdx);
+        UI.UpdateInventory();
 
         // Remove held item model
         Destroy(heldItemModel);
 
         // Show new held item
-        ItemData itemData = inventory.GetItem(currentSlot - 1).item;
+        ItemData itemData = inventory.GetItem(currentSlotIdx - 1).item;
         if (itemData.itemName == null){
             heldItem = itemData;
             return; 
-        } 
+        }
 
         heldItem = itemData;
 
@@ -157,5 +166,5 @@ public class PlayerInteraction : MonoBehaviour
         SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
 
 
-        }
+    }
 }

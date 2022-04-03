@@ -6,7 +6,7 @@ public class Inventory
 {
     ItemStack[] hotbar;
     ItemStack[] inventory;
-    ItemStack cursor;
+    public ItemStack cursor;
 
     public ItemStack[] externalInventory;
 
@@ -20,6 +20,7 @@ public class Inventory
             }
             inventory[i] = ItemStack.GetEmpty();
         }
+        cursor = ItemStack.GetEmpty();
     }
 
     // Adds item to any free index, if possible
@@ -75,7 +76,13 @@ public class Inventory
         if (index < 9)
         {
             ItemStack stackToFill = hotbar[index];
-            if (stackToFill.item != stack.item)
+            if (stackToFill.item.itemName == null)
+            {
+                hotbar[index] = new ItemStack(stack.item, 0);
+                hotbar[index].AddAmountFromStack(stack, amount);
+                return stack;
+            }
+            if (stackToFill.item.itemName != stack.item.itemName)
             {
                 return stack;
             }
@@ -93,8 +100,10 @@ public class Inventory
         else
         {
             ItemStack stackToFill = inventory[index - 9];
-            if (stackToFill.item != stack.item)
+            if (stackToFill.item.itemName == null)
             {
+                inventory[index - 9] = new ItemStack(stack.item, 0);
+                inventory[index - 9].AddAmountFromStack(stack, amount);
                 return stack;
             }
             if (stackToFill.count + stack.count < stack.item.maxStackSize)
@@ -143,31 +152,41 @@ public class Inventory
         if (index < 9)
         {
             ItemStack stackToRemove = hotbar[index];
+            ItemStack outStack = new ItemStack(stackToRemove.item, stackToRemove.count);
             if (stackToRemove.count <= amount)
             {
                 hotbar[index] = ItemStack.GetEmpty();
-                return stackToRemove;
+                return outStack;
             }
             else
             {
                 hotbar[index].count -= amount;
-                return new ItemStack(stackToRemove.item, amount);
+                outStack.count = amount;
+                return outStack;
             }
         }
         else
         {
             ItemStack stackToRemove = inventory[index - 9];
+            ItemStack outStack = new ItemStack(stackToRemove.item, stackToRemove.count);
             if (stackToRemove.count <= amount)
             {
                 inventory[index - 9] = ItemStack.GetEmpty();
-                return stackToRemove;
+                return outStack;
             }
             else
             {
                 inventory[index - 9].count -= amount;
-                return new ItemStack(stackToRemove.item, amount);
+                outStack.count = amount;
+                return outStack;
             }
         }
+    }
+
+    public void CursorInteractWith(int index)
+    {
+        if (cursor.item.itemName == null) MoveItemToCursor(index);
+        else if (cursor.item.itemName != null) DropCursorItemToIndexHard(index);
     }
 
     // Moves item at index "index" to the inventory cursor
@@ -182,7 +201,7 @@ public class Inventory
     // subtracting from its existing stack if item limit is reached on the inventory stack.
     public ItemStack DropCursorItemToIndexHard(int index)
     {
-        if (cursor.item != GetItem(index).item)
+        if (cursor.item.name != GetItem(index).item.itemName)
         {
             ItemStack cursorPrevStack = cursor;
             cursor = RemoveItem(index, int.MaxValue);
