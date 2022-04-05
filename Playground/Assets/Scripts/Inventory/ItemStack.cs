@@ -31,6 +31,24 @@ public class ItemStack
         }
     }
 
+    public void AddAmountFromStack(ItemStack other, int amount)
+    {
+        if (other.item.itemName != item.itemName) return;
+
+        if (amount > other.count) amount = other.count;
+        int addable = Mathf.Min(amount, item.maxStackSize - count);
+        count += addable;
+        other.count -= addable;
+        if (other.count <= 0) other.item = null;
+    }
+    public ItemStack TakeAmount(int amount)
+    {
+        if (amount > count) amount = count;
+        count -= amount;
+        if (count == 0) item = null;
+        return new ItemStack(item, amount);
+    }
+
     public static ItemStack GetEmpty()
     {
         return new ItemStack(nullItem, 0);

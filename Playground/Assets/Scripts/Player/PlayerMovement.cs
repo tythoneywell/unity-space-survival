@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : GravityWellObject
 {
+    public static PlayerMovement main;
+
     // Tweakable params
     [SerializeField]
     Vector2 lookSensitivity;
@@ -20,6 +22,8 @@ public class PlayerMovement : GravityWellObject
     bool debugJump = true;
     [SerializeField]
     Texture testDebug;
+    GameObject rightHand;
+    GameObject leftHand;
     // Private constants (the same as tweakable params, only I don't want them to show up in-editor.)
     const float collisionRadius = 0.8f;
     // Private refs
@@ -30,11 +34,20 @@ public class PlayerMovement : GravityWellObject
     [SerializeField]
     bool grounded = true;
 
-    float vertLookAngle = 0f;
+    public float vertLookAngle = 0f;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
+
+    void Awake()
+    {
+        main = this;
+    }
+
     void Start()
     {
+        rightHand = GameObject.Find("RightArmParent");
+        leftHand = GameObject.Find("LeftArm");
+
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
 
@@ -90,6 +103,9 @@ public class PlayerMovement : GravityWellObject
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
             playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
+            //PlayerInteraction.main.SetCurrentItemRotation(new Vector3(gameObject.GetComponent<PlayerMovement>().vertLookAngle, 0, 0));
+
+
         }
     }
     
@@ -112,7 +128,7 @@ public class PlayerMovement : GravityWellObject
         Vector3 destination = transform.position + transform.rotation * dir;
 
         RaycastHit hit;
-        if (Physics.SphereCast(destination, 0.5f, -transform.up, out hit, 1.3f))
+        if (Physics.SphereCast(destination, 0.5f, -transform.up, out hit, 1.3f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             Vector3 prevPos = transform.position;
             transform.Translate(dir + Vector3.up * (0.5f - hit.distance));
@@ -129,10 +145,12 @@ public class PlayerMovement : GravityWellObject
         Vector3 destination = transform.position + transform.rotation * dir;
 
         RaycastHit hit;
-        if (Physics.SphereCast(destination + transform.up, 0.5f, -transform.up, out hit, 1.5f))
+        if (Physics.SphereCast(destination + transform.up, 0.5f, -transform.up, out hit, 1.5f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
-            //Debug.Log("landed");
-            grounded = true;
+            //Prevents Jumping off items
+            if (hit.transform.gameObject.GetComponent<DroppedItem>() == null){
+                grounded = true;
+            }
         }
         else
         {
@@ -146,7 +164,7 @@ public class PlayerMovement : GravityWellObject
         RaycastHit hit;
         Vector3 revisedPos = transform.position;
         int infiniteBreak = 0;
-        while (Physics.SphereCast(prevPos, collisionRadius, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos)))
+        while (Physics.SphereCast(prevPos, collisionRadius, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos), Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             infiniteBreak += 1;
             if (infiniteBreak > 200)
@@ -156,7 +174,7 @@ public class PlayerMovement : GravityWellObject
             }
             revisedPos += Vector3.Project((hit.point + (collisionRadius + 0.01f) * hit.normal) - revisedPos, hit.normal);
         }
-        while (Physics.SphereCast(prevPos, collisionRadius - 0.1f, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos) + 0.1f))
+        while (Physics.SphereCast(prevPos, collisionRadius - 0.1f, revisedPos - prevPos, out hit, Vector3.Distance(revisedPos, prevPos) + 0.1f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             infiniteBreak += 1;
             if (infiniteBreak > 200)
