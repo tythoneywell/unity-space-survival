@@ -5,13 +5,13 @@ using UnityEngine;
 public class MineableObject : MonoBehaviour
 {
     float health;
-    private bool isBroken;
+    private bool broken;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
-        isBroken = false;
+        broken = false;
     }
 
     // Update is called once per frame
@@ -28,12 +28,12 @@ public class MineableObject : MonoBehaviour
         }
         else 
         {
-            isBroken = true;
+            broken = true;
         }
     }
 
-    bool getStatus() 
+    bool isBroken() 
     {
-        return isBroken;
+        return broken;
     }
 }
