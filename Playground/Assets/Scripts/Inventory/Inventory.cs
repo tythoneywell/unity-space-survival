@@ -6,7 +6,7 @@ public class Inventory
 {
     ItemStack[] hotbar;
     ItemStack[] inventory;
-    public ItemStack cursor;
+    public ItemStack cursorStack;
 
     public ItemStack[] externalInventory;
 
@@ -20,7 +20,7 @@ public class Inventory
             }
             inventory[i] = ItemStack.GetEmpty();
         }
-        cursor = ItemStack.GetEmpty();
+        cursorStack = ItemStack.GetEmpty();
     }
 
     // Adds item to any free index, if possible
@@ -69,67 +69,23 @@ public class Inventory
     // Tries to add item stack to specified index, returns stack with amount unable to be added
     public ItemStack AddItem(int index, ItemStack stack, int amount = int.MaxValue)
     {
+        if (amount == -1) amount = inventory[index].count / 2;
+        if (amount == 0) amount = 1;
+
         if (index < 0 || index >= 36)
         {
             return stack;
         }
         if (index < 9)
         {
-            ItemStack stackToFill = hotbar[index];
-            if (stackToFill.item.itemName == null)
-            {
-                hotbar[index] = new ItemStack(stack.item, 0);
-                hotbar[index].AddAmountFromStack(stack, amount);
-                return stack;
-            }
-            if (stackToFill.item.itemName != stack.item.itemName)
-            {
-                return stack;
-            }
-            if (stackToFill.count + stack.count < stack.item.maxStackSize)
-            {
-                hotbar[index].count += stack.count;
-                return ItemStack.GetEmpty();
-            }
-            else
-            {
-                hotbar[index].count += stack.item.maxStackSize;
-                return new ItemStack(stackToFill.item, stack.count - (stack.item.maxStackSize - stackToFill.count));
-            }
+            hotbar[index].TransferAmountFromStack(stack, amount);
+            return hotbar[index];
         }
         else
         {
-            ItemStack stackToFill = inventory[index - 9];
-            if (stackToFill.item.itemName == null)
-            {
-                inventory[index - 9] = new ItemStack(stack.item, 0);
-                inventory[index - 9].AddAmountFromStack(stack, amount);
-                return stack;
-            }
-            if (stackToFill.count + stack.count < stack.item.maxStackSize)
-            {
-                inventory[index - 9].count += stack.count;
-                return ItemStack.GetEmpty();
-            }
-            else
-            {
-                inventory[index - 9].count += stack.item.maxStackSize;
-                return new ItemStack(stackToFill.item, stack.count - (stack.item.maxStackSize - stackToFill.count));
-            }
+            inventory[index - 9].TransferAmountFromStack(stack, amount);
+            return inventory[index - 9];
         }
-    }
-    public ItemStack[] ToArray(){
-        ItemStack[] inv = new ItemStack[36];
-        int counter = 0;
-        foreach (ItemStack stack in hotbar){
-            inv[counter] = stack;
-            counter += 1;
-        }
-        foreach (ItemStack stack in inventory){
-            inv[counter] = stack;
-            counter += 1;
-        }
-        return inv;
     }
     public ItemStack GetItem(int index){
         if (index < 0 || index >= 36) {
@@ -145,88 +101,84 @@ public class Inventory
     // from inventory index "index".
     public ItemStack RemoveItem(int index, int amount = int.MaxValue)
     {
+        if (amount == -1) amount = inventory[index].count / 2;
+        if (amount == 0) amount = 1;
+
         if (index < 0 || index >= 36)
         {
             return ItemStack.GetEmpty();
         }
         if (index < 9)
         {
-            ItemStack stackToRemove = hotbar[index];
-            ItemStack outStack = new ItemStack(stackToRemove.item, stackToRemove.count);
-            if (stackToRemove.count <= amount)
-            {
-                hotbar[index] = ItemStack.GetEmpty();
-                return outStack;
-            }
-            else
-            {
-                hotbar[index].count -= amount;
-                outStack.count = amount;
-                return outStack;
-            }
+            return hotbar[index].TakeAmount(amount);
         }
         else
         {
-            ItemStack stackToRemove = inventory[index - 9];
-            ItemStack outStack = new ItemStack(stackToRemove.item, stackToRemove.count);
-            if (stackToRemove.count <= amount)
-            {
-                inventory[index - 9] = ItemStack.GetEmpty();
-                return outStack;
-            }
-            else
-            {
-                inventory[index - 9].count -= amount;
-                outStack.count = amount;
-                return outStack;
-            }
+            return inventory[index - 9].TakeAmount(amount);
         }
     }
 
     public void CursorInteractWith(int index)
     {
-        if (cursor.item.itemName == null) MoveItemToCursor(index);
-        else if (cursor.item.itemName != null) DropCursorItemToIndexHard(index);
+        if (cursorStack.item.itemName == null) MoveItemToCursor(index);
+        else if (cursorStack.item.itemName != null) DropCursorItemToIndexHard(index);
+    }
+    public void CursorAlternateInteractWith(int index)
+    {
+        if (cursorStack.item.itemName == null) MoveItemToCursor(index, -1);
+        else if (cursorStack.item.itemName != null) DropCursorItemToIndexSoft(index, 1);
     }
 
     // Moves item at index "index" to the inventory cursor
-    public ItemStack MoveItemToCursor(int index)
+    ItemStack MoveItemToCursor(int index, int amount = int.MaxValue)
     {
-        ItemStack targetItem = RemoveItem(index, int.MaxValue);
-        cursor = targetItem;
+        if (amount == -1) amount = GetItem(index).count / 2;
+        if (amount == 0) amount = 1;
 
-        return cursor;
+        cursorStack = RemoveItem(index, amount);
+
+        return cursorStack;
     }
     // Moves cursor item to index "index", swapping if items are different,
     // subtracting from its existing stack if item limit is reached on the inventory stack.
-    public ItemStack DropCursorItemToIndexHard(int index)
+    ItemStack DropCursorItemToIndexHard(int index)
     {
-        if (cursor.item.name != GetItem(index).item.itemName)
+        if (GetItem(index).item.itemName != cursorStack.item.itemName)
         {
-            ItemStack cursorPrevStack = cursor;
-            cursor = RemoveItem(index, int.MaxValue);
-            AddItem(index, cursorPrevStack);
-        }
-        else
-        {
-            cursor = AddItem(index, cursor);
+            cursorStack.SwapWith(GetItem(index));
         }
 
-        return cursor;
+        AddItem(index, cursorStack);
+
+        return cursorStack;
     }
     // Moves cursor item to index "index", but only specified amount,
     // and will not swap stacks
     // Set amount to -1 to drop half of stack
-    public ItemStack DropCursorItemToIndexSoft(int index, int amount = -1)
+    ItemStack DropCursorItemToIndexSoft(int index, int amount = 1)
     {
-        if (amount > cursor.count) amount = cursor.count;
-        if (amount == -1) amount = cursor.count / 2;
+        if (amount == -1) amount = cursorStack.count / 2;
+        if (amount == 0) amount = 1;
 
-        ItemStack stackToAdd = new ItemStack(cursor.item, amount);
-        ItemStack remaining = AddItem(index, stackToAdd);
+        AddItem(index, cursorStack, amount);
 
-        cursor.count -= (amount - remaining.count);
+        return cursorStack;
+    }
 
-        return cursor;
+    public ItemStack[] ToArray()
+    {
+        ItemStack[] inv = new ItemStack[36];
+        int counter = 0;
+        foreach (ItemStack stack in hotbar)
+        {
+            inv[counter] = stack;
+            counter += 1;
+        }
+        foreach (ItemStack stack in inventory)
+        {
+            inv[counter] = stack;
+            counter += 1;
+        }
+        return inv;
     }
 }

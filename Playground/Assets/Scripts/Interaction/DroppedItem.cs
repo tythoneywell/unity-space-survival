@@ -6,7 +6,7 @@ public class DroppedItem : InteractableObject
 {
     public ItemStack itemStack;
     public DroppedItem(ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack = new ItemStack(itemStack);
     }
 
     public override void Interact(PlayerInteraction presser) {

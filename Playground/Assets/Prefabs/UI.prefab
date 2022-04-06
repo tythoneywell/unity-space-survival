@@ -473,7 +473,7 @@ MonoBehaviour:
   slotCountX: 9
   slotCountY: 3
   invType: 2
-  gridSprites: []
+  gridSlots: []
 --- !u!1 &5469958776541087861
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   slotCountX: 9
   slotCountY: 1
   invType: 0
-  gridSprites: []
+  gridSlots: []
 --- !u!1 &6840679931875163161
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   slotCountX: 9
   slotCountY: 3
   invType: 1
-  gridSprites: []
+  gridSlots: []
 --- !u!1 &7768185996514205538
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +995,19 @@ MonoBehaviour:
     m_ActionId: d1ed26eb-6858-470c-8531-6547370969e9
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3371037758180095743}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: MouseMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1cf5c045-db12-4d9d-87e3-2bbdbd91f9f3
     m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
@@ -1019,11 +1031,35 @@ MonoBehaviour:
     m_ActionId: 66eae1e8-c830-480b-8eef-8dacd31cbcbe
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3371037758180095743}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: MiddleClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 731a959b-73bc-4b1a-b3e4-475a4160e765
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3371037758180095743}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: RightClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7573a048-778d-4547-858a-40285198e265
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:

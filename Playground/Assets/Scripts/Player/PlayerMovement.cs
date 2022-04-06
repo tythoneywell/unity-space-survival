@@ -95,6 +95,8 @@ public class PlayerMovement : GravityWellObject
     }
     public void Look(InputAction.CallbackContext context)
     {
+        if (PlayerUIController.invShown) return;
+
         if (context.performed)
         {
             Vector2 direction = context.ReadValue<Vector2>();

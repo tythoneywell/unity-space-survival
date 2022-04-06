@@ -49,6 +49,8 @@ public class PlayerInteraction : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
+        if (PlayerUIController.invShown) return;
+
         if (context.performed)
         {
             float rayDistance = 1000.0f;
@@ -78,6 +80,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Use(InputAction.CallbackContext context)
     {
+        if (PlayerUIController.invShown) return;
+
         if (context.performed)
         {
             if (heldItem.itemName == null)

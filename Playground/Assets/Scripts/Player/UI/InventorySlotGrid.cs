@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryGridManager : MonoBehaviour
+public class InventorySlotGrid : MonoBehaviour
 {
     public int slotCountX;
     public int slotCountY;
@@ -19,26 +19,29 @@ public class InventoryGridManager : MonoBehaviour
     public InventoryType invType;
 
     RectTransform rTransform;
-    public Image[] gridSprites;
+    public InventorySlotSingle[] gridSlots;
 
     void Start()
     {
         rTransform = GetComponent<RectTransform>();
-        gridSprites = new Image[slotCountX * slotCountY];
+        gridSlots = new InventorySlotSingle[slotCountX * slotCountY];
         for (int i = 0; i < slotCountX; i++)
         {
             for (int j = 0; j < slotCountY; j++)
             {
+                int index = i + j * slotCountX;
+
                 GameObject newSprite = Instantiate(PlayerUIController.emptySprite, rTransform);
-                gridSprites[i + j * slotCountX] = newSprite.GetComponent<Image>();
+                gridSlots[index] = newSprite.GetComponent<InventorySlotSingle>();
                 newSprite.GetComponent<RectTransform>().anchoredPosition = new Vector2(
                     rTransform.rect.xMin + ((float)i + 0.5f) / slotCountX * rTransform.rect.width,
                     rTransform.rect.yMin + ((float)j + 0.5f) / slotCountY * rTransform.rect.height);
                 newSprite.GetComponent<RectTransform>().sizeDelta = new Vector2(
                     rTransform.rect.width / slotCountX,
                     rTransform.rect.height / slotCountY);
-                newSprite.GetComponent<InventorySlotUIListener>().index = i + j * slotCountX;
-                newSprite.GetComponent<InventorySlotUIListener>().inventorySlotGrid = this;
+
+                gridSlots[index].index = index;
+                gridSlots[index].inventorySlotGrid = this;
             }
         }
     }
@@ -46,5 +49,9 @@ public class InventoryGridManager : MonoBehaviour
     public void NotifyIsHovered(int index)
     {
         PlayerUIController.main.UpdateHoveredSlot(index, invType);
+    }
+    public void NotifyIsUnhovered(int index)
+    {
+        PlayerUIController.main.ClearHoveredSlot(index, invType);
     }
 }
