@@ -126,7 +126,7 @@ public class Inventory
     public void CursorAlternateInteractWith(int index)
     {
         if (cursorStack.item.itemName == null) MoveItemToCursor(index, -1);
-        else if (cursorStack.item.itemName != null) DropCursorItemToIndexSoft(index, 1);
+        else if (cursorStack.item.itemName != null) DropCursorItemToIndexSoft(index);
     }
 
     // Moves item at index "index" to the inventory cursor

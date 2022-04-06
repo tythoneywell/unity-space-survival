@@ -43,22 +43,27 @@ public class ItemStack
     // other's item will be set to nullItem if it is empty.
     public void TransferAmountFromStack(ItemStack other, int amount = int.MaxValue)
     {
+        // Is this empty stack?
         if (item.itemName == null)
         {
-            item = other.item;
-            count = other.count;
-            other.count = 0;
+            if (amount > other.count) amount = other.count;
+            if (amount > 0) item = other.item; // Convert this stack to nonempty stack
+            int addable = Mathf.Min(amount, item.maxStackSize - count);
+            count += addable;
+            other.count -= addable;
         }
-        else if (other.item.itemName != item.itemName)
-        {
-            return;
-        }
-        else
+        // Given nonempty stack, are items the same?
+        else if (other.item.itemName == item.itemName)
         {
             if (amount > other.count) amount = other.count;
             int addable = Mathf.Min(amount, item.maxStackSize - count);
             count += addable;
             other.count -= addable;
+        }
+        // Stacks are incompatible
+        else
+        {
+            return;
         }
 
         if (other.count <= 0) other.item = nullItem;
