@@ -70,6 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log(hitObject.name);
                     Debug.Log("No Interactable Object Found");
                 }
             }
