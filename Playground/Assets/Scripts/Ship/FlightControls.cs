@@ -19,8 +19,6 @@ public void Start(){
 }
    public override void Interact(PlayerInteraction presser) {
       playerInput = presser.GetComponent<PlayerInput>();
-      presser.transform.rotation = this.transform.rotation;
-      presser.transform.position = this.transform.position;
       rocketCam.SetActive(true);
       playerInput.SwitchCurrentActionMap("Ship");
    }
