@@ -33,6 +33,7 @@ public class MineableObject : MonoBehaviour, IMineable
                 Instantiate(leftHalf, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
 
             }
+            //TODO: randomize whether or not medium chunks exist to continue mining
             Instantiate(rightHalf, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
             Instantiate(rightHalf, new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
             //Instantiate(leftHalf, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
@@ -42,7 +43,11 @@ public class MineableObject : MonoBehaviour, IMineable
             Instantiate(leftHalf, new Vector3(transform.localPosition.x + 2, transform.localPosition.y + 2, transform.localPosition.z + 2), Quaternion.identity);*/
             //TODO: ADD MINERALS TO INVERNTORY
 
-            //Destroy the big asteroid
+
+            //PlayerInteraction.main.inventory.AddItem(TODO)
+
+
+                //Destroy the big asteroid
             Debug.Log("asteroid destroyed");
             Destroy(gameObject);
         }
