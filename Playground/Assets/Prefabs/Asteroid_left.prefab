@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4582277425142235402}
   - component: {fileID: 3073072227722742044}
   - component: {fileID: 7473715812692292712}
+  - component: {fileID: 8582745098717028359}
   m_Layer: 0
   m_Name: Asteroid_left
   m_TagString: Untagged
@@ -171,7 +172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: daf884d916f5fa64b85a9dfd5557b0c7, type: 2}
+  - {fileID: 2100000, guid: 90dc5dbcbc2f4bf42a5722b5de440815, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,6 +223,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8582745098717028359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6295059982368308397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14bbbe57fb854d6ea358c68152de8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 15
 --- !u!1 &8777107938918896289
 GameObject:
   m_ObjectHideFlags: 0
