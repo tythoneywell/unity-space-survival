@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7473715812692292712}
   - component: {fileID: 8582745098717028359}
   m_Layer: 0
-  m_Name: Asteroid_left
+  m_Name: debris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

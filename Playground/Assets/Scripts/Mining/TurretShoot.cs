@@ -54,7 +54,9 @@ public class TurretShoot : MonoBehaviour
                     laserLine.SetPosition(1, hit.point);
                     //interact with hit object
                     //hit.collider.GetComponent<IMineable>()?.OnClick();
+
                     hit.collider.GetComponent<IMineable>()?.DamageHealth(turretDamage);
+                    //hit.collider.GetComponent<CopperAsteroid>()?.DamageHealth(turretDamage);
                 }
                 else
                 {
