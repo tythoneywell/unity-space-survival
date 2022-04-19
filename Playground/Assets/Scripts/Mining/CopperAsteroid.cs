@@ -49,7 +49,7 @@ public class CopperAsteroid : MonoBehaviour, IMineable
             //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
 
             //TODO: ADD MINERALS TO INVERNTORY
-            PlayerInteraction.main.AddToInventory(new ItemStack(item, 10));
+            PlayerInteraction.main.AddToInventory(new ItemStack(itemStack));
             
 
             //PlayerInteraction.main.inventory.AddItem(TODO)
