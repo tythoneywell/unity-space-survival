@@ -12,7 +12,9 @@ public class PlayerMovement : GravityWellObject
     [SerializeField]
     Vector2 lookSensitivity;
     [SerializeField]
-    float walkingSpeed = 5f;
+    float baseWalkingSpeed = 5f;
+    [SerializeField]
+    float speedModifier = 0f;
     [SerializeField]
     float jumpSpeed = 2.5f;
     // Overrode this to use the physics system's built-in gravity (can be tweaked in-editor)
@@ -35,6 +37,7 @@ public class PlayerMovement : GravityWellObject
     bool grounded = true;
 
     public float vertLookAngle = 0f;
+    float moddedSpeed = 0;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
 
@@ -50,11 +53,12 @@ public class PlayerMovement : GravityWellObject
 
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
-
+        moddedSpeed = baseWalkingSpeed;
         Cursor.lockState = CursorLockMode.Locked;
     }
     public override void ManualFixedUpdate()
     {
+
         // If in the air, move through the air and check if we've landed
         if (!grounded)
         {
@@ -68,7 +72,23 @@ public class PlayerMovement : GravityWellObject
             Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.fixedDeltaTime;
             TryWalkDirection(moveDir);
         }
+
     }
+
+    public void ToggleSprint(InputAction.CallbackContext context){
+        if (context.performed){
+            speedModifier += 0.5f;
+            if (isWalking){
+                hspeed /= baseWalkingSpeed;
+                hspeed *= (baseWalkingSpeed * (1 + speedModifier));
+
+            }
+        } else if (context.canceled){
+            hspeed /= (1 + speedModifier);
+            speedModifier = 0;
+        }
+    }
+    
 
     /* Input */
     public void Move(InputAction.CallbackContext context)
@@ -77,13 +97,13 @@ public class PlayerMovement : GravityWellObject
         if (isWalking == false)
         {
             isWalking = true;
-            hspeed = walkingSpeed * dir;
+            hspeed = moddedSpeed * dir;
         }
         else
         {
             if (Vector3.Distance(dir, Vector3.zero) > 0)
             {
-                hspeed = walkingSpeed * dir;
+                hspeed = moddedSpeed * dir;
             }
             else
             {
