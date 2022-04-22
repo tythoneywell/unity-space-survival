@@ -9,10 +9,12 @@ public class PlayerUIController : MonoBehaviour
     public static PlayerUIController main;
 
     public static bool invShown;
+    public static bool saveShown;
 
     public GameObject playerHotbarObject;
     public GameObject playerInventoryObject;
     public GameObject externalInventoryObject;
+    public GameObject playerSaveMenu;
 
     InventorySlotGrid playerHotbarSlots;
     InventorySlotGrid playerInventorySlots;
@@ -127,6 +129,33 @@ public class PlayerUIController : MonoBehaviour
             ShowInventory();
             invShown = true;
         }
+    }
+    public void ToggleShowSaveMenu()
+    {
+        if (saveShown)
+        {
+            HideSaveMenu();
+            saveShown = false;
+        }
+        else
+        {
+            ShowSaveMenu();
+            saveShown = true;
+        }
+    }
+    public void ShowSaveMenu()
+    {
+        playerSaveMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+
+    }
+    public void HideSaveMenu()
+    {
+        playerSaveMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
+
     }
     public void ShowInventory()
     {

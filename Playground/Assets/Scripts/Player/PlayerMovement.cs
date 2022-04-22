@@ -116,6 +116,7 @@ public class PlayerMovement : GravityWellObject
     public void Look(InputAction.CallbackContext context)
     {
         if (PlayerUIController.invShown) return;
+        if (PlayerUIController.saveShown) return;
 
         if (context.performed)
         {

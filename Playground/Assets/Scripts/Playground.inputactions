@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenSaveMenu",
+                    "type": "Button",
+                    "id": "fec9349d-cbf8-4a78-bf8e-b89282d47edb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -267,7 +276,7 @@
                 {
                     "name": "",
                     "id": "6b424851-cc57-444a-9eda-2398c93aa495",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -388,7 +397,7 @@
                 {
                     "name": "",
                     "id": "bb7c09f1-d702-404e-ba91-d27206cf398d",
-                    "path": "<Mouse>/press",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -399,7 +408,7 @@
                 {
                     "name": "",
                     "id": "e9d8d9c7-f26e-42d5-9b05-6bc9b5611ecd",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -415,6 +424,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e10ae0f-440e-4b28-9c9f-1b47b2843146",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenSaveMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
