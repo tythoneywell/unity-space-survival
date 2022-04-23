@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class ShipController : GravityWell
 {
     [SerializeField]
-    public float baseSpeed = 600;
+    public float baseSpeed = 800;
     [SerializeField]
     public float baseFriction = 4;
     [SerializeField]
@@ -45,8 +45,8 @@ public class ShipController : GravityWell
     {
         if (context.performed || context.canceled)
         {
-            Vector2 dir = context.ReadValue<Vector2>();
-            shipTurnRate = new Vector3(dir.y, 0, -dir.x);
+            Vector3 dir = context.ReadValue<Vector3>();
+            shipTurnRate = new Vector3(-dir.y, -dir.z, -dir.x);
         }
     }
 }

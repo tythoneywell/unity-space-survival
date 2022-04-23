@@ -50,6 +50,8 @@ public class PlayerInteraction : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         if (PlayerUIController.invShown) return;
+        if (PlayerUIController.saveShown) return;
+
 
         if (context.performed)
         {
@@ -82,6 +84,8 @@ public class PlayerInteraction : MonoBehaviour
     public void Use(InputAction.CallbackContext context)
     {
         if (PlayerUIController.invShown) return;
+        if (PlayerUIController.saveShown) return;
+
 
         if (context.performed)
         {
@@ -134,6 +138,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             UI.ToggleShowInventory();
             UpdateCurrentItem();
+        }
+    }
+    public void ToggleSaveMenu(InputAction.CallbackContext context){
+        if (context.performed){
+            UI.ToggleShowSaveMenu();
         }
     }
     public void UpdateCurrentItem()
