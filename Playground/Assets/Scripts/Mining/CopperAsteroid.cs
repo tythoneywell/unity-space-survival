@@ -6,10 +6,12 @@ using UnityEngine;
  * This is the class to be worked on still before the rest of the types of
  * asteroids will be made. This will be the model.
  * 
- * At current, 04/18/2022, adding the variable itemStack to inventory
+ * 04/18/2022, adding the variable itemStack to inventory
  * results in a null pointer exception. This occurs despite having an ItemData
  * object for Copper, and an itemStack that shows that it is not NULL during
- * runtime.
+ * runtime. RESOLVED by adding all elements from MAIN SCENE
+ * 
+ * 04/21/2022: Exploding the asteroids successfully adds to inventory but UI does not update to show.
  */
 public class CopperAsteroid : MonoBehaviour, IMineable
 {
@@ -27,8 +29,8 @@ public class CopperAsteroid : MonoBehaviour, IMineable
     void Start()
     {
         health = AsteroidProperties.CopperAsteroidHealth;
-        //itemStack = new ItemStack(item, Random.Range(1, AsteroidProperties.MaxCopperMineableAmount));
-        itemStack = new ItemStack(item, 10);
+        itemStack = new ItemStack(item, Random.Range(1, AsteroidProperties.MaxCopperMineableAmount));
+        //itemStack = new ItemStack(item, 10);
     }
 
     public void DamageHealth(float laserStrength)
@@ -38,7 +40,7 @@ public class CopperAsteroid : MonoBehaviour, IMineable
 
         if (health < 0)
         {
-            //TODO: SPAWN TWO HALVES OF THE ASTEROID
+            // Spawn multiple debris
             for (int i = 0; i < 10; i++)
             {
                 Instantiate(debris, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
@@ -50,6 +52,11 @@ public class CopperAsteroid : MonoBehaviour, IMineable
 
             //TODO: ADD MINERALS TO INVERNTORY
             PlayerInteraction.main.AddToInventory(new ItemStack(itemStack));
+
+            for (int i = 0; i <= 35; i++) {
+                Debug.Log(PlayerInteraction.main.inventory.GetItem(i).item.itemName);
+            }
+                      
             
 
             //PlayerInteraction.main.inventory.AddItem(TODO)

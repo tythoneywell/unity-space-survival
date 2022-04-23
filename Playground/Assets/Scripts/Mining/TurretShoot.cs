@@ -24,13 +24,13 @@ public class TurretShoot : MonoBehaviour
     private LineRenderer laserLine; //holds two points wherein a line is drawn between them
     private float nextFire; //holds the time for how long until player can fire again
 
-    private InputAction click;
+    private InputAction click; 
 
 
 
     private void Awake()
     {
-        click = new InputAction(binding: "<Mouse>/leftButton");
+        click = new InputAction(binding: "<Mouse>/leftButton"); 
         click.performed += ctx =>
             {
                 Debug.Log("clicked"); //debug
