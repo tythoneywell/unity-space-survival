@@ -21,6 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         main = this;
+        inventory = new Inventory();
+        Inventory.main = inventory;
     }
 
     void Start()
@@ -31,7 +33,6 @@ public class PlayerInteraction : MonoBehaviour
 
         rightHandRot = transform.rotation;
 
-        inventory = new Inventory();
         heldItem = inventory.GetItem(0).item;
     }
 
