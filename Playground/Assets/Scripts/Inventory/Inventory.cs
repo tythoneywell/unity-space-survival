@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Inventory
 {
+    public static Inventory main;
+
     ItemStack[] hotbar;
     ItemStack[] inventory;
     public ItemStack cursorStack;
 
     public ItemStack[] externalInventory;
+
+    public enum InventoryType
+    {
+        Hotbar,
+        Inventory,
+        ExternalInventory,
+        CraftingStation,
+        LootableCorpse,
+    }
 
     public Inventory()
     {

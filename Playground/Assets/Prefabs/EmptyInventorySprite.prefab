@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4609444483170378823}
   - component: {fileID: 8224366132576197892}
   - component: {fileID: 3870852325160873538}
-  - component: {fileID: 4844196219214802596}
   m_Layer: 5
   m_Name: EmptyInventorySprite
   m_TagString: Untagged
@@ -77,20 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4844196219214802596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5911255831311492353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b8cb236d6a36247ae25bf50e44bfe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySlotGrid: {fileID: 0}
-  index: 0
 --- !u!1 &7805762836799224049
 GameObject:
   m_ObjectHideFlags: 0

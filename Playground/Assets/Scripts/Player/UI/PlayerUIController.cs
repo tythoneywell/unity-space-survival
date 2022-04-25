@@ -13,20 +13,27 @@ public class PlayerUIController : MonoBehaviour
     public GameObject playerHotbarObject;
     public GameObject playerInventoryObject;
     public GameObject externalInventoryObject;
+    public GameObject buildMenuObject;
+
+    public GameObject tooltipObject;
 
     InventorySlotGrid playerHotbarSlots;
     InventorySlotGrid playerInventorySlots;
     InventorySlotGrid externalInventorySlots;
+    RecipeSelectGrid buildMenuRecipes;
+    RecipeIngredientsGrid buildMenuIngredients;
 
     public static GameObject emptySprite;
     // Hack to be able to set this in inspector
     public GameObject emptySpriteInspector;
 
-    int hoveredSlotIdx = -1;
+    UISlot hoveredSlot;
 
     RectTransform activeSlotRect;
-    InventorySlotSingle invCursorStack;
+    UISlot invCursorStack;
     RectTransform invCursorRect;
+    Text tooltipText;
+    RectTransform tooltipRect;
 
     void Awake()
     {
@@ -36,44 +43,64 @@ public class PlayerUIController : MonoBehaviour
         playerHotbarSlots = playerHotbarObject.GetComponentInChildren<InventorySlotGrid>();
         playerInventorySlots = playerInventoryObject.GetComponentInChildren<InventorySlotGrid>();
         externalInventorySlots = externalInventoryObject.GetComponentInChildren<InventorySlotGrid>();
+
+        tooltipText = tooltipObject.GetComponent<Text>();
+        tooltipRect = tooltipObject.GetComponent<RectTransform>();
+
+        buildMenuRecipes = buildMenuObject.GetComponentInChildren<RecipeSelectGrid>();
+        buildMenuIngredients = buildMenuObject.GetComponentInChildren<RecipeIngredientsGrid>();
     }
 
     void Start()
     {
         activeSlotRect = GameObject.Find("ActiveSlot").GetComponent<RectTransform>();
 
-        invCursorStack = Instantiate(emptySprite, transform).GetComponent<InventorySlotSingle>();
+        invCursorStack = Instantiate(emptySprite, transform).AddComponent<UISlot>();
         invCursorRect = invCursorStack.gameObject.GetComponent<RectTransform>();
         invCursorRect.pivot = new Vector2(-0.08f, 1.08f);
-        invCursorRect.sizeDelta = new Vector2(60, 60);
+        invCursorRect.sizeDelta = new Vector2(40, 40);
         invCursorStack.gameObject.GetComponent<Image>().raycastTarget = false;
 
         StartCoroutine(DelayedUpdateInventory());
     }
+    public void ToggleShowInventory()
+    {
+        if (invShown)
+        {
+            HideInventory();
+        }
+        else
+        {
+            ShowInventory();
+        }
+    }
+    public void OpenCraftingMenu()
+    {
+
+    }
+    public void HideCraftingMenu()
+    {
+
+    }
+    public void OpenBuildMenu(RoomWrapper room)
+    {
+        buildMenuObject.SetActive(true);
+        buildMenuRecipes.targetRoom = room;
+        ShowInventory();
+    }
+    public void HideBuildMenu()
+    {
+        buildMenuObject.SetActive(false);
+        HideInventory();
+    }
 
     public void Click(InputAction.CallbackContext context)
     {
-        if (hoveredSlotIdx == -1) return;
+        if (hoveredSlot == null) return;
 
         if (context.performed && context.ReadValue<float>() == 1)
         {
-            PlayerInteraction.main.inventory.CursorInteractWith(hoveredSlotIdx);
-        }
-        if (context.performed && context.ReadValue<float>() == 0)
-        {
-            // Something on mouse up
-        }
-
-        UpdateInventory();
-    }
-    public void MiddleClick(InputAction.CallbackContext context)
-    {
-        if (hoveredSlotIdx == -1) return;
-
-        if (context.performed && context.ReadValue<float>() == 1)
-        {
-            ItemStack toDuplicate = PlayerInteraction.main.inventory.GetItem(hoveredSlotIdx);
-            PlayerInteraction.main.inventory.cursorStack = new ItemStack(toDuplicate);
+            hoveredSlot.PrimaryActivate();
         }
         if (context.performed && context.ReadValue<float>() == 0)
         {
@@ -84,11 +111,26 @@ public class PlayerUIController : MonoBehaviour
     }
     public void RightClick(InputAction.CallbackContext context)
     {
-        if (hoveredSlotIdx == -1) return;
+        if (hoveredSlot == null) return;
 
         if (context.performed && context.ReadValue<float>() == 1)
         {
-            PlayerInteraction.main.inventory.CursorAlternateInteractWith(hoveredSlotIdx);
+            hoveredSlot.SecondaryActivate();
+        }
+        if (context.performed && context.ReadValue<float>() == 0)
+        {
+            // Something on mouse up
+        }
+
+        UpdateInventory();
+    }
+    public void MiddleClick(InputAction.CallbackContext context)
+    {
+        if (hoveredSlot == null) return;
+
+        if (context.performed && context.ReadValue<float>() == 1)
+        {
+            hoveredSlot.TertiaryActivate();
         }
         if (context.performed && context.ReadValue<float>() == 0)
         {
@@ -100,52 +142,49 @@ public class PlayerUIController : MonoBehaviour
     public void MouseMove(InputAction.CallbackContext context)
     {
         invCursorRect.position = context.ReadValue<Vector2>();
+        tooltipRect.position = context.ReadValue<Vector2>();
     }
 
-    public void UpdateHoveredSlot(int index, InventorySlotGrid.InventoryType type)
+    public void UpdateHoveredSlot(UISlot slot)
     {
-        hoveredSlotIdx = index;
-        hoveredSlotIdx += type == InventorySlotGrid.InventoryType.Inventory ? 9 : 0;
-        //Debug.Log("hovered " + hoveredSlotIdx);
+        hoveredSlot = slot;
+        tooltipText.text = hoveredSlot.descriptionText;
+        //Debug.Log("hovered " + slot.index);
     }
-    public void ClearHoveredSlot(int index, InventorySlotGrid.InventoryType type)
+    public void ClearHoveredSlot(UISlot slot)
     {
-        int convertedIdx = index + (type == InventorySlotGrid.InventoryType.Inventory ? 9 : 0);
-        if (convertedIdx == hoveredSlotIdx) hoveredSlotIdx = -1;
-        //Debug.Log("unhovered " + convertedIdx);
+        if (hoveredSlot == slot)
+        {
+            hoveredSlot = null;
+            tooltipText.text = "";
+        }
+        //Debug.Log("unhovered " + slot.index);
     }
 
-    public void ToggleShowInventory()
-    {
-        if (invShown)
-        {
-            HideInventory();
-            invShown = false;
-        }
-        else
-        {
-            ShowInventory();
-            invShown = true;
-        }
-    }
     public void ShowInventory()
     {
         playerInventoryObject.SetActive(true);
         invCursorStack.gameObject.SetActive(true);
+        tooltipObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        invShown = true;
         UpdateInventory();
     }
     public void HideInventory()
     {
         playerInventoryObject.SetActive(false);
         invCursorStack.gameObject.SetActive(false);
+        buildMenuObject.SetActive(false);
+        tooltipObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        invShown = false;
     }
 
     public void SetHotbarActiveSlot(int index)
     {
+        RectTransform hotbarRect = playerHotbarObject.GetComponent<RectTransform>();
         Vector3 slotPos = activeSlotRect.localPosition;
-        slotPos.x = -220 + 55 * ((int)index - 1);
+        slotPos.x = hotbarRect.rect.xMin + (hotbarRect.sizeDelta.x / 9) * ((float)index - 0.5f);
         activeSlotRect.localPosition = slotPos;
 
     }
