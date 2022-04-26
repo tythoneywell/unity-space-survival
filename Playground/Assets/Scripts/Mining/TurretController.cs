@@ -25,6 +25,7 @@ public class TurretController : InteractableObject
     public Transform gunEnd;
 
     private Camera turretCam;
+    public GameObject turretCamObject;
 
 
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);  //determines how long laser will be drawn for inside coroutine
@@ -34,16 +35,22 @@ public class TurretController : InteractableObject
     private float nextFire; //holds the time for how long until player can fire again
 
     private InputAction click;
+    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCamera = gameObject.GetComponentInChildren<Camera>();
+        //playerCamera = gameObject.GetComponentInChildren<Camera>();
 
         Cursor.lockState = CursorLockMode.Locked;
-        laserLine = GetComponent<LineRenderer>();
-        gunAudio = GetComponent<AudioSource>();
-        turretCam = GetComponentInParent<Camera>();
+        //laserLine = GetComponent<LineRenderer>();
+        laserLine = GetComponentInChildren<LineRenderer>();
+        //gunAudio = GetComponent<AudioSource>();
+        gunAudio = GetComponentInChildren<AudioSource>();
+        //turretCam = GetComponentInParent<Camera>();
+        turretCam = GetComponentInChildren<Camera>();
+
+        //this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Gun");
     }
 
     // Update is called once per frame
@@ -62,9 +69,11 @@ public class TurretController : InteractableObject
 
             vertLookAngle += lookSensitivity.y * -direction.y;
             vertLookAngle = Mathf.Clamp(vertLookAngle, -90, 90);
-            playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
+            //playerCamera.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
+            turretCam.transform.localRotation = Quaternion.Euler(vertLookAngle, 0, 0);
         }
     }
+
     private IEnumerator ShotEffect()
     {
         gunAudio.Play(); //TODO: insert audio file
@@ -72,13 +81,21 @@ public class TurretController : InteractableObject
         yield return shotDuration;
         laserLine.enabled = false;
     }
+
     public override void Interact(PlayerInteraction presser)
     {
         //copy kyles code (more orless)
+        playerInput = presser.GetComponent<PlayerInput>();
+        turretCamObject.SetActive(true);
+        playerInput.SwitchCurrentActionMap("Gun");
     }
-    public void LeaveTurrent(InputAction.CallbackContext context) {
+
+    public void LeaveTurret(InputAction.CallbackContext context) {
         //copy kyles code (more or less)
+        turretCamObject.SetActive(false);
+        playerInput.SwitchCurrentActionMap("Player");
     }
+
     public void Shoot(InputAction.CallbackContext context) {
         if (context.performed) {
             
@@ -123,4 +140,6 @@ public class TurretController : InteractableObject
             
         }
     }
+
+    
 }

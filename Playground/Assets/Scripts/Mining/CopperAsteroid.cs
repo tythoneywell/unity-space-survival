@@ -12,6 +12,9 @@ using UnityEngine;
  * runtime. RESOLVED by adding all elements from MAIN SCENE
  * 
  * 04/21/2022: Exploding the asteroids successfully adds to inventory but UI does not update to show.
+ * 
+ * 04/26/2022: InputSystem now works. Inventory item count updates successfully after first asteroid is destroyed.
+ * For some reason after the second asteroid is destroyed, there is no log output of a new item count.
  */
 public class CopperAsteroid : MonoBehaviour, IMineable
 {
@@ -20,6 +23,7 @@ public class CopperAsteroid : MonoBehaviour, IMineable
     public GameObject debris;
     public GameObject miniAsteroid;
     public ItemData item;
+    public int amount; //DEBUG TAKE OUT LATER
 
     private float health;
     //private ItemData item;
@@ -29,8 +33,8 @@ public class CopperAsteroid : MonoBehaviour, IMineable
     void Start()
     {
         health = AsteroidProperties.CopperAsteroidHealth;
-        itemStack = new ItemStack(item, Random.Range(1, AsteroidProperties.MaxCopperMineableAmount));
-        //itemStack = new ItemStack(item, 10);
+        //itemStack = new ItemStack(item, Random.Range(1, AsteroidProperties.MaxCopperMineableAmount));
+        itemStack = new ItemStack(item, amount); //DEBUG DELETE AND UNCOMMENT ABOVE
     }
 
     public void DamageHealth(float laserStrength)
@@ -55,6 +59,7 @@ public class CopperAsteroid : MonoBehaviour, IMineable
 
             for (int i = 0; i <= 35; i++) {
                 Debug.Log(PlayerInteraction.main.inventory.GetItem(i).item.itemName);
+                Debug.Log(PlayerInteraction.main.inventory.GetItem(i).count);
             }
                       
             

@@ -358,6 +358,7 @@ MonoBehaviour:
   weaponRange: 50
   hitForce: 100
   gunEnd: {fileID: 1218094417}
+  turretCamObject: {fileID: 2040051113}
 --- !u!114 &447501461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,9 +529,17 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9e8f7a47-8552-42d0-9623-95eaa2718536
     m_ActionName: Gun/Leave[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 80e4ed8a-0b26-49fa-894b-eaaffeeef62e
+    m_ActionName: Player/Sprint[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fec9349d-cbf8-4a78-bf8e-b89282d47edb
+    m_ActionName: Player/OpenSaveMenu[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Gun
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2040051116}
 --- !u!1001 &659354229
@@ -880,8 +889,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 8cee2bac-08b8-493a-8f92-228c423068e5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 21
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
@@ -900,6 +914,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[21].m_ActionId
+      value: 80e4ed8a-0b26-49fa-894b-eaaffeeef62e
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_ActionId
+      value: fec9349d-cbf8-4a78-bf8e-b89282d47edb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_ActionId
+      value: 01f5741e-2c45-485b-b98b-425a3cd77d0c
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionId
+      value: 8b74faa8-468e-424f-bd45-f797fe6e8074
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_ActionId
+      value: 9e8f7a47-8552-42d0-9623-95eaa2718536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[18].m_ActionName
       value: Ship/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
       objectReference: {fileID: 0}
@@ -912,6 +951,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[20].m_ActionName
       value: Ship/Interact[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[21].m_ActionName
+      value: Player/Sprint[/Keyboard/shift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_ActionName
+      value: Player/OpenSaveMenu[/Keyboard/tab]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_ActionName
+      value: Gun/Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionName
+      value: Gun/Look[/Mouse/delta]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_ActionName
+      value: Gun/Leave[/Keyboard/e]
       objectReference: {fileID: 0}
     - target: {fileID: 6331438476128779109, guid: 09737e48434b4124ba8ac4bb9f3fcf04,
         type: 3}
@@ -1519,7 +1583,7 @@ PrefabInstance:
     - target: {fileID: 556702534998597250, guid: 7682edeb78a2d0644973a1c716072890,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 556702534998597250, guid: 7682edeb78a2d0644973a1c716072890,
         type: 3}
@@ -2056,7 +2120,7 @@ PrefabInstance:
     - target: {fileID: 2243641301801875618, guid: 102d5b12ae6184663832a29b5538566e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.354
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 2243641301801875618, guid: 102d5b12ae6184663832a29b5538566e,
         type: 3}
@@ -2505,12 +2569,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474864907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.1, y: 1, z: -10}
+  m_LocalPosition: {x: -17.01, y: 22.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 447501459}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1491048070
 GameObject:
@@ -2959,17 +3023,17 @@ PrefabInstance:
     - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.2
+      value: -52.2
       objectReference: {fileID: 0}
     - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.200024
+      value: 42.2
       objectReference: {fileID: 0}
     - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.06
+      value: 24.7
       objectReference: {fileID: 0}
     - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
         type: 3}
@@ -3010,6 +3074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CopperAsteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992845362242593602, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: amount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faa95da0c2e1d43df9f9f0060e2b6b22, type: 3}
@@ -3386,6 +3455,80 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1001 &2052733032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -58.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341438113691351431, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7272464172769011154, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: m_Name
+      value: CopperAsteroid (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992845362242593602, guid: faa95da0c2e1d43df9f9f0060e2b6b22,
+        type: 3}
+      propertyPath: amount
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: faa95da0c2e1d43df9f9f0060e2b6b22, type: 3}
 --- !u!1001 &2138627223
 PrefabInstance:
   m_ObjectHideFlags: 0
