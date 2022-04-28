@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5052817985203195554}
   - component: {fileID: 3591543271618856316}
-  - component: {fileID: 3591543271618856317}
+  - component: {fileID: 2439547077563048759}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -524,9 +524,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3591543271618856317
+  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Center: {x: 0, y: 1.2565606, z: 0}
+--- !u!114 &2439547077563048759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,12 +535,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5052817985203195553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e930b8f75f4044fb9b8821e9e35158, type: 3}
+  m_Script: {fileID: 11500000, guid: cf437ae5ee40daf43a782dd4ce4069b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemStack:
-    item: {fileID: 0}
-    count: 0
+  rocketCam: {fileID: 0}
+  hideableShipBody: {fileID: 0}
 --- !u!1 &5052817985767863140
 GameObject:
   m_ObjectHideFlags: 0

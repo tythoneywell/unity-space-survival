@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6845591835097588503}
   - component: {fileID: 5232066934846695517}
   - component: {fileID: 7685780715923037284}
-  - component: {fileID: 1755702076257810048}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -26,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209451968520473270}
-  m_LocalRotation: {x: 0.13943385, y: -0.35765153, z: -0.089257896, w: 0.919063}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0473247, y: 1.0473247, z: 1.0473247}
+  m_LocalRotation: {x: 0.11638648, y: 0.20932253, z: -0.4821267, w: 0.842729}
+  m_LocalPosition: {x: -0.299, y: 0.145, z: 0.1}
+  m_LocalScale: {x: 0.8734098, y: 0.8734098, z: 0.8734098}
   m_Children: []
   m_Father: {fileID: 6785063698293751085}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 11.096, y: -44.051, z: -15.595}
+  m_LocalEulerAnglesHint: {x: 23.453, y: 15.203, z: -56.374}
 --- !u!33 &5232066934846695517
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1755702076257810048
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209451968520473270}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6295059982368308397
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,11 +93,10 @@ GameObject:
   - component: {fileID: 757641673869632853}
   - component: {fileID: 2426390812116431793}
   - component: {fileID: 4582277425142235402}
-  - component: {fileID: 3073072227722742044}
   - component: {fileID: 7473715812692292712}
   - component: {fileID: 8582745098717028359}
   m_Layer: 0
-  m_Name: debris
+  m_Name: TinyDebris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,6 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d78fd545429204b9737e68c986966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  rewardMaterials: []
+  debris: []
+  miniAsteroid: {fileID: 0}
 --- !u!33 &2426390812116431793
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -194,19 +183,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3073072227722742044
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6295059982368308397}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7473715812692292712
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -247,7 +223,6 @@ GameObject:
   - component: {fileID: 9704638604445641}
   - component: {fileID: 8005349366656470311}
   - component: {fileID: 510554616263681785}
-  - component: {fileID: 7228919885447250407}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -262,13 +237,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8777107938918896289}
-  m_LocalRotation: {x: -0.30462748, y: 0.1535876, z: -0.37315154, w: 0.8627694}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0971, y: 1.0971, z: 1.0971}
+  m_LocalRotation: {x: 0.09736456, y: 0.5104522, z: -0.52304786, w: 0.67555875}
+  m_LocalPosition: {x: 0.25, y: -0.129, z: -0.12}
+  m_LocalScale: {x: 0.72784907, y: 0.72784907, z: 0.72784907}
   m_Children: []
   m_Father: {fileID: 6785063698293751085}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -24.269, y: 32.69, z: -53.994}
+  m_LocalEulerAnglesHint: {x: 41.723, y: 51.96, z: -54.456}
 --- !u!33 &8005349366656470311
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -318,16 +293,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7228919885447250407
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8777107938918896289}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

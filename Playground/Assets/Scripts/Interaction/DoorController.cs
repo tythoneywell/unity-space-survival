@@ -15,7 +15,7 @@ public class DoorController : InteractableObject
     {
         
     }
-    public override void Interact(PlayerInteraction presser){
+    public override void OnInteract(PlayerInteraction presser){
         GameObject door = GameObject.Find("DoorPlate");
         Door doorPlate = door.GetComponent<Door>();
         doorPlate.toggleOpen();

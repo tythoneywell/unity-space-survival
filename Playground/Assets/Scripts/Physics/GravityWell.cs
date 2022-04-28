@@ -6,7 +6,7 @@ public abstract class GravityWell : MonoBehaviour
 {
     protected List<GravityWellObject> wellObjects = new List<GravityWellObject>();
 
-    private void Start()
+    protected void Start()
     {
         foreach(GravityWellObject wellObj in gameObject.GetComponentsInChildren<GravityWellObject>())
         {

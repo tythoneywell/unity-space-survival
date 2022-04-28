@@ -5,12 +5,17 @@ using UnityEngine.InputSystem;
 
 public class ShipController : GravityWell
 {
+    public static ShipController main;
+
     [SerializeField]
     public float baseSpeed = 800;
     [SerializeField]
     public float baseFriction = 4;
     [SerializeField]
     float turnSpeed = 30;
+
+    public GameObject rocketCam;
+    public GameObject hideableShipBody;
 
     AsteroidField asteroidField;
 
@@ -19,8 +24,14 @@ public class ShipController : GravityWell
 
     Vector3 speedVec;
 
-    void Start()
+    private void Awake()
     {
+        main = this;
+    }
+
+    new void Start()
+    {
+        base.Start();
         asteroidField = GameObject.Find("AsteroidField").GetComponent<AsteroidField>();
     }
 
@@ -32,6 +43,21 @@ public class ShipController : GravityWell
         speedVec *= Mathf.Pow(1 / (1 + baseFriction), Time.fixedDeltaTime);
 
         asteroidField.PanField(speedVec);
+    }
+
+    public void EnterShipMode()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        rocketCam.SetActive(true);
+        hideableShipBody.SetActive(true);
+        PlayerInteraction.main.GetComponent<PlayerInput>().SwitchCurrentActionMap("Ship");
+    }
+    public void LeaveShipMode(InputAction.CallbackContext context)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        rocketCam.SetActive(false);
+        hideableShipBody.SetActive(false);
+        PlayerInteraction.main.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
     }
 
     public void UpdateThrust(InputAction.CallbackContext context)

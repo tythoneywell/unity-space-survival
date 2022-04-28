@@ -69,7 +69,7 @@ public class PlayerInteraction : MonoBehaviour
                 InteractableObject obj = hitObject.GetComponent<InteractableObject>();
                 if (obj != null)
                 {
-                    obj.Interact(this);
+                    obj.OnInteract(this);
                 }
                 else
                 {

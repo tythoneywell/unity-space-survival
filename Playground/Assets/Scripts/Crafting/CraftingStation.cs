@@ -21,7 +21,7 @@ public class CraftingStation : InteractableObject
             CheckValid(activePlayer);
         }
     }
-    public override void Interact(PlayerInteraction presser){
+    public override void OnInteract(PlayerInteraction presser){
         activePlayer = presser;
         Debug.Log("OPEN INVENTORY");
         Debug.Log("CLOSE INVENTORY");

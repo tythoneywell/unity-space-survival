@@ -3,56 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * This class is for testing. It is attached to the standard Asteroid prefab 
- * and allows us to simply shoot and destroy an asteroid.
- * 
- * It does NOT add to the inventory or generate smaller asteroids to mine.
+ * Root class for all GameObjects which can be mined via the spaceship laser.
  */
 public class MineableObject : MonoBehaviour, IMineable
 {
-    public GameObject debris;
+    public float maxHealth = 100;
+    public ItemStack[] rewardMaterials;
+    public GameObject[] debris;
+    public float debrisScatterForce = 100f;
     public GameObject miniAsteroid;
-    private float health;
+
+    private float currHealth;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-        health = 100;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        currHealth = maxHealth;
     }
 
     public void DamageHealth(float laserStrength)
     {
-        Debug.LogFormat("decreased from {0} to {1}", health, health - laserStrength);
-        health = health - laserStrength;
+        //Debug.LogFormat("decreased from {0} to {1}", currHealth, currHealth - laserStrength);
+        currHealth = currHealth - laserStrength;
 
-        if (health < 0)
+        if (currHealth < 0)
         {
-            //TODO: SPAWN TWO HALVES OF THE ASTEROID
-            for (int i = 0; i < 10; i++)
-            {
-                Instantiate(debris, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
-
-            }
-            //TODO: randomize whether or not medium chunks exist to continue mining
-            //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
-            //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
-            
-            //TODO: ADD MINERALS TO INVERNTORY
-
-
-            //PlayerInteraction.main.inventory.AddItem(TODO)
-
-
-            //Destroy the big asteroid
-            Debug.Log("asteroid destroyed");
-            Destroy(gameObject);
+            Break();
         }
+    }
+
+    void Break()
+    {
+        foreach (ItemStack stack in rewardMaterials)
+            Inventory.main.AddItemNoIndex(new ItemStack(stack));
+
+        // Spawn debris chunks
+        foreach (GameObject debrisPiece in debris)
+        {
+            Vector3 chunkBreakDirection = Random.insideUnitSphere;
+            GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
+            instantiatedDebris.GetComponent<Rigidbody>().AddForce(chunkBreakDirection * debrisScatterForce, ForceMode.VelocityChange);
+            AsteroidField.main.AddDebris(instantiatedDebris);
+        }
+        //TODO: randomize whether or not medium chunks exist to continue mining
+        //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
+        //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
+
+        //Destroy the big asteroid
+        //Debug.Log("asteroid destroyed");
+        Destroy(gameObject);
     }
 }
 

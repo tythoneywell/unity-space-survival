@@ -9,7 +9,7 @@ public class DroppedItem : InteractableObject
         this.itemStack = new ItemStack(itemStack);
     }
 
-    public override void Interact(PlayerInteraction presser) {
+    public override void OnInteract(PlayerInteraction presser) {
         bool pickedUp = presser.AddToInventory(itemStack);
         if (pickedUp) {
             Debug.Log("Picked up " + itemStack.count + " " + itemStack.item.itemName);

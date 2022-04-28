@@ -82,7 +82,7 @@ public class TurretController : InteractableObject
         laserLine.enabled = false;
     }
 
-    public override void Interact(PlayerInteraction presser)
+    public override void OnInteract(PlayerInteraction presser)
     {
         //copy kyles code (more orless)
         playerInput = presser.GetComponent<PlayerInput>();

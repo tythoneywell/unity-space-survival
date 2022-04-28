@@ -12,7 +12,7 @@ public class RoomTerminal : InteractableObject
         room = transform.parent.GetComponent<RoomWrapper>();
     }
 
-    public override void Interact(PlayerInteraction presser)
+    public override void OnInteract(PlayerInteraction presser)
     {
         if (!built)
         {

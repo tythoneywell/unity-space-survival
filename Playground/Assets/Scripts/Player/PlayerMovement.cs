@@ -31,6 +31,9 @@ public class PlayerMovement : GravityWellObject
     // Private refs
     Camera playerCamera;
 
+    // Input
+    public InputActionAsset playerInputActions;
+
     // Private vars
     bool isWalking = false;
     [SerializeField]
@@ -54,7 +57,6 @@ public class PlayerMovement : GravityWellObject
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
         moddedSpeed = baseWalkingSpeed;
-        Cursor.lockState = CursorLockMode.Locked;
     }
     public override void ManualFixedUpdate()
     {

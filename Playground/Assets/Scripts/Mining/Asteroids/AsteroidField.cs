@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class AsteroidField : MonoBehaviour
 {
+    public static AsteroidField main;
 
     [SerializeField]
     int maxAsteroids = 200;
     [SerializeField]
     Vector3 baseDrift = new Vector3(10, 2, -30);
+
+    [SerializeField]
+    float maxDebris = 30;
 
     [SerializeField]
     float initMinSpawnDist = 100;
@@ -25,24 +29,39 @@ public class AsteroidField : MonoBehaviour
     [SerializeField]
     GameObject refAsteroid;
     
-    List<GameObject> asteroids;
+    List<GameObject> asteroidsList;
+    List<GameObject> debrisList;
     Vector3 shipSpeed;
 
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        main = this;
+    }
+
     void Start()
     {
-        asteroids = new List<GameObject>();
+        asteroidsList = new List<GameObject>();
+        debrisList = new List<GameObject>();
         shipSpeed = Vector3.zero;
 
         InitField();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CullField();
         GrowField();
+    }
+
+    public void AddDebris(GameObject debris)
+    {
+        if (debrisList.Count >= maxDebris) // Might try making while, but runs the risk of infinite while
+        {
+            Destroy(debrisList[0]);
+            debrisList.RemoveAt(0);
+        }
+        debrisList.Add(debris);
     }
 
     // Instantiates a new asteroid with some randomized properties
@@ -55,7 +74,7 @@ public class AsteroidField : MonoBehaviour
         asteroidRB.AddTorque(Random.insideUnitSphere * randomSpinMax);
         asteroidRB.AddForce(baseDrift + shipSpeed + Random.insideUnitSphere * randomDriftMax, ForceMode.Acceleration);
 
-        asteroids.Add(newAsteroid);
+        asteroidsList.Add(newAsteroid);
         return newAsteroid;
     }
 
@@ -77,21 +96,35 @@ public class AsteroidField : MonoBehaviour
 
     void CullField()
     {
-        for (int i = asteroids.Count - 1; i >= 0; i--)
+        for (int i = asteroidsList.Count - 1; i >= 0; i--)
         {
-            if (Vector3.Distance(asteroids[i].transform.position, transform.position) > maxSpawnDist + 1)
+            if (asteroidsList[i] == null)
             {
-                GameObject.Destroy(asteroids[i]);
-                asteroids.RemoveAt(i);
+                asteroidsList.RemoveAt(i);
             }
-                
+            else if (Vector3.Distance(asteroidsList[i].transform.position, transform.position) > maxSpawnDist + 1)
+            {
+                Destroy(asteroidsList[i]);
+                asteroidsList.RemoveAt(i);
+            }
         }
-
+        for (int i = debrisList.Count - 1; i >= 0; i--)
+        {
+            if (debrisList[i] == null)
+            {
+                debrisList.RemoveAt(i);
+            }
+            else if (Vector3.Distance(debrisList[i].transform.position, transform.position) > maxSpawnDist + 1)
+            {
+                Destroy(debrisList[i]);
+                debrisList.RemoveAt(i);
+            }
+        }
     }
     
     void GrowField()
     {
-        for (int i = asteroids.Count; i < maxAsteroids; i++)
+        for (int i = asteroidsList.Count; i < maxAsteroids; i++)
         {
             // Get random position from the direction of oncoming asteroids.
             // Note that circle projection gives a more uniform distribution than
@@ -114,10 +147,21 @@ public class AsteroidField : MonoBehaviour
 
     public void PanField(Vector3 panSpeed)
     {
-        foreach (GameObject a in asteroids)
+        foreach (GameObject a in asteroidsList)
         {
-            a.GetComponent<Rigidbody>().AddForce(-panSpeed - shipSpeed, ForceMode.Acceleration);
-            //a.transform.Translate(-panSpeed * Time.deltaTime, Space.World);
+            if (a != null)
+            {
+                a.GetComponent<Rigidbody>().AddForce(-panSpeed - shipSpeed, ForceMode.Acceleration);
+                //a.transform.Translate(-panSpeed * Time.deltaTime, Space.World);
+            }
+        }
+        foreach (GameObject a in debrisList)
+        {
+            if (a != null)
+            {
+                a.GetComponent<Rigidbody>().AddForce(-panSpeed - shipSpeed, ForceMode.Acceleration);
+                //a.transform.Translate(-panSpeed * Time.deltaTime, Space.World);
+            }
         }
         shipSpeed = -panSpeed;
 

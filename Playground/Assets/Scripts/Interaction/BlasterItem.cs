@@ -9,7 +9,7 @@ public class BlasterItem : InteractableObject
     public BlasterItem(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
-    public override void Interact(PlayerInteraction presser)
+    public override void OnInteract(PlayerInteraction presser)
     {
         bool pickedUp = presser.AddToInventory(itemStack);
         if (pickedUp) {
