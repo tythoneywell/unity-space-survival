@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90dc5dbcbc2f4bf42a5722b5de440815, type: 2}
+  - {fileID: 2100000, guid: bca3e0aebfcad464ba04913cc5873b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 2426390812116431793}
   - component: {fileID: 4582277425142235402}
   - component: {fileID: 7473715812692292712}
-  - component: {fileID: 5266516067773556322}
+  - component: {fileID: 5934359545381553856}
   m_Layer: 0
-  m_Name: CopperChunk
+  m_Name: IceChunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 6295059982368308397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 3.5, y: 8, z: 3.5}
   m_Children:
   - {fileID: 6845591835097588503}
   - {fileID: 9704638604445641}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d78fd545429204b9737e68c986966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 55
   rewardMaterials:
   - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
     count: 4
@@ -167,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: daf884d916f5fa64b85a9dfd5557b0c7, type: 2}
+  - {fileID: 2100000, guid: d0c5212d536bc364cb7294ac158c40a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,8 +205,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &5266516067773556322
-SphereCollider:
+--- !u!136 &5934359545381553856
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -215,8 +215,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.8
+  m_Height: 1.5
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8777107938918896289
 GameObject:
@@ -277,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: daf884d916f5fa64b85a9dfd5557b0c7, type: 2}
+  - {fileID: 2100000, guid: d0c5212d536bc364cb7294ac158c40a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

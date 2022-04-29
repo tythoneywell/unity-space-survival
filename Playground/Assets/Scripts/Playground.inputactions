@@ -1150,6 +1150,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AimTurn",
+                    "type": "Value",
+                    "id": "ecd20f55-1e07-4f00-9f70-e6e5a43a5db5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1260,6 +1269,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9c08dd7-d14b-4758-9ffd-9884194b3ef8",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimTurn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

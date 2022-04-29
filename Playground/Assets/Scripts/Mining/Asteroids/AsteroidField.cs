@@ -27,8 +27,11 @@ public class AsteroidField : MonoBehaviour
     float randomSpinMax = 15;
 
     [SerializeField]
-    GameObject refAsteroid;
-    
+    GameObject[] spawnList;
+    [SerializeField]
+    int[] spawnListWeights;
+    int spawnListTotalWeight;
+
     List<GameObject> asteroidsList;
     List<GameObject> debrisList;
     Vector3 shipSpeed;
@@ -44,6 +47,12 @@ public class AsteroidField : MonoBehaviour
         asteroidsList = new List<GameObject>();
         debrisList = new List<GameObject>();
         shipSpeed = Vector3.zero;
+
+        spawnListTotalWeight = 0;
+        foreach (int i in spawnListWeights)
+        {
+            spawnListTotalWeight += i;
+        }
 
         InitField();
     }
@@ -68,7 +77,7 @@ public class AsteroidField : MonoBehaviour
     // And adds it to the list
     GameObject MakeAsteroid()
     {
-        GameObject newAsteroid = GameObject.Instantiate(refAsteroid, transform);
+        GameObject newAsteroid = GameObject.Instantiate(ChooseAsteroidPrefab(), transform);
 
         Rigidbody asteroidRB = newAsteroid.GetComponent<Rigidbody>();
         asteroidRB.AddTorque(Random.insideUnitSphere * randomSpinMax);
@@ -76,6 +85,18 @@ public class AsteroidField : MonoBehaviour
 
         asteroidsList.Add(newAsteroid);
         return newAsteroid;
+    }
+    GameObject ChooseAsteroidPrefab()
+    {
+        float roll = Random.value;
+        int cumulativeWeight = 0;
+        for (int i = 0; i < spawnListWeights.Length; i++)
+        {
+            cumulativeWeight += spawnListWeights[i];
+            if (roll < (float)cumulativeWeight / spawnListTotalWeight) return spawnList[i];
+        }
+        // We somehow got past the end of the list
+        return spawnList[0];
     }
 
     void InitField()

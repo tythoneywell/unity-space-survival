@@ -37,7 +37,7 @@ public class ShipController : GravityWell
 
     protected override void ManualFixedUpdate()
     {
-        transform.Rotate(turnSpeed * shipTurnRate * Time.fixedDeltaTime);
+        gameObject.GetComponent<Rigidbody>().MoveRotation(transform.rotation * Quaternion.Euler(turnSpeed * shipTurnRate * Time.fixedDeltaTime));
 
         speedVec += targetSpeed * transform.forward * Time.fixedDeltaTime;
         speedVec *= Mathf.Pow(1 / (1 + baseFriction), Time.fixedDeltaTime);
@@ -58,6 +58,7 @@ public class ShipController : GravityWell
         rocketCam.SetActive(false);
         hideableShipBody.SetActive(false);
         PlayerInteraction.main.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+        shipTurnRate = Vector3.zero;
     }
 
     public void UpdateThrust(InputAction.CallbackContext context)
@@ -67,12 +68,25 @@ public class ShipController : GravityWell
         if (context.canceled)
             targetSpeed = 0;
     }
-    public void UpdateRotationSpeed(InputAction.CallbackContext context)
+    public void UpdateMovementKeyboard(InputAction.CallbackContext context)
     {
         if (context.performed || context.canceled)
         {
             Vector3 dir = context.ReadValue<Vector3>();
-            shipTurnRate = new Vector3(-dir.y, -dir.z, -dir.x);
+            shipTurnRate.z = -dir.x;
+
+            targetSpeed = dir.y * baseSpeed;
+        }
+    }
+    public void UpdateMovementMouse(InputAction.CallbackContext context)
+    {
+        if (context.performed || context.canceled)
+        {
+            Vector3 dir = context.ReadValue<Vector2>();
+            dir -= new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
+            dir /= Camera.main.pixelWidth / 2;
+            shipTurnRate.x = -Mathf.Sign(dir.y) * Mathf.Clamp(Mathf.Abs(dir.y) - 0.35f, 0, 1);
+            shipTurnRate.y = Mathf.Sign(dir.x) * Mathf.Clamp(Mathf.Abs(dir.x) - 0.35f, 0, 1);
         }
     }
 }

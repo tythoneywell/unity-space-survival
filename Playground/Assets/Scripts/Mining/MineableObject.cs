@@ -41,8 +41,8 @@ public class MineableObject : MonoBehaviour, IMineable
         foreach (GameObject debrisPiece in debris)
         {
             Vector3 chunkBreakDirection = Random.insideUnitSphere;
-            GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
-            instantiatedDebris.GetComponent<Rigidbody>().AddForce(chunkBreakDirection * debrisScatterForce, ForceMode.VelocityChange);
+            GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
+            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce, ForceMode.VelocityChange);
             AsteroidField.main.AddDebris(instantiatedDebris);
         }
         //TODO: randomize whether or not medium chunks exist to continue mining
