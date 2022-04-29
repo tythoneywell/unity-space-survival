@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 6295059982368308397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 6845591835097588503}
   - {fileID: 9704638604445641}
@@ -133,6 +133,7 @@ MonoBehaviour:
   maxHealth: 100
   rewardMaterials: []
   debris: []
+  debrisScatterForce: 100
   miniAsteroid: {fileID: 0}
 --- !u!33 &2426390812116431793
 MeshFilter:
