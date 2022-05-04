@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public static PlayerInteraction main;
 
-    public Inventory inventory;
+    public PlayerInventory inventory;
     int currentSlotIdx = 1;
 
     GameObject rightHand;
@@ -21,8 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         main = this;
-        inventory = new Inventory();
-        Inventory.main = inventory;
+        inventory = new PlayerInventory();
+        PlayerInventory.main = inventory;
     }
 
     void Start()

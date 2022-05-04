@@ -35,7 +35,7 @@ public class MineableObject : MonoBehaviour, IMineable
     void Break()
     {
         foreach (ItemStack stack in rewardMaterials)
-            Inventory.main.AddItemNoIndex(new ItemStack(stack));
+            PlayerInventory.main.AddItemNoIndex(new ItemStack(stack));
 
         // Spawn debris chunks
         foreach (GameObject debrisPiece in debris)

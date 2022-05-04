@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class InventorySlotGrid : UISlotGrid
 {
-    public Inventory.InventoryType invType;
+    public PlayerInventory.InventoryType invType;
 
     protected override GameObject MakeSlot()
     {
         GameObject newSlot = Instantiate(PlayerUIController.emptySprite, rTransform);
-        newSlot.AddComponent<InventorySlot>();
+        newSlot.AddComponent<PlayerInventorySlot>();
 
-        newSlot.GetComponent<InventorySlot>().inventoryIndexOffset = invType == Inventory.InventoryType.Inventory ? 9 : 0;
+        newSlot.GetComponent<PlayerInventorySlot>().inventoryIndexOffset = invType == PlayerInventory.InventoryType.Inventory ? 9 : 0;
 
         return newSlot;
     }

@@ -18,12 +18,13 @@ public class PlayerUIController : MonoBehaviour
     public GameObject playerSaveMenu;
 
     public GameObject buildMenuObject;
+    public GameObject farmMenuObject;
     public GameObject tooltipObject;
 
     InventorySlotGrid playerHotbarSlots;
     InventorySlotGrid playerInventorySlots;
     InventorySlotGrid externalInventorySlots;
-    RecipeSelectGrid buildMenuRecipes;
+    RoomRecipeSelectGrid buildMenuRecipes;
     RecipeIngredientsGrid buildMenuIngredients;
 
     public static GameObject emptySprite;
@@ -50,7 +51,7 @@ public class PlayerUIController : MonoBehaviour
         tooltipText = tooltipObject.GetComponent<Text>();
         tooltipRect = tooltipObject.GetComponent<RectTransform>();
 
-        buildMenuRecipes = buildMenuObject.GetComponentInChildren<RecipeSelectGrid>();
+        buildMenuRecipes = buildMenuObject.GetComponentInChildren<RoomRecipeSelectGrid>();
         buildMenuIngredients = buildMenuObject.GetComponentInChildren<RecipeIngredientsGrid>();
     }
 
@@ -91,10 +92,10 @@ public class PlayerUIController : MonoBehaviour
         buildMenuRecipes.targetRoom = room;
         ShowInventory();
     }
-    public void HideBuildMenu()
+    public void OpenFarmMenu()
     {
-        buildMenuObject.SetActive(false);
-        HideInventory();
+        farmMenuObject.SetActive(true);
+        ShowInventory();
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -207,6 +208,7 @@ public class PlayerUIController : MonoBehaviour
         invCursorStack.gameObject.SetActive(false);
         buildMenuObject.SetActive(false);
         tooltipObject.SetActive(false);
+        farmMenuObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         invShown = false;
     }

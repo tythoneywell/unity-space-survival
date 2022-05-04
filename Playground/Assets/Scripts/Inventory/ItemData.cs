@@ -12,9 +12,15 @@ public class ItemData: ScriptableObject
     public GameObject model;
     public Sprite sprite;
 
-    public void Use(PlayerInteraction presser)
+    public int hungerRestoreAmount;
+
+    public virtual void Use(PlayerInteraction presser)
     {
-        MakeDroppedInstance(1, presser);
+        if (hungerRestoreAmount > 0)
+        {
+            presser.RemoveCurrentFromInv(1);
+            Debug.Log("ate " + displayName);
+        }
     }
 
     public GameObject MakeDroppedInstance(int count, PlayerInteraction presser)

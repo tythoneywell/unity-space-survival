@@ -2,20 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Recipe", menuName = "ScriptableObjects/Recipe", order = 1)]
-public class Recipe : ScriptableObject
+public abstract class Recipe : ScriptableObject
 {
-    // Start is called before the first frame update
-    public ItemStack[] requirements;
-    public ItemStack result;
-    void Start()
-    {
-        
-    }
+    public ItemStack[] ingredients;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string recipeName;
+    public Sprite icon;
 }

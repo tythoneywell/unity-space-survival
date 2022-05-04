@@ -33,7 +33,7 @@ public class CraftingStation : InteractableObject
     List<Recipe> CheckValid(PlayerInteraction presser){
         List<Recipe> valid = new List<Recipe>();
         foreach (Recipe recipe in recipeList){
-            if (Craft(presser.gameObject.GetComponent<Inventory>().ToArray(), recipe)){
+            if (Craft(presser.gameObject.GetComponent<PlayerInventory>().ToArray(), recipe)){
                 valid.Add(recipe);
             }
         }
@@ -41,8 +41,8 @@ public class CraftingStation : InteractableObject
     }
 
     bool Craft(ItemStack[] inputItems, Recipe recipe){
-        for (int reqNum = 0; reqNum < recipe.requirements.Length; reqNum++){
-            ItemStack requirement = recipe.requirements[reqNum];
+        for (int reqNum = 0; reqNum < recipe.ingredients.Length; reqNum++){
+            ItemStack requirement = recipe.ingredients[reqNum];
             for (int inputNum = 0; inputNum < inputItems.Length; inputNum++){
                 ItemStack currStack = inputItems[inputNum];
                 if (currStack.item == requirement.item){

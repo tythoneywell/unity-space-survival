@@ -10,6 +10,6 @@ public class RecipeSelectSlot : UISlot
     }
     public override void TertiaryActivate()
     {
-        ((RecipeSelectGrid)parentGrid).BuildRecipe(index);
+        ((RecipeSelectGrid)parentGrid).ActivateRecipe(index);
     }
 }

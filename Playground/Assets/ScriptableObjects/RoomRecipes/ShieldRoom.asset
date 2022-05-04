@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5538743673e7e24fb20f622fda225ff, type: 3}
   m_Name: ShieldRoom
   m_EditorClassIdentifier: 
-  recipe:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 3
-  roomName: Shield Generator
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients:
+  - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
+    count: 20
+  recipeName: Shield Generator
+  icon: {fileID: 21300000, guid: 96d63a79b06563f429bf883b1dd77813, type: 3}
+  roomType: 8
   roomCenterpiece: {fileID: 196830641904235259, guid: 06c37b0b2a62b5146a626b6288cb782d,
     type: 3}

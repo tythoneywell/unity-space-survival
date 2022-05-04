@@ -67,8 +67,16 @@ public class IntegratedTurret : MonoBehaviour
 
                 if (Time.time > nextFire)
                 {
-                    if (hit.collider != null)
-                        hit.collider.GetComponent<IMineable>()?.DamageHealth(turretDamage);
+                    if (Random.value <= ShipSystemController.main.powerSatisfaction)
+                    {
+                        StartLaserFX();
+                        if (hit.collider != null)
+                            hit.collider.GetComponent<IMineable>()?.DamageHealth(turretDamage);
+                    }
+                    else
+                    {
+                        StopLaserFX();
+                    }
                     nextFire = Time.time + fireRate; //update next time gun can fire
                 }
             }
