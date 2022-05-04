@@ -9,8 +9,9 @@ public class FarmRoom : RoomBackend
 {
     ProcessingInventory farmInv;
 
-    const float itemProductionDelay = 2f;
-    const float fuelConsumptionDelay = 4f;
+    const float itemProductionDelay = 10f;
+    const float fuelConsumptionDelay = 15f;
+    const float powerDraw = 1f;
 
     float itemProductionProgress = 0;
     float fuelConsumptionProgress = fuelConsumptionDelay;
@@ -21,10 +22,14 @@ public class FarmRoom : RoomBackend
     }
     public override void Update()
     {
+        float powerSatisfaction = ShipSystemController.main.powerSatisfaction;
         if (farmInv.recipe != null && farmInv.fuel.GetItem(0).item.itemName == farmInv.recipe.fuel.item.itemName)
         {
-            itemProductionProgress += Time.deltaTime;
-            fuelConsumptionProgress += Time.deltaTime;
+            wrapper.working = true;
+            wrapper.powerConsumption = powerDraw;
+
+            itemProductionProgress += Time.deltaTime * powerSatisfaction;
+            fuelConsumptionProgress += Time.deltaTime * powerSatisfaction;
             if (itemProductionProgress > itemProductionDelay)
             {
                 farmInv.AddItemNoIndex(new ItemStack(farmInv.recipe.result));
@@ -35,6 +40,11 @@ public class FarmRoom : RoomBackend
                 farmInv.fuel.RemoveItem(0, 1);
                 fuelConsumptionProgress -= fuelConsumptionDelay;
             }
+        }
+        else
+        {
+            wrapper.working = false;
+            wrapper.powerConsumption = 0;
         }
     }
     public override void Deconstruct()

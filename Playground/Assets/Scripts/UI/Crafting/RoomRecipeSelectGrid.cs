@@ -8,6 +8,7 @@ public class RoomRecipeSelectGrid : RecipeSelectGrid
 
     public override void ActivateRecipe(int index)
     {
+        if (index == -1) index = selectedRecipeIndex;
         targetRoom.Build((RoomRecipe)knownRecipes.recipeList[index]);
         PlayerUIController.main.HideInventory();
     }

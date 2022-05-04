@@ -30,10 +30,21 @@ public class RoomWrapper : ShipSystem
     private void Update()
     {
         roomBackend.Update();
+        if (roomCenterpiece != null) roomCenterpiece.working = working;
     }
 
     public void Build(RoomRecipe recipe)
     {
+        if (PlayerInventory.main.HasRecipeIngredients(recipe))
+        {
+            PlayerInventory.main.ConsumeRecipeIngredients(recipe);
+        }
+        else
+        {
+            // Notify player that room can't be built
+            Debug.Log("insufficient ingredients to build " + recipe.recipeName);
+            return;
+        }
         roomBackend.Deconstruct();
         switch (recipe.roomType)
         {
@@ -44,6 +55,9 @@ public class RoomWrapper : ShipSystem
                 roomBackend = new ShieldRoom();
                 break;
             case RoomType.FARM:
+                roomBackend = new FarmRoom();
+                break;
+            case RoomType.SMELTER:
                 roomBackend = new FarmRoom();
                 break;
             default:

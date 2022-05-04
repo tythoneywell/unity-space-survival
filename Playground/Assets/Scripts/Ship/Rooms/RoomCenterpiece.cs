@@ -10,6 +10,6 @@ public class RoomCenterpiece : MonoBehaviour
     void Update()
     {
         if (working)
-            spinningBit.Rotate(0, 180 * Time.deltaTime, 0);
+            spinningBit.Rotate(0, 180 * Time.deltaTime * ShipSystemController.main.powerSatisfaction, 0);
     }
 }

@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class DoorController : InteractableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool operational;
+    public Recipe repairCost;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public override void OnInteract(PlayerInteraction presser){
-        GameObject door = GameObject.Find("DoorPlate");
-        Door doorPlate = door.GetComponent<Door>();
-        doorPlate.toggleOpen();
+        if (operational)
+        {
+            Door doorPlate = gameObject.GetComponentInChildren<Door>();
+            doorPlate.Open();
+        }
+        else
+        {
+            // Open repair menu
+        }
     }
     
 }

@@ -9,6 +9,8 @@ public abstract class RecipeSelectGrid : UISlotGrid
     public GameObject activeRecipeCursor;
     public RecipeIngredientsGrid ingredientsGrid;
 
+    protected int selectedRecipeIndex;
+
     new void Start()
     {
         base.Start();
@@ -28,6 +30,7 @@ public abstract class RecipeSelectGrid : UISlotGrid
     public void SelectRecipe(int index)
     {
         ShowRecipeIngredients(index);
+        selectedRecipeIndex = index;
         activeRecipeCursor.transform.position = gridSlots[index].transform.position;
     }
     void ShowRecipeIngredients(int index)
