@@ -395,7 +395,7 @@ MonoBehaviour:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
-  debrisScatterForce: 15
+  debrisScatterForce: 50
   miniAsteroid: {fileID: 0}
   collideDamage: 1
 --- !u!54 &-8582588136094557288

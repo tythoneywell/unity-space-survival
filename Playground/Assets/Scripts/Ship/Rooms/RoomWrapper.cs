@@ -61,7 +61,7 @@ public class RoomWrapper : ShipSystem
         switch (recipe.roomType)
         {
             case RoomType.SOLAR:
-                roomBackend = new PowerRoom();
+                roomBackend = new SolarRoom();
                 break;
             case RoomType.SHIELD:
                 roomBackend = new ShieldRoom();

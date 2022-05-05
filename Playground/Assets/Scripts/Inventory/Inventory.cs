@@ -92,6 +92,57 @@ public class Inventory
         }
     }
 
+    public bool HasRecipeIngredients(Recipe recipe)
+    {
+        foreach (ItemStack recipeStack in recipe.ingredients)
+        {
+            int invAmt = 0;
+            foreach (ItemStack invStack in inventory)
+            {
+                if (invStack.item.itemName == recipeStack.item.itemName) invAmt += invStack.count;
+            }
+            if (invAmt < recipeStack.count) return false;
+        }
+        return true;
+    }
+    public void ConsumeRecipeIngredients(Recipe recipe)
+    {
+        foreach (ItemStack recipeStack in recipe.ingredients)
+        {
+            int remaining = recipeStack.count;
+            foreach (ItemStack invStack in inventory)
+            {
+                if (invStack.item.itemName == recipeStack.item.itemName) remaining -= invStack.TakeAmount(remaining).count;
+            }
+            if (remaining > 0) Debug.Log("recipe was crafted without sufficient ingredients");
+        }
+    }
+    public bool HasRecipeIngredients(ItemStack[] ingredients)
+    {
+        foreach (ItemStack recipeStack in ingredients)
+        {
+            int invAmt = 0;
+            foreach (ItemStack invStack in inventory)
+            {
+                if (invStack.item.itemName == recipeStack.item.itemName) invAmt += invStack.count;
+            }
+            if (invAmt < recipeStack.count) return false;
+        }
+        return true;
+    }
+    public void ConsumeRecipeIngredients(ItemStack[] ingredients)
+    {
+        foreach (ItemStack recipeStack in ingredients)
+        {
+            int remaining = recipeStack.count;
+            foreach (ItemStack invStack in inventory)
+            {
+                if (invStack.item.itemName == recipeStack.item.itemName) remaining -= invStack.TakeAmount(remaining).count;
+            }
+            if (remaining > 0) Debug.Log("recipe was crafted without sufficient ingredients");
+        }
+    }
+
     public ItemStack[] ToArray()
     {
         ItemStack[] inv = new ItemStack[36];

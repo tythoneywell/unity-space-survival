@@ -5,13 +5,13 @@ using UnityEngine;
 /*
  * Produces power 
  */
-public class PowerRoom : RoomBackend
+public class SolarRoom : RoomBackend
 {
     const float powerAmt = 1f;
 
     public override void Build()
     {
-
+        wrapper.working = true;
     }
     public override void Update()
     {

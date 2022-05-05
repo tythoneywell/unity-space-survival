@@ -133,13 +133,14 @@ MonoBehaviour:
   maxHealth: 55
   rewardMaterials:
   - item: {fileID: 11400000, guid: 1af6b3d62334363448f10ff3c31b26fa, type: 2}
-    count: 3
+    count: 2
   debris:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   debrisScatterForce: 10
   miniAsteroid: {fileID: 0}
+  collideDamage: 0
 --- !u!33 &2426390812116431793
 MeshFilter:
   m_ObjectHideFlags: 0

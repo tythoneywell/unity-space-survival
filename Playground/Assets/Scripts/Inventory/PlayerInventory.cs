@@ -28,32 +28,6 @@ public class PlayerInventory : Inventory
         else if (cursorStack.item.itemName != null) DropCursorItemToIndexSoft(index, otherInv);
     }
 
-    public bool HasRecipeIngredients(Recipe recipe)
-    {
-        foreach (ItemStack recipeStack in recipe.ingredients)
-        {
-            int invAmt = 0;
-            foreach (ItemStack invStack in inventory)
-            {
-                if (invStack.item.itemName == recipeStack.item.itemName) invAmt += invStack.count;
-            }
-            if (invAmt < recipeStack.count) return false;
-        }
-        return true;
-    }
-    public void ConsumeRecipeIngredients(Recipe recipe)
-    {
-        foreach (ItemStack recipeStack in recipe.ingredients)
-        {
-            int remaining = recipeStack.count;
-            foreach (ItemStack invStack in inventory)
-            {
-                if (invStack.item.itemName == recipeStack.item.itemName) remaining -= invStack.TakeAmount(remaining).count;
-            }
-            if (remaining > 0) Debug.Log("recipe was crafted without sufficient ingredients");
-        }
-    }
-
     // Moves item at index "index" to the inventory cursor
     ItemStack MoveItemToCursor(int index, Inventory otherInv = null, int amount = int.MaxValue)
     {

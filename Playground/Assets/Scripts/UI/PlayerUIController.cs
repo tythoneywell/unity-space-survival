@@ -19,6 +19,8 @@ public class PlayerUIController : MonoBehaviour
 
     public GameObject buildMenuObject;
     public GameObject farmMenuObject;
+    public GameObject forgeMenuObject;
+    public GameObject repairMenuObject;
     public GameObject tooltipObject;
 
     InventorySlotGrid playerHotbarSlots;
@@ -82,10 +84,6 @@ public class PlayerUIController : MonoBehaviour
     {
 
     }
-    public void HideCraftingMenu()
-    {
-
-    }
     public void OpenBuildMenu(RoomWrapper room)
     {
         buildMenuObject.SetActive(true);
@@ -95,6 +93,13 @@ public class PlayerUIController : MonoBehaviour
     public void OpenFarmMenu()
     {
         farmMenuObject.SetActive(true);
+        ShowInventory();
+    }
+    public void OpenRepairMenu()
+    {
+        repairMenuObject.SetActive(true);
+        repairMenuObject.GetComponentInChildren<RecipeIngredientsGrid>().ShowIngredients(DoorController.currentDoor.repairCost.ingredients);
+        repairMenuObject.GetComponentInChildren<Text>().text = DoorController.currentDoor.repairCost.recipeName;
         ShowInventory();
     }
 
@@ -209,6 +214,8 @@ public class PlayerUIController : MonoBehaviour
         buildMenuObject.SetActive(false);
         tooltipObject.SetActive(false);
         farmMenuObject.SetActive(false);
+        forgeMenuObject.SetActive(false);
+        repairMenuObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         invShown = false;
     }

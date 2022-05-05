@@ -10,7 +10,9 @@ public abstract class UISlotGrid : MonoBehaviour
     protected RectTransform rTransform;
     public UISlot[] gridSlots;
 
-    protected void Start()
+    public GameObject emptySlot;
+
+    protected void Awake()
     {
         rTransform = GetComponent<RectTransform>();
         gridSlots = new UISlot[slotCountX * slotCountY];
@@ -36,9 +38,12 @@ public abstract class UISlotGrid : MonoBehaviour
             }
         }
     }
+    protected void Start()
+    {
+    }
     protected virtual GameObject MakeSlot()
     {
-        GameObject newSlot = Instantiate(PlayerUIController.emptySprite, rTransform);
+        GameObject newSlot = Instantiate(emptySlot, rTransform);
         newSlot.AddComponent<UISlot>();
 
         return newSlot;

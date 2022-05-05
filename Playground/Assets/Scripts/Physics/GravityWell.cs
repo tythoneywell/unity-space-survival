@@ -28,7 +28,6 @@ public abstract class GravityWell : MonoBehaviour
         wellObjects.Add(wellObj);
         wellObj.unbound = false;
         wellObj.transform.parent = gameObject.transform;
-        wellObj.transform.rotation = gameObject.transform.rotation;
     }
 
     public void ExitGravityWell(GravityWellObject wellObj)

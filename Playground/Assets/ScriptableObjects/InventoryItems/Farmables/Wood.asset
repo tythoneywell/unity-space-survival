@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a7db0f187cfe6f44b5506eed1028551, type: 3}
-  m_Name: Bread
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  itemName: bread
-  displayName: Bread
+  itemName: wood
+  displayName: Fuelwood
   maxStackSize: 10
   model: {fileID: 8777574507773902548, guid: 05b8ace74c9f549939060a014fae1b38, type: 3}
-  sprite: {fileID: 21300000, guid: 7ac2edcace2ba854ab558959885cae6b, type: 3}
-  hungerRestoreAmount: 1
+  sprite: {fileID: 21300000, guid: 7f26bfd3b5c0203449e1029e65ee0ebf, type: 3}
+  hungerRestoreAmount: 0

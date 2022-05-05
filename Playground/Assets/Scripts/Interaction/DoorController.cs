@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorController : InteractableObject
 {
+    public static DoorController currentDoor;
+
     public bool operational;
     public Recipe repairCost;
 
@@ -15,8 +17,15 @@ public class DoorController : InteractableObject
         }
         else
         {
-            // Open repair menu
+            currentDoor = this;
+            PlayerUIController.main.OpenRepairMenu();
         }
+    }
+    public void FixDoor()
+    {
+        operational = true;
+        Door doorPlate = gameObject.GetComponentInChildren<Door>();
+        doorPlate.Open();
     }
     
 }

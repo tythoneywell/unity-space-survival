@@ -9,7 +9,7 @@ public class InventorySlotGrid : UISlotGrid
 
     protected override GameObject MakeSlot()
     {
-        GameObject newSlot = Instantiate(PlayerUIController.emptySprite, rTransform);
+        GameObject newSlot = Instantiate(emptySlot, rTransform);
         newSlot.AddComponent<PlayerInventorySlot>();
 
         newSlot.GetComponent<PlayerInventorySlot>().inventoryIndexOffset = invType == PlayerInventory.InventoryType.Inventory ? 9 : 0;

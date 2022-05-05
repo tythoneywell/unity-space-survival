@@ -48,7 +48,7 @@ public class Door : MonoBehaviour
         if (isMoving){
             yield break;
         }
-        while(openAmount >= 0 && openAmount <= 1){
+        while(openAmount >= 0 && openAmount <= 0.95){
 
             openAmount += openSpeed * moveDir * Time.deltaTime;
 
@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
             transform.localScale = Vector3.Scale(closedScale, new Vector3(1, 1, 1 - openAmount));
             yield return null;
         }
-        openAmount = Mathf.Clamp01(openAmount);
+        openAmount = Mathf.Clamp(openAmount, 0, 0.95f);
         transform.localPosition = closedPos + Vector3.up * openAmount * moveDist;
         transform.localScale = Vector3.Scale(closedScale, new Vector3(1, 1, 1 - openAmount));
         yield break;

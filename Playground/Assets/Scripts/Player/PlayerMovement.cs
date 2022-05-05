@@ -14,8 +14,6 @@ public class PlayerMovement : GravityWellObject
     [SerializeField]
     float baseWalkingSpeed = 5f;
     [SerializeField]
-    float speedModifier = 0f;
-    [SerializeField]
     float jumpSpeed = 2.5f;
     // Overrode this to use the physics system's built-in gravity (can be tweaked in-editor)
     //[SerializeField]

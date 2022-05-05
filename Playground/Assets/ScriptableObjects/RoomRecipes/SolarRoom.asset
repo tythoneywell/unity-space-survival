@@ -20,5 +20,5 @@ MonoBehaviour:
   recipeName: Solar Plant
   icon: {fileID: 21300000, guid: eb08676f5da8d3b4c916b3cb6f4e6c73, type: 3}
   roomType: 6
-  roomCenterpiece: {fileID: 196830641904235259, guid: 48720c349d5385349bcc1f5953d306fa,
+  roomCenterpiece: {fileID: 196830641904235259, guid: f228e61eaae19fe479de0668c3470e28,
     type: 3}
