@@ -37,6 +37,8 @@ public class MineableObject : MonoBehaviour, IMineable
         foreach (ItemStack stack in rewardMaterials)
             PlayerInventory.main.AddItemNoIndex(new ItemStack(stack));
 
+        PlayerUIController.main.UpdateInventory();
+
         // Spawn debris chunks
         foreach (GameObject debrisPiece in debris)
         {
@@ -44,6 +46,24 @@ public class MineableObject : MonoBehaviour, IMineable
             GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
             instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce, ForceMode.VelocityChange);
             AsteroidField.main.AddDebris(instantiatedDebris);
+        }
+        //TODO: randomize whether or not medium chunks exist to continue mining
+        //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
+        //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
+
+        //Destroy the big asteroid
+        //Debug.Log("asteroid destroyed");
+        Destroy(gameObject);
+    }
+    public void BreakNoReward(Vector3 debrisForceDirection)
+    {
+        // Spawn debris chunks
+        foreach (GameObject debrisPiece in debris)
+        {
+            Vector3 chunkBreakDirection = Random.insideUnitSphere;
+            GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
+            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce + debrisForceDirection, ForceMode.VelocityChange);
+            if (instantiatedDebris.name != "TinyDebris") AsteroidField.main.AddDebris(instantiatedDebris);
         }
         //TODO: randomize whether or not medium chunks exist to continue mining
         //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);

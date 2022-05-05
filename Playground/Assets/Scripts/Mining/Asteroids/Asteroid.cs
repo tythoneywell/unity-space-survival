@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Asteroid : MineableObject
 {
+    public int collideDamage;
+
     new void Start()
     {
         base.Start();

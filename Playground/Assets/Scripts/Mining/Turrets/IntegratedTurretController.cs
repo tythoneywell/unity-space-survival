@@ -11,7 +11,6 @@ public class IntegratedTurretController : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("clicked"); //debug
             foreach (IntegratedTurret turret in controlledTurrets)
             {
                 turret.StartLaser();

@@ -14,4 +14,19 @@ public class ShipSystem: MonoBehaviour
     public float powerConsumption;
     public float shieldCapacity;
     public float shieldChargeRate;
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health < 0)
+        {
+            operational = false;
+            health = 0;
+        }
+    }
+    public void Repair()
+    {
+        health = 10;
+        operational = true;
+    }
 }

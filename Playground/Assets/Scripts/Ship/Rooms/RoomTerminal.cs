@@ -24,6 +24,5 @@ public class RoomTerminal : InteractableObject
         {
             room.Interact(presser);
         }
-        Debug.Log("room terminal used");
     }
 }

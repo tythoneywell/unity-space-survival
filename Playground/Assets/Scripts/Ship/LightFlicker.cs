@@ -24,7 +24,7 @@ public class LightFlicker : MonoBehaviour
             {
                 light.enabled = true;
             }
-            yield return new WaitForSeconds(0.2f + Random.value);
+            yield return new WaitForSeconds(2f + Random.value);
         }
     }
 }

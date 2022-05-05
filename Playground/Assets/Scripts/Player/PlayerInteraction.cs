@@ -14,7 +14,6 @@ public class PlayerInteraction : MonoBehaviour
     Quaternion rightHandRot;
     ItemData heldItem;
     GameObject heldItemModel;
-    ItemRegistry registry;
 
     PlayerUIController UI;
 
@@ -28,7 +27,6 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         rightHand = GameObject.Find("RightArm");
-        registry = GameObject.Find("ItemRegistry").GetComponent<ItemRegistry>();
         UI = GameObject.Find("UI").GetComponent<PlayerUIController>();
 
         rightHandRot = transform.rotation;
@@ -73,8 +71,8 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(hitObject.name);
-                    Debug.Log("No Interactable Object Found");
+                    //Debug.Log(hitObject.name);
+                    //Debug.Log("No Interactable Object Found");
                 }
             }
         }

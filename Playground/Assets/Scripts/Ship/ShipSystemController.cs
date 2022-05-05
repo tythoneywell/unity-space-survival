@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
  * Ship system which handles the combined functionality of each room
@@ -9,8 +10,12 @@ public class ShipSystemController : MonoBehaviour
 {
     public static ShipSystemController main;
 
+    public UnityEvent onDamage;
+    public UnityEvent onBlockDamage;
+
     // Tweakable params
     public float basePowerProduction;
+    public float basePowerConsumption;
     public float baseShieldCapacity;
     public float baseShieldChargeRate;
 
@@ -22,25 +27,31 @@ public class ShipSystemController : MonoBehaviour
     // Private ship stats
     float powerProduction;
     float powerConsumption;
-    float shieldCapacity;
+    public float shieldCapacity;
     float shieldChargeRate;
+    float damageInvulnTimer;
 
     ShipSystem[] shipSystems;
 
     void Awake()
     {
         main = this;
+        onDamage = new UnityEvent();
+        onBlockDamage = new UnityEvent();
     }
 
     void Start()
     {
         shipSystems = gameObject.GetComponentsInChildren<ShipSystem>();
+        oxygenAmount = 1;
     }
 
     void Update()
     {
         UpdateStats();
         currShields = Mathf.Clamp(currShields + shieldChargeRate * Time.deltaTime, 0, shieldCapacity);
+        oxygenAmount = Mathf.Clamp01(oxygenAmount - Time.deltaTime / 120);
+        damageInvulnTimer = Mathf.Clamp(damageInvulnTimer - Time.deltaTime, 0, 1);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,14 +61,19 @@ public class ShipSystemController : MonoBehaviour
             //Debug.Log("collided with " + collision.collider.name);
             //Debug.Log("force " + collision.impulse.magnitude);
             //Debug.DrawLine(collision.transform.position, Vector3.Scale(collision.transform.position, collision.impulse / 1000), Color.red, 10f);
-            DamageSystems(1);
+            Asteroid asteroid = collision.transform.GetComponent<Asteroid>();
+            if (asteroid != null && asteroid.collideDamage > 0)
+            {
+                DamageSystems(asteroid.collideDamage);
+                asteroid.BreakNoReward(collision.relativeVelocity);
+            }
         }
     }
 
     void UpdateStats()
     {
         powerProduction = basePowerProduction;
-        powerConsumption = 0f;
+        powerConsumption = basePowerConsumption;
         shieldCapacity = baseShieldCapacity;
         shieldChargeRate = baseShieldChargeRate;
         foreach (ShipSystem sys in shipSystems)
@@ -75,6 +91,14 @@ public class ShipSystemController : MonoBehaviour
         if (currShields > 1)
         {
             currShields -= damage;
+            onBlockDamage.Invoke();
+            return;
+        }
+
+        onDamage.Invoke();
+
+        if (damageInvulnTimer > 0)
+        {
             return;
         }
 
@@ -86,11 +110,12 @@ public class ShipSystemController : MonoBehaviour
         if (possibleTargets.Count > 0)
         {
             ShipSystem targetSys = possibleTargets[(int)Random.Range(0, (float)possibleTargets.Count - 0.001f)];
-            targetSys.health -= 1;
+            targetSys.TakeDamage(1);
         }
         else
         {
             print("ship is completely trashed");
         }
+        damageInvulnTimer = 1f;
     }
 }

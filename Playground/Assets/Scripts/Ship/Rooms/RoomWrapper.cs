@@ -8,6 +8,8 @@ using UnityEngine;
  */
 public class RoomWrapper : ShipSystem
 {
+    const bool debug = true;
+
     public enum RoomType
     {
         EMPTY,
@@ -29,22 +31,32 @@ public class RoomWrapper : ShipSystem
 
     private void Update()
     {
-        roomBackend.Update();
-        if (roomCenterpiece != null) roomCenterpiece.working = working;
+        if (operational)
+        {
+            roomBackend.Update();
+            if (roomCenterpiece != null) roomCenterpiece.working = working;
+        }
+        else
+        {
+            powerProduction = 0f;
+            powerConsumption = 0f;
+            shieldCapacity = 0f;
+            shieldChargeRate = 0f;
+            working = false;
+            if (roomCenterpiece != null) roomCenterpiece.working = working;
+        }
     }
 
     public void Build(RoomRecipe recipe)
     {
-        if (PlayerInventory.main.HasRecipeIngredients(recipe))
-        {
-            PlayerInventory.main.ConsumeRecipeIngredients(recipe);
-        }
-        else
+        if (!PlayerInventory.main.HasRecipeIngredients(recipe) && !debug)
         {
             // Notify player that room can't be built
             Debug.Log("insufficient ingredients to build " + recipe.recipeName);
             return;
         }
+        PlayerInventory.main.ConsumeRecipeIngredients(recipe);
+
         roomBackend.Deconstruct();
         switch (recipe.roomType)
         {
@@ -68,6 +80,8 @@ public class RoomWrapper : ShipSystem
         roomBackend.Build();
 
         built = true;
+        operational = true;
+        health = 10;
 
         if (roomCenterpiece != null) Destroy(roomCenterpiece.gameObject);
         roomCenterpiece = Instantiate(recipe.roomCenterpiece, transform).GetComponent<RoomCenterpiece>();

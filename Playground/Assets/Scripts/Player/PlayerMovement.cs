@@ -40,7 +40,7 @@ public class PlayerMovement : GravityWellObject
     bool grounded = true;
 
     public float vertLookAngle = 0f;
-    float moddedSpeed = 0;
+    float sprintSpeedMul = 1;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
 
@@ -56,7 +56,7 @@ public class PlayerMovement : GravityWellObject
 
         gravity = -Physics.gravity.y;
         playerCamera = gameObject.GetComponentInChildren<Camera>();
-        moddedSpeed = baseWalkingSpeed;
+        sprintSpeedMul = baseWalkingSpeed;
     }
     public override void ManualFixedUpdate()
     {
@@ -65,29 +65,26 @@ public class PlayerMovement : GravityWellObject
         if (!grounded)
         {
             vspeed = Mathf.Max(-20, vspeed - gravity * Time.fixedDeltaTime);
-            Vector3 moveDir = new Vector3(hspeed.x, vspeed, hspeed.y) * Time.fixedDeltaTime;
+            Vector3 moveDir = new Vector3(hspeed.x * sprintSpeedMul, vspeed, hspeed.y * sprintSpeedMul) * Time.fixedDeltaTime;
             TryJumpDirection(moveDir); // grounded flag updated if landed
         }
         if (grounded) // DO NOT MAKE ELSE
         {
             vspeed = 0;
-            Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * Time.fixedDeltaTime;
+            Vector3 moveDir = new Vector3(hspeed.x, 0, hspeed.y) * sprintSpeedMul * Time.fixedDeltaTime;
             TryWalkDirection(moveDir);
         }
 
     }
 
     public void ToggleSprint(InputAction.CallbackContext context){
-        if (context.performed){
-            speedModifier += 0.5f;
-            if (isWalking){
-                hspeed /= baseWalkingSpeed;
-                hspeed *= (baseWalkingSpeed * (1 + speedModifier));
-
-            }
-        } else if (context.canceled){
-            hspeed /= (1 + speedModifier);
-            speedModifier = 0;
+        if (context.performed)
+        {
+            sprintSpeedMul = 2 * baseWalkingSpeed;
+        }
+        else if (context.canceled)
+        {
+            sprintSpeedMul = baseWalkingSpeed;
         }
     }
     
@@ -99,13 +96,13 @@ public class PlayerMovement : GravityWellObject
         if (isWalking == false)
         {
             isWalking = true;
-            hspeed = moddedSpeed * dir;
+            hspeed = dir;
         }
         else
         {
             if (Vector3.Distance(dir, Vector3.zero) > 0)
             {
-                hspeed = moddedSpeed * dir;
+                hspeed = dir;
             }
             else
             {
