@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 140
   rewardMaterials:
-  - item: {fileID: 11400000, guid: 1af6b3d62334363448f10ff3c31b26fa, type: 2}
+  - item: {fileID: 11400000, guid: 41e6e2044bd798446b150a1368e42f2f, type: 2}
     count: 4
   debris:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}

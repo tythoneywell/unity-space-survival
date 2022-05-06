@@ -25,5 +25,5 @@ MonoBehaviour:
   fuel:
     item: {fileID: 0}
     count: 0
-  productionTime: 0
+  productionTime: 6
   fuelConsumeTime: 0

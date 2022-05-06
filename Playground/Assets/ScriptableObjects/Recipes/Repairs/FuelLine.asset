@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: FuelLine
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 20
+  - item: {fileID: 11400000, guid: 524a48d4b21d1624ea401c3171cfd73e, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    count: 10
   recipeName: Fuel Line Severed
   icon: {fileID: 0}
   result:

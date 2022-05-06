@@ -215,7 +215,7 @@ MonoBehaviour:
   maxHealth: 140
   rewardMaterials:
   - item: {fileID: 11400000, guid: cf4a90a2475cfd940a652b932a080d81, type: 2}
-    count: 2
+    count: 4
   debris:
   - {fileID: 6295059982368308397, guid: 218885833d6cdb64b98b419a08610c2b, type: 3}
   - {fileID: 6295059982368308397, guid: fca4d75f96dfb5c4b9404803eaafeea2, type: 3}

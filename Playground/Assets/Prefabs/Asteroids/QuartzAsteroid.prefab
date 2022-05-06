@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2428687701176628594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children:
   - {fileID: 212164451619206336}
   - {fileID: 6167371067102712291}
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   rewardMaterials:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 2
+  - item: {fileID: 11400000, guid: 8d472cdc676551e40af203fabe7d3a64, type: 2}
+    count: 5
   - item: {fileID: 11400000, guid: cf4a90a2475cfd940a652b932a080d81, type: 2}
     count: 1
   debris:
@@ -144,9 +144,9 @@ MonoBehaviour:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
-  debrisScatterForce: 15
+  debrisScatterForce: 10
   miniAsteroid: {fileID: 0}
-  collideDamage: 1
+  collideDamage: 3
 --- !u!54 &-8582588136094557288
 Rigidbody:
   m_ObjectHideFlags: 0

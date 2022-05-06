@@ -20,6 +20,8 @@ public class ShipController : GravityWell
     const float deadzone = .35f;
 
     AsteroidField asteroidField;
+    public GameObject[] asteroidFieldList;
+    int currZone = 0;
 
     float targetSpeed;
     Vector3 shipTurnRate;
@@ -61,6 +63,13 @@ public class ShipController : GravityWell
         hideableShipBody.SetActive(false);
         PlayerInteraction.main.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
         shipTurnRate = Vector3.zero;
+    }
+
+    public void Warp()
+    {
+        currZone++;
+        Destroy(asteroidField);
+        asteroidField = Instantiate(asteroidFieldList[currZone], Vector3.zero, Quaternion.identity).GetComponent<AsteroidField>();
     }
 
     public void UpdateThrust(InputAction.CallbackContext context)

@@ -194,4 +194,22 @@ public class AsteroidField : MonoBehaviour
         shipSpeed = -panSpeed;
 
     }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject a in asteroidsList)
+        {
+            if (a != null)
+            {
+                Destroy(a);
+            }
+        }
+        foreach (GameObject a in debrisList)
+        {
+            if (a != null)
+            {
+                Destroy(a);
+            }
+        }
+    }
 }
