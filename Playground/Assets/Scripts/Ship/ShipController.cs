@@ -68,7 +68,7 @@ public class ShipController : GravityWell
     public void Warp()
     {
         currZone++;
-        Destroy(asteroidField);
+        Destroy(asteroidField.gameObject);
         asteroidField = Instantiate(asteroidFieldList[currZone], Vector3.zero, Quaternion.identity).GetComponent<AsteroidField>();
     }
 
