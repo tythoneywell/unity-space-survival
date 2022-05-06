@@ -21,7 +21,7 @@ public class PlayerSurvival : MonoBehaviour
 
     void Update()
     {
-        hunger -= Time.deltaTime / 180;
+        hunger -= Time.deltaTime / 300;
     }
 
     public void Eat(ItemData item)

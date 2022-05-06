@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ShieldRoom
   m_EditorClassIdentifier: 
   ingredients:
+  - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    count: 5
   - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
     count: 20
   recipeName: Shield Generator

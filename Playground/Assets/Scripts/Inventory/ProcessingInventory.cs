@@ -32,13 +32,10 @@ public class ProcessingInventory : Inventory
     // Processes the recipe for scaled time time, returning whether it cannot process
     public bool ProcessTime(float time)
     {
-        if (fuelConsumptionProgress > 0 || fuel.inventory.Length == 0 || fuel.HasRecipeIngredients(new ItemStack[] { recipe.fuel }))
+        if (fuelConsumptionProgress < fuelConsumptionDelay || fuel.inventory.Length == 0 || fuel.HasRecipeIngredients(new ItemStack[] { recipe.fuel }))
         {
             if (itemProductionProgress > 0 || rawResources.inventory.Length == 0 || rawResources.HasRecipeIngredients(recipe.ingredients))
             {
-                if (itemProductionProgress == 0) rawResources.ConsumeRecipeIngredients(recipe);
-                itemProductionProgress += time;
-                fuelConsumptionProgress += time;
                 if (itemProductionProgress > itemProductionDelay)
                 {
                     AddItemNoIndex(new ItemStack(recipe.result));
@@ -49,6 +46,9 @@ public class ProcessingInventory : Inventory
                     fuel.ConsumeRecipeIngredients(new ItemStack[] { recipe.fuel });
                     fuelConsumptionProgress = 0;
                 }
+                if (itemProductionProgress == 0) rawResources.ConsumeRecipeIngredients(recipe);
+                itemProductionProgress += time;
+                fuelConsumptionProgress += time;
                 ShipSystemController.main.oxygenAmount -= recipe.oxygenConsumeRate * time;
                 return true;
             }

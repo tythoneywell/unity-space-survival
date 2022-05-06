@@ -238,7 +238,7 @@ MonoBehaviour:
   baseDrift: {x: 10, y: 8, z: -300}
   maxDebris: 30
   initMinSpawnDist: 200
-  minSpawnDist: 500
+  minSpawnDist: 580
   maxSpawnDist: 600
   randomDriftMax: 200
   randomSpinMax: 500

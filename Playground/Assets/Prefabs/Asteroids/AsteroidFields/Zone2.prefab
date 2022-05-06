@@ -143,8 +143,8 @@ MonoBehaviour:
   baseDrift: {x: 10, y: 8, z: -100}
   maxDebris: 30
   initMinSpawnDist: 200
-  minSpawnDist: 500
-  maxSpawnDist: 600
+  minSpawnDist: 680
+  maxSpawnDist: 700
   randomDriftMax: 50
   randomSpinMax: 240
   spawnList:
@@ -153,7 +153,7 @@ MonoBehaviour:
   - {fileID: 2428687701176628594, guid: 937a8d91346116342a2ed1927c445a64, type: 3}
   - {fileID: 2428687701176628594, guid: da66c20831593e345863549c7631dff5, type: 3}
   spawnListWeights: 140000000c0000000300000001000000
-  shrinkStartDist: 500
+  shrinkStartDist: 600
   shrinkDist: 200
 --- !u!1 &4631623068693350436
 GameObject:

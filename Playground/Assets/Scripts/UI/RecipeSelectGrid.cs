@@ -29,7 +29,7 @@ public abstract class RecipeSelectGrid : UISlotGrid
     }
     public void SelectRecipe(int index)
     {
-        if (index == selectedRecipeIndex) ActivateRecipe(index);
+        //if (index == selectedRecipeIndex) ActivateRecipe(index);
         ShowRecipeIngredients(index);
         selectedRecipeIndex = index;
         activeRecipeCursor.transform.position = gridSlots[index].transform.position;
