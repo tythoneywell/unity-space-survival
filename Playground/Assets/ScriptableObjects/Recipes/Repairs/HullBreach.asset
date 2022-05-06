@@ -15,6 +15,10 @@ MonoBehaviour:
   ingredients:
   - item: {fileID: 11400000, guid: b7d65a846e1bcfc4b97122735f51e388, type: 2}
     count: 15
+  - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
+    count: 5
   recipeName: Sector Contains Hull Breach
   icon: {fileID: 0}
   result:

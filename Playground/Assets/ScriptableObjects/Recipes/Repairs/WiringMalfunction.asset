@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 20
+    count: 15
   recipeName: Door Circuits Malfunctioning
   icon: {fileID: 0}
   result:

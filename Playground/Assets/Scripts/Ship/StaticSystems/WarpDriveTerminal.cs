@@ -8,4 +8,9 @@ public class WarpDriveTerminal : RepairableObject
     public Recipe warp2;
     public Recipe warp3;
 
+    public override void Repair()
+    {
+        base.Repair();
+        ShipController.main.Warp();
+    }
 }

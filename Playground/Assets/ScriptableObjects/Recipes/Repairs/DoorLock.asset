@@ -15,6 +15,8 @@ MonoBehaviour:
   ingredients:
   - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
     count: 10
+  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
+    count: 30
   recipeName: Door Hydraulics Damaged
   icon: {fileID: 0}
   result:

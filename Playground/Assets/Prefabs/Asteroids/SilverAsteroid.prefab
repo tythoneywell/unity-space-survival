@@ -387,10 +387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d78fd545429204b9737e68c986966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 240
   rewardMaterials:
-  - item: {fileID: 11400000, guid: 1af6b3d62334363448f10ff3c31b26fa, type: 2}
+  - item: {fileID: 11400000, guid: 41e6e2044bd798446b150a1368e42f2f, type: 2}
     count: 4
+  - item: {fileID: 11400000, guid: cf4a90a2475cfd940a652b932a080d81, type: 2}
+    count: 2
   debris:
   - {fileID: 2428687701176628594, guid: 6f8b1848cf7eeaf40adb1e0326024068, type: 3}
   - {fileID: 2428687701176628594, guid: 6f8b1848cf7eeaf40adb1e0326024068, type: 3}
@@ -404,7 +406,7 @@ MonoBehaviour:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   debrisScatterForce: 15
   miniAsteroid: {fileID: 0}
-  collideDamage: 1
+  collideDamage: 2
 --- !u!54 &-8582588136094557288
 Rigidbody:
   m_ObjectHideFlags: 0

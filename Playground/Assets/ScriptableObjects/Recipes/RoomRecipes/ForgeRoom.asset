@@ -22,5 +22,5 @@ MonoBehaviour:
   recipeName: Forge
   icon: {fileID: 21300000, guid: d120b0b0b90e86b4ebbe95baf143071e, type: 3}
   roomType: 5
-  roomCenterpiece: {fileID: 196830641904235259, guid: 48720c349d5385349bcc1f5953d306fa,
+  roomCenterpiece: {fileID: 196830641904235259, guid: 2f770f99e04029948bad233da2f5e52a,
     type: 3}

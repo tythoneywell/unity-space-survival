@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - item: {fileID: 11400000, guid: ef4c395696c29274b98f1c2b51a7ecf5, type: 2}
-    count: 15
+    count: 10
+  - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
+    count: 5
   recipeName: Sector Porthole Damaged
   icon: {fileID: 0}
   result:

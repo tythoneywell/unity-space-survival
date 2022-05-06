@@ -15,6 +15,8 @@ MonoBehaviour:
   ingredients:
   - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
     count: 10
+  - item: {fileID: 11400000, guid: cf4a90a2475cfd940a652b932a080d81, type: 2}
+    count: 10
   recipeName: Severed Oxygen Duct In Sector
   icon: {fileID: 0}
   result:
