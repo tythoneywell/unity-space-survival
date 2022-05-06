@@ -8,6 +8,8 @@ public class ProcessingRecipe : Recipe
     public ItemStack result;
     public ItemStack fuel;
 
+    public float oxygenConsumeRate;
+
     public float productionTime;
     public float fuelConsumeTime;
 }

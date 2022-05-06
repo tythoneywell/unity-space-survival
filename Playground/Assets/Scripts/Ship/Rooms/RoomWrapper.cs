@@ -24,12 +24,51 @@ public class RoomWrapper : ShipSystem
         BIOREACTOR,
         SHIELD,
     }
-    public RoomType startingRoomType = RoomType.EMPTY;
+    public RoomRecipe startingRecipe = null;
+
+    public ProcessingRecipe defaultOxyRecipe;
 
     public bool built = false;
 
     RoomBackend roomBackend = new EmptyRoom();
     RoomCenterpiece roomCenterpiece;
+
+    private void Start()
+    {
+        if (startingRecipe != null) {
+
+            switch (startingRecipe.roomType)
+            {
+                case RoomType.SOLAR:
+                    roomBackend = new SolarRoom();
+                    break;
+                case RoomType.SHIELD:
+                    roomBackend = new ShieldRoom();
+                    break;
+                case RoomType.FARM:
+                    roomBackend = new FarmRoom();
+                    break;
+                case RoomType.SMELTER:
+                    roomBackend = new ForgeRoom();
+                    break;
+                case RoomType.ELECTROLYZER:
+                    roomBackend = new OxygenRoom();
+                    break;
+                default:
+                    roomBackend = new EmptyRoom();
+                    break;
+            }
+
+            roomBackend.wrapper = this;
+            roomBackend.Build();
+
+            built = true;
+            operational = true;
+            health = 10;
+            roomCenterpiece = Instantiate(startingRecipe.roomCenterpiece, transform).GetComponent<RoomCenterpiece>();
+            if (startingRecipe.roomType == RoomType.ELECTROLYZER) ((OxygenRoom)roomBackend).InitAsStartRoom();
+        }
+    }
 
     private void Update()
     {
@@ -75,7 +114,7 @@ public class RoomWrapper : ShipSystem
                 roomBackend = new ForgeRoom();
                 break;
             case RoomType.ELECTROLYZER:
-                roomBackend = new SolarRoom();
+                roomBackend = new OxygenRoom();
                 break;
             default:
                 roomBackend = new EmptyRoom();

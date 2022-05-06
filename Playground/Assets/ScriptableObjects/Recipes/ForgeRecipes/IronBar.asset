@@ -25,5 +25,6 @@ MonoBehaviour:
   fuel:
     item: {fileID: 0}
     count: 0
+  oxygenConsumeRate: 0.04
   productionTime: 6
   fuelConsumeTime: 0

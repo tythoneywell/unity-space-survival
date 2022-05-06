@@ -4357,7 +4357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &817627742189340216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4669,7 +4669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -68.6}
+  m_AnchoredPosition: {x: -93.9, y: -68.6}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1252532835670089182
@@ -4972,8 +4972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: -69.99997}
-  m_SizeDelta: {x: 400, y: 160}
+  m_AnchoredPosition: {x: -95, y: -70}
+  m_SizeDelta: {x: 200, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &185065559422044029
 CanvasRenderer:
@@ -5827,6 +5827,7 @@ MonoBehaviour:
   buildMenuObject: {fileID: 5733501295841304507}
   farmMenuObject: {fileID: 1588833931936714062}
   forgeMenuObject: {fileID: 6351752315877893506}
+  generatorMenuObject: {fileID: 5187323956396994620}
   repairMenuObject: {fileID: 8519515258831260433}
   tooltipObject: {fileID: 985419236647722129}
   tabsObject: {fileID: 7258378677815817469}

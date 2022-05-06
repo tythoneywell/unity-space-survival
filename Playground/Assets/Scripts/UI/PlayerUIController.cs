@@ -21,6 +21,7 @@ public class PlayerUIController : MonoBehaviour
     public GameObject buildMenuObject;
     public GameObject farmMenuObject;
     public GameObject forgeMenuObject;
+    public GameObject generatorMenuObject;
     public GameObject repairMenuObject;
 
     public GameObject tooltipObject;
@@ -101,6 +102,13 @@ public class PlayerUIController : MonoBehaviour
         tabsObject.SetActive(true);
         ShowInventory();
     }
+    public void OpenGeneratorMenu()
+    {
+        HideMenus();
+        generatorMenuObject.SetActive(true);
+        tabsObject.SetActive(true);
+        ShowInventory();
+    }
     public void OpenRepairMenu()
     {
         repairMenuObject.SetActive(true);
@@ -115,6 +123,7 @@ public class PlayerUIController : MonoBehaviour
         farmMenuObject.SetActive(false);
         forgeMenuObject.SetActive(false);
         repairMenuObject.SetActive(false);
+        generatorMenuObject.SetActive(false);
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -230,6 +239,7 @@ public class PlayerUIController : MonoBehaviour
         tooltipObject.SetActive(false);
         farmMenuObject.SetActive(false);
         forgeMenuObject.SetActive(false);
+        generatorMenuObject.SetActive(false);
         repairMenuObject.SetActive(false);
         tabsObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

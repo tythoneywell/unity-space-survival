@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Produces crops 
+ * Produces power 
  */
-public class FarmRoom : RoomBackend
+public class OxygenRoom : RoomBackend
 {
-    ProcessingInventory farmInv;
+    ProcessingInventory oxyInv;
 
-    const float powerDraw = 1f;
+    const float powerDraw = 2f;
 
     public override void Build()
     {
-        farmInv = new ProcessingInventory(0, 4, 1);
+        oxyInv = new ProcessingInventory(0, 0, 1);
+        oxyInv.SetRecipe(wrapper.defaultOxyRecipe);
     }
     public override void Update()
     {
         float powerSatisfaction = ShipSystemController.main.powerSatisfaction;
-        if (farmInv.recipe != null && farmInv.ProcessTime(Time.deltaTime * powerSatisfaction))
+        if (oxyInv.recipe != null && oxyInv.ProcessTime(Time.deltaTime * powerSatisfaction))
         {
             wrapper.working = true;
             wrapper.powerConsumption = powerDraw;
@@ -35,7 +36,11 @@ public class FarmRoom : RoomBackend
     }
     public override void Interact(PlayerInteraction presser)
     {
-        ProcessingInventory.curr = farmInv;
-        PlayerUIController.main.OpenFarmMenu();
+        ProcessingInventory.curr = oxyInv;
+        PlayerUIController.main.OpenGeneratorMenu();
+    }
+    public void InitAsStartRoom()
+    {
+        oxyInv.fuel.AddItemNoIndex(new ItemStack(wrapper.defaultOxyRecipe.fuel.item, 20));
     }
 }

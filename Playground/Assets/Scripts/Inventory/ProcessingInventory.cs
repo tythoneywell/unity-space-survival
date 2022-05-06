@@ -49,6 +49,7 @@ public class ProcessingInventory : Inventory
                     fuel.ConsumeRecipeIngredients(new ItemStack[] { recipe.fuel });
                     fuelConsumptionProgress = 0;
                 }
+                ShipSystemController.main.oxygenAmount -= recipe.oxygenConsumeRate * time;
                 return true;
             }
         }

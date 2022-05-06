@@ -54,7 +54,8 @@ MonoBehaviour:
   powerConsumption: 0
   shieldCapacity: 0
   shieldChargeRate: 0
-  startingRoomType: 0
+  startingRecipe: {fileID: 0}
+  defaultOxyRecipe: {fileID: 11400000, guid: d41d417557268b44e80d71d42c6e1634, type: 2}
   built: 0
 --- !u!1 &1946083684671042732
 GameObject:
