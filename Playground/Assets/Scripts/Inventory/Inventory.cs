@@ -56,7 +56,7 @@ public class Inventory
         if (amount == -1) amount = inventory[index].count / 2;
         if (amount == 0) amount = 1;
 
-        if (index < 0 || index >= invSize + 1)
+        if (index < 0 || index >= invSize)
         {
             return stack;
         }
@@ -67,7 +67,7 @@ public class Inventory
         }
     }
     public ItemStack GetItem(int index){
-        if (index < 0 || index >= invSize + 1) {
+        if (index < 0 || index >= invSize) {
             return ItemStack.GetEmpty();
         }
         else
@@ -82,7 +82,7 @@ public class Inventory
         if (amount == -1) amount = inventory[index].count / 2;
         if (amount == 0) amount = 1;
 
-        if (index < 0 || index >= invSize + 1)
+        if (index < 0 || index >= invSize)
         {
             return ItemStack.GetEmpty();
         }

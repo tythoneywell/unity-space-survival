@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class SolarRoom : RoomBackend
 {
-    const float powerAmt = 1f;
+    const float powerAmt = 5f;
 
     public override void Build()
     {

@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : InteractableObject
+public class DoorController : RepairableObject
 {
-    public static DoorController currentDoor;
-
-    public bool operational;
-    public Recipe repairCost;
-
-    public override void OnInteract(PlayerInteraction presser){
+    public override void OnInteract(PlayerInteraction presser)
+    {
         if (operational)
         {
             Door doorPlate = gameObject.GetComponentInChildren<Door>();
@@ -17,13 +13,12 @@ public class DoorController : InteractableObject
         }
         else
         {
-            currentDoor = this;
-            PlayerUIController.main.OpenRepairMenu();
+            base.OnInteract(presser);
         }
     }
-    public void FixDoor()
+    public override void Repair()
     {
-        operational = true;
+        base.Repair();
         Door doorPlate = gameObject.GetComponentInChildren<Door>();
         doorPlate.Open();
     }

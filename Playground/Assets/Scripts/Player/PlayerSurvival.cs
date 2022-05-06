@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class PlayerSurvival : MonoBehaviour
 {
-    public float hunger;
+    public static PlayerSurvival main;
 
-    // Start is called before the first frame update
-    void Start()
+    public float hunger;
+    public float foodQuality;
+
+    void Awake()
     {
-        
+        main = this;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        hunger = 0.8f;
+    }
+
     void Update()
     {
-        
+        hunger -= Time.deltaTime / 180;
+    }
+
+    public void Eat(ItemData item)
+    {
+        hunger += (float)item.hungerRestoreAmount / 10;
     }
 }

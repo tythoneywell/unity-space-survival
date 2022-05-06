@@ -8,6 +8,8 @@ using UnityEngine;
  */
 public class RoomWrapper : ShipSystem
 {
+    public static RoomWrapper curr;
+
     const bool debug = true;
 
     public enum RoomType
@@ -70,7 +72,10 @@ public class RoomWrapper : ShipSystem
                 roomBackend = new FarmRoom();
                 break;
             case RoomType.SMELTER:
-                roomBackend = new FarmRoom();
+                roomBackend = new ForgeRoom();
+                break;
+            case RoomType.ELECTROLYZER:
+                roomBackend = new SolarRoom();
                 break;
             default:
                 roomBackend = new EmptyRoom();

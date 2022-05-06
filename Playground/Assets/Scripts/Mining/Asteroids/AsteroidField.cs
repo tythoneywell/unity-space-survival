@@ -32,6 +32,11 @@ public class AsteroidField : MonoBehaviour
     int[] spawnListWeights;
     int spawnListTotalWeight;
 
+    [SerializeField]
+    float shrinkStartDist;
+    [SerializeField]
+    float shrinkDist;
+
     List<GameObject> asteroidsList;
     List<GameObject> debrisList;
     Vector3 shipSpeed;
@@ -40,6 +45,8 @@ public class AsteroidField : MonoBehaviour
     void Awake()
     {
         main = this;
+        Asteroid.shrinkStartDist = shrinkStartDist;
+        Asteroid.shrinkDist = shrinkDist;
     }
 
     void Start()

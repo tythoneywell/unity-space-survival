@@ -32,21 +32,25 @@ public class ProcessingInventory : Inventory
     // Processes the recipe for scaled time time, returning whether it cannot process
     public bool ProcessTime(float time)
     {
-        if (fuel.HasRecipeIngredients(new ItemStack[] { recipe.fuel }))
+        if (fuelConsumptionProgress > 0 || fuel.inventory.Length == 0 || fuel.HasRecipeIngredients(new ItemStack[] { recipe.fuel }))
         {
-            itemProductionProgress += time;
-            fuelConsumptionProgress += time;
-            if (itemProductionProgress > itemProductionDelay)
+            if (itemProductionProgress > 0 || rawResources.inventory.Length == 0 || rawResources.HasRecipeIngredients(recipe.ingredients))
             {
-                AddItemNoIndex(new ItemStack(recipe.result));
-                itemProductionProgress -= itemProductionDelay;
+                if (itemProductionProgress == 0) rawResources.ConsumeRecipeIngredients(recipe);
+                itemProductionProgress += time;
+                fuelConsumptionProgress += time;
+                if (itemProductionProgress > itemProductionDelay)
+                {
+                    AddItemNoIndex(new ItemStack(recipe.result));
+                    itemProductionProgress = 0;
+                }
+                if (fuelConsumptionProgress > fuelConsumptionDelay)
+                {
+                    fuel.ConsumeRecipeIngredients(new ItemStack[] { recipe.fuel });
+                    fuelConsumptionProgress = 0;
+                }
+                return true;
             }
-            if (fuelConsumptionProgress > fuelConsumptionDelay)
-            {
-                fuel.ConsumeRecipeIngredients(new ItemStack[] { recipe.fuel });
-                fuelConsumptionProgress -= fuelConsumptionDelay;
-            }
-            return true;
         }
         return false;
     }

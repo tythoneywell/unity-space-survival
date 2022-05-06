@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Glass
   maxStackSize: 30
   model: {fileID: 0}
-  sprite: {fileID: 21300000, guid: 3b3b1613b20485e4c8ca59ae2fb007fd, type: 3}
+  sprite: {fileID: 21300000, guid: e0c3e07c79af2b54f8cfe4955ac112dc, type: 3}
   hungerRestoreAmount: 0

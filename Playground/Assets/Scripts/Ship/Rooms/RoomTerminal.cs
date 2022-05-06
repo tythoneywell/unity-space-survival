@@ -16,9 +16,10 @@ public class RoomTerminal : InteractableObject
 
     public override void OnInteract(PlayerInteraction presser)
     {
+        RoomWrapper.curr = room;
         if (!room.built)
         {
-            PlayerUIController.main.OpenBuildMenu(room);
+            PlayerUIController.main.OpenBuildMenu();
         }
         else
         {

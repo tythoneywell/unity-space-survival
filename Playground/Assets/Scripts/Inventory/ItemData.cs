@@ -19,6 +19,7 @@ public class ItemData: ScriptableObject
         if (hungerRestoreAmount > 0)
         {
             presser.RemoveCurrentFromInv(1);
+            PlayerSurvival.main.Eat(this);
             Debug.Log("ate " + displayName);
         }
     }

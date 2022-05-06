@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc7827ca29879314dac2fd4a8cb6cdf6, type: 3}
-  m_Name: PortholeDamage
+  m_Name: DoorLock
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 30
-  recipeName: Sector Porthole Damaged
+  - item: {fileID: 11400000, guid: 4054f7d7d3238934dad545fc9766137d, type: 2}
+    count: 10
+  recipeName: Door Hydraulics Damaged
   icon: {fileID: 0}
   result:
     item: {fileID: 0}

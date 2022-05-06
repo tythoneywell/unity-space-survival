@@ -17,17 +17,17 @@ public class PlayerUIController : MonoBehaviour
 
     public GameObject playerSaveMenu;
 
+    public GameObject craftingMenuObject;
     public GameObject buildMenuObject;
     public GameObject farmMenuObject;
     public GameObject forgeMenuObject;
     public GameObject repairMenuObject;
+
     public GameObject tooltipObject;
+    public GameObject tabsObject;
 
     InventorySlotGrid playerHotbarSlots;
     InventorySlotGrid playerInventorySlots;
-    InventorySlotGrid externalInventorySlots;
-    RoomRecipeSelectGrid buildMenuRecipes;
-    RecipeIngredientsGrid buildMenuIngredients;
 
     public static GameObject emptySprite;
     // Hack to be able to set this in inspector
@@ -48,13 +48,9 @@ public class PlayerUIController : MonoBehaviour
 
         playerHotbarSlots = playerHotbarObject.GetComponentInChildren<InventorySlotGrid>();
         playerInventorySlots = playerInventoryObject.GetComponentInChildren<InventorySlotGrid>();
-        externalInventorySlots = externalInventoryObject.GetComponentInChildren<InventorySlotGrid>();
 
         tooltipText = tooltipObject.GetComponent<Text>();
         tooltipRect = tooltipObject.GetComponent<RectTransform>();
-
-        buildMenuRecipes = buildMenuObject.GetComponentInChildren<RoomRecipeSelectGrid>();
-        buildMenuIngredients = buildMenuObject.GetComponentInChildren<RecipeIngredientsGrid>();
     }
 
     void Start()
@@ -82,25 +78,43 @@ public class PlayerUIController : MonoBehaviour
     }
     public void OpenCraftingMenu()
     {
-
+        craftingMenuObject.SetActive(true);
+        ShowInventory();
     }
-    public void OpenBuildMenu(RoomWrapper room)
+    public void OpenBuildMenu()
     {
+        HideMenus();
         buildMenuObject.SetActive(true);
-        buildMenuRecipes.targetRoom = room;
         ShowInventory();
     }
     public void OpenFarmMenu()
     {
+        HideMenus();
         farmMenuObject.SetActive(true);
+        tabsObject.SetActive(true);
+        ShowInventory();
+    }
+    public void OpenForgeMenu()
+    {
+        HideMenus();
+        forgeMenuObject.SetActive(true);
+        tabsObject.SetActive(true);
         ShowInventory();
     }
     public void OpenRepairMenu()
     {
         repairMenuObject.SetActive(true);
-        repairMenuObject.GetComponentInChildren<RecipeIngredientsGrid>().ShowIngredients(DoorController.currentDoor.repairCost.ingredients);
-        repairMenuObject.GetComponentInChildren<Text>().text = DoorController.currentDoor.repairCost.recipeName;
+        repairMenuObject.GetComponentInChildren<RecipeIngredientsGrid>().ShowIngredients(RepairableObject.curr.repairCost.ingredients);
+        repairMenuObject.GetComponentInChildren<Text>().text = RepairableObject.curr.repairCost.recipeName;
         ShowInventory();
+    }
+    public void HideMenus()
+    {
+        craftingMenuObject.SetActive(false);
+        buildMenuObject.SetActive(false);
+        farmMenuObject.SetActive(false);
+        forgeMenuObject.SetActive(false);
+        repairMenuObject.SetActive(false);
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -211,11 +225,13 @@ public class PlayerUIController : MonoBehaviour
     {
         playerInventoryObject.SetActive(false);
         invCursorStack.gameObject.SetActive(false);
+        craftingMenuObject.SetActive(false);
         buildMenuObject.SetActive(false);
         tooltipObject.SetActive(false);
         farmMenuObject.SetActive(false);
         forgeMenuObject.SetActive(false);
         repairMenuObject.SetActive(false);
+        tabsObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         invShown = false;
     }

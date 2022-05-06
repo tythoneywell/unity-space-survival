@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94e698a33e17d134cad95f51150151c8, type: 3}
-  m_Name: CopperBar
+  m_Name: Glass
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 4
-  recipeName: Copper Bar
-  icon: {fileID: 21300000, guid: 3b3b1613b20485e4c8ca59ae2fb007fd, type: 3}
+  - item: {fileID: 11400000, guid: 78b2040491126cb47a2e8ca40640e886, type: 2}
+    count: 1
+  recipeName: Glass
+  icon: {fileID: 21300000, guid: e0c3e07c79af2b54f8cfe4955ac112dc, type: 3}
   result:
-    item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    item: {fileID: 11400000, guid: ef4c395696c29274b98f1c2b51a7ecf5, type: 2}
     count: 1
   fuel:
     item: {fileID: 0}
     count: 0
+  productionTime: 5
+  fuelConsumeTime: 0

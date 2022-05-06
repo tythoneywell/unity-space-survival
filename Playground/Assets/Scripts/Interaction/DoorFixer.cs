@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DoorFixer : MonoBehaviour
 {
+    const bool debug = true;
+
     public void TryFixDoor()
     {
-        if (PlayerInventory.main.HasRecipeIngredients(DoorController.currentDoor.repairCost))
+        if (PlayerInventory.main.HasRecipeIngredients(RepairableObject.curr.repairCost) || debug)
         {
-            PlayerInventory.main.ConsumeRecipeIngredients(DoorController.currentDoor.repairCost);
-            DoorController.currentDoor.FixDoor();
+            PlayerInventory.main.ConsumeRecipeIngredients(RepairableObject.curr.repairCost);
+            RepairableObject.curr.Repair();
             PlayerUIController.main.UpdateInventory();
             PlayerUIController.main.HideInventory();
         }

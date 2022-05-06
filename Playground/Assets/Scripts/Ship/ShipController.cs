@@ -17,6 +17,8 @@ public class ShipController : GravityWell
     public GameObject rocketCam;
     public GameObject hideableShipBody;
 
+    const float deadzone = .35f;
+
     AsteroidField asteroidField;
 
     float targetSpeed;
@@ -82,11 +84,14 @@ public class ShipController : GravityWell
     {
         if (context.performed || context.canceled)
         {
-            Vector3 dir = context.ReadValue<Vector2>();
-            dir -= new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
-            dir /= Camera.main.pixelWidth / 2;
-            shipTurnRate.x = -Mathf.Sign(dir.y) * Mathf.Clamp(Mathf.Abs(dir.y) - 0.35f, 0, 1);
-            shipTurnRate.y = Mathf.Sign(dir.x) * Mathf.Clamp(Mathf.Abs(dir.x) - 0.35f, 0, 1);
+            Vector2 dir = context.ReadValue<Vector2>();
+            Vector2 camDimensions = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
+            dir -= camDimensions / 2; // Center mouse inpt
+            dir = new Vector2(2 * dir.x / camDimensions.x, 2 * dir.y / camDimensions.y); // Scale mouse input
+            dir = new Vector2(Mathf.Sign(dir.x) * Mathf.Clamp((Mathf.Abs(dir.x) - deadzone) / (1 - deadzone), 0, 1),
+                -Mathf.Sign(dir.y) * Mathf.Clamp((Mathf.Abs(dir.y) - deadzone) / (1 - deadzone), 0, 1)); // Apply deadzones
+            shipTurnRate.y = dir.x;
+            shipTurnRate.x = dir.y;
         }
     }
 }
