@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d1219460008ab49bcefe07264e792f, type: 3}
+  m_Name: ForgeRecipes
+  m_EditorClassIdentifier: 
+  recipeList:
+  - {fileID: 11400000, guid: 9ce708170c4c4704d9f80467d87ef6e6, type: 2}
+  - {fileID: 11400000, guid: 70905acf7416e6140bf11d7d4a8e137f, type: 2}
+  - {fileID: 11400000, guid: da88ab2e22cc60545b17ea8bf720f3b3, type: 2}
+  - {fileID: 11400000, guid: d0f0e1f17ce3b734ca42cd9aad565010, type: 2}
