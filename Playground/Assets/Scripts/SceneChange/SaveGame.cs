@@ -12,6 +12,6 @@ public class SaveGame : SceneTransfer
     }
     public override void preLoad()
     {
-        Debug.Log("Load Game Data");
+        Debug.Log("Save Game Data");
     }
 }
