@@ -7,8 +7,11 @@ public class AsteroidTrigger : MonoBehaviour
     float init;
     bool isTriggered = false;
     public MoveAsteroid bigAsteroid;
+    ParticleSystem explosionPs;
     private void Awake(){
         init = Time.realtimeSinceStartup;
+        explosionPs = GameObject.Find("ExplosionSystem").GetComponent<ParticleSystem>();
+        explosionPs.emissionRate = 100;
     }
     private void Update(){
         float currtime = Time.realtimeSinceStartup;

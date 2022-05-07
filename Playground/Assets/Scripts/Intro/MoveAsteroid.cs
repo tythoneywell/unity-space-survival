@@ -7,6 +7,8 @@ public class MoveAsteroid : MonoBehaviour
     public bool isTriggered = false;
     public float moveSpeed = 10;
     Vector3 initialPos;
+    ParticleSystem explosionPs;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,8 @@ public class MoveAsteroid : MonoBehaviour
             if (transform.position.x < 10){
                 isTriggered = false;
                 gameObject.SetActive(false);
+                explosionPs = GameObject.Find("ExplosionSystem").GetComponent<ParticleSystem>();
+                explosionPs.Play();
             }
         }
     }
