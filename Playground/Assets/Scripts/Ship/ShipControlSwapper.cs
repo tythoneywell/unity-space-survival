@@ -11,6 +11,7 @@ public class ShipControlSwapper : InteractableObject
     }
     public override string GetInteractPrompt()
     {
-        return "[RMB] to Pilot Ship";
+        if (!ShipController.main.controllingShip) return "[RMB] to Pilot Ship";
+        else return "[E] to Exit Ship";
     }
 }

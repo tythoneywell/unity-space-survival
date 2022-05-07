@@ -101,7 +101,7 @@ public class RoomWrapper : ShipSystem
         }
         PlayerInventory.main.ConsumeRecipeIngredients(recipe);
 
-        roomRecipe = startingRecipe;
+        roomRecipe = recipe;
 
         roomBackend.Deconstruct();
         switch (recipe.roomType)

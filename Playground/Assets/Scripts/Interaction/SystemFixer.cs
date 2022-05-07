@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorFixer : MonoBehaviour
+public class SystemFixer : MonoBehaviour
 {
     const bool debug = true;
 

@@ -17,6 +17,8 @@ public class ShipController : GravityWell
     public GameObject rocketCam;
     public GameObject hideableShipBody;
 
+    public bool controllingShip = false;
+
     const float deadzone = .35f;
 
     AsteroidField asteroidField;
@@ -51,6 +53,7 @@ public class ShipController : GravityWell
 
     public void EnterShipMode()
     {
+        controllingShip = true;
         Cursor.lockState = CursorLockMode.Confined;
         rocketCam.SetActive(true);
         hideableShipBody.SetActive(true);
@@ -58,6 +61,7 @@ public class ShipController : GravityWell
     }
     public void LeaveShipMode(InputAction.CallbackContext context)
     {
+        controllingShip = false;
         Cursor.lockState = CursorLockMode.Locked;
         rocketCam.SetActive(false);
         hideableShipBody.SetActive(false);

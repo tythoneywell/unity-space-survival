@@ -109,8 +109,9 @@ public class PlayerInteraction : MonoBehaviour
             InteractableObject obj = hitObject.GetComponent<InteractableObject>();
             if (obj != null)
             {
-                if (obj is ShipSystem) {
-
+                if (obj is RoomTerminal && heldItem is RepairItem)
+                {
+                    lmbPrompt = "[LMB] to repair system\n";
                 }
                 PlayerUIController.main.SetTooltip(lmbPrompt + obj.GetInteractPrompt());
             }
