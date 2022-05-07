@@ -4,13 +4,10 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class TitleToLoad : SceneTransfer
+public class TitleToLoad : MonoBehaviour
 {
-
-    public TitleToLoad(){
-        sceneIndex = 1;
-    }
-    public override void preLoad()
+    public GameObject loadscreen;
+    public void onClick()
     {
         string path = Application.persistentDataPath;
         string[] files = Directory.GetFiles(path);
@@ -18,5 +15,8 @@ public class TitleToLoad : SceneTransfer
         if (Array.IndexOf(directories, path + "\\Saves") == -1){
             Directory.CreateDirectory(path + "/Saves");
         }
+        transform.parent.gameObject.SetActive(false);
+        loadscreen.SetActive(true);
+
     }
 }
