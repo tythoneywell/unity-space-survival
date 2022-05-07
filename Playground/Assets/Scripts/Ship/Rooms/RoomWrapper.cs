@@ -10,7 +10,7 @@ public class RoomWrapper : ShipSystem
 {
     public static RoomWrapper curr;
 
-    const bool debug = true;
+    const bool debug = false;
 
     public enum RoomType
     {
