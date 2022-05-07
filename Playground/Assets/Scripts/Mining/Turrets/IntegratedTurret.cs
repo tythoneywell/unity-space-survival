@@ -33,7 +33,7 @@ public class IntegratedTurret : MonoBehaviour
     void Start()
     {
         laserLine = GetComponentInChildren<LineRenderer>();
-        gunAudio = GetComponentInChildren<AudioSource>();
+        gunAudio = GetComponent<AudioSource>();
         turretCam = turretCamObject.GetComponent<Camera>();
     }
 
