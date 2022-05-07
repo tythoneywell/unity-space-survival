@@ -15,12 +15,15 @@ public class OutroAudioScript : MonoBehaviour
     bool outroLoopPlaying;
     public AudioSource theOutro;
     public AudioSource theOutroLoop;
+    private Canvas credits;
 
     // Start is called before the first frame update
     void Start()
     {
         theOutro.Play();
         outroLoopPlaying = false;
+        credits = GetComponentInChildren<Canvas>();
+        credits.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class OutroAudioScript : MonoBehaviour
         {
             theOutroLoop.Play();
             outroLoopPlaying = true;
+        }
+
+        if (!theOutro.isPlaying && outroLoopPlaying)
+        {
+            credits.enabled = true;
         }
     }
 }
