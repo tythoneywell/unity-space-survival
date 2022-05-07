@@ -12,7 +12,7 @@ public class TitleToLoad : MonoBehaviour
         string path = Application.persistentDataPath;
         string[] files = Directory.GetFiles(path);
         string[] directories = Directory.GetDirectories(path);
-        if (Array.IndexOf(directories, path + "\\Saves") == -1){
+        if (Array.IndexOf(directories, path + "/Saves") == -1){
             Directory.CreateDirectory(path + "/Saves");
         }
         transform.parent.gameObject.SetActive(false);
