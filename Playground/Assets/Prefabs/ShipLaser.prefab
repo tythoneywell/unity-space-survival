@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretDamage: 8
   fireRate: 0.08
-  weaponRange: 250
+  weaponRange: 600
   hitForce: 100
   gunEnd: {fileID: 6617981375097110954}
   swivelTransform: {fileID: 6617981374375433390}

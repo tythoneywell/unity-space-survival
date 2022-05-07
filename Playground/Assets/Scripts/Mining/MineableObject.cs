@@ -44,7 +44,7 @@ public class MineableObject : MonoBehaviour, IMineable
         {
             Vector3 chunkBreakDirection = Random.insideUnitSphere;
             GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
-            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce, ForceMode.VelocityChange);
+            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce + gameObject.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
             AsteroidField.main.AddDebris(instantiatedDebris);
         }
         //TODO: randomize whether or not medium chunks exist to continue mining
@@ -62,7 +62,7 @@ public class MineableObject : MonoBehaviour, IMineable
         {
             Vector3 chunkBreakDirection = Random.insideUnitSphere;
             GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
-            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce + debrisForceDirection, ForceMode.VelocityChange);
+            instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce + debrisForceDirection + gameObject.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
             if (instantiatedDebris.name != "TinyDebris") AsteroidField.main.AddDebris(instantiatedDebris);
         }
         //TODO: randomize whether or not medium chunks exist to continue mining

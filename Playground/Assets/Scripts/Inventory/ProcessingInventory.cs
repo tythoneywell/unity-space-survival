@@ -63,7 +63,6 @@ public class ProcessingInventory : Inventory
             }
             if (fuelConsumptionProgress > fuelConsumptionDelay)
             {
-                fuel.ConsumeRecipeIngredients(new ItemStack[] { recipe.fuel });
                 fuelConsumptionProgress -= fuelConsumptionDelay;
                 fuelConsumed = false;
             }

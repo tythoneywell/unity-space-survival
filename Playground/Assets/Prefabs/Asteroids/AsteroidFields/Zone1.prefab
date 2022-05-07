@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAsteroids: 500
+  universalScale: 4
   baseDrift: {x: 10, y: 8, z: -300}
   maxDebris: 30
   initMinSpawnDist: 200
@@ -251,8 +252,8 @@ MonoBehaviour:
   - {fileID: 2428687701176628594, guid: 00efb588a9dcb31429320735eff70f72, type: 3}
   - {fileID: 2428687701176628594, guid: 0b3bf947419a945479b7cf09a81949e4, type: 3}
   spawnListWeights: 190000000f00000003000000050000000f0000000200000004000000
-  shrinkStartDist: 500
-  shrinkDist: 200
+  shrinkStartDist: 1500
+  shrinkDist: 400
 --- !u!1 &5275037360983603294
 GameObject:
   m_ObjectHideFlags: 0

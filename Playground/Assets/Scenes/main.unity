@@ -9643,7 +9643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9d9731df85b284993c879333806b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1200
+  baseSpeed: 8000
   baseFriction: 2
   turnSpeed: 40
   rocketCam: {fileID: 1134781549}
@@ -14467,21 +14467,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1116720979}
     m_Modifications:
-    - target: {fileID: 6617981374375433390, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617981374375433390, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617981374375433390, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6617981374983472648, guid: bcaf1805f38a62a4bbefc883a81f9a66,
         type: 3}
       propertyPath: m_RootOrder
@@ -14546,31 +14531,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipLaser (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655602827391370694, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655602827391370694, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655602827391370694, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655602827391370694, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655602827391370694, guid: bcaf1805f38a62a4bbefc883a81f9a66,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcaf1805f38a62a4bbefc883a81f9a66, type: 3}

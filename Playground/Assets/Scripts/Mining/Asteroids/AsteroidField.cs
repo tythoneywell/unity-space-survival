@@ -9,6 +9,8 @@ public class AsteroidField : MonoBehaviour
     [SerializeField]
     int maxAsteroids = 200;
     [SerializeField]
+    float universalScale = 8;
+    [SerializeField]
     Vector3 baseDrift = new Vector3(10, 2, -30);
 
     [SerializeField]
@@ -77,6 +79,7 @@ public class AsteroidField : MonoBehaviour
             Destroy(debrisList[0]);
             debrisList.RemoveAt(0);
         }
+        debris.transform.localScale *= universalScale;
         debrisList.Add(debris);
     }
 
@@ -85,6 +88,8 @@ public class AsteroidField : MonoBehaviour
     GameObject MakeAsteroid()
     {
         GameObject newAsteroid = GameObject.Instantiate(ChooseAsteroidPrefab(), transform);
+
+        newAsteroid.transform.localScale *= universalScale;
 
         Rigidbody asteroidRB = newAsteroid.GetComponent<Rigidbody>();
         asteroidRB.AddTorque(Random.insideUnitSphere * randomSpinMax);

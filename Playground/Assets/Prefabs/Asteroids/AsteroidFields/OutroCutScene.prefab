@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAsteroids: 200
+  universalScale: 1
   baseDrift: {x: 10, y: 8, z: -100}
   maxDebris: 30
   initMinSpawnDist: 200
