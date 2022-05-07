@@ -34,6 +34,11 @@ public class PlayerInteraction : MonoBehaviour
         heldItem = inventory.GetItem(0).item;
     }
 
+    void Update()
+    {
+        SearchInteractable();
+    }
+
 
     public bool AddToInventory(ItemStack stack)
     {
@@ -68,6 +73,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (obj != null)
                 {
                     obj.OnInteract(this);
+                    PlayerUIController.main.SetTooltip("");
                 }
                 else
                 {
@@ -78,6 +84,40 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         UpdateCurrentItem();
+    }
+    public void SearchInteractable()
+    {
+        if (PlayerUIController.invShown) return;
+        if (PlayerUIController.saveShown) return;
+
+        string lmbPrompt = "";
+        if (heldItem.hungerRestoreAmount > 0)
+        {
+            lmbPrompt = "[LMB] to eat " + heldItem.displayName + "\n";
+        }
+
+        float rayDistance = 1000.0f;
+        // Ray from the center of the viewport.
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit rayHit;
+        // Check if we hit something.
+        if (Physics.Raycast(ray, out rayHit, rayDistance))
+        {
+            // Get the object that was hit.
+            GameObject hitObject = rayHit.collider.gameObject;
+            // Check if it is InteractableObject
+            InteractableObject obj = hitObject.GetComponent<InteractableObject>();
+            if (obj != null)
+            {
+                PlayerUIController.main.SetTooltip(lmbPrompt + obj.GetInteractPrompt());
+            }
+            else
+            {
+                PlayerUIController.main.SetTooltip(lmbPrompt + "");
+                //Debug.Log(hitObject.name);
+                //Debug.Log("No Interactable Object Found");
+            }
+        }
     }
 
     public void Use(InputAction.CallbackContext context)

@@ -17,4 +17,8 @@ public class DroppedItem : InteractableObject
         }
         else Debug.Log("" + itemStack.count + " " + itemStack.item.itemName + " did not fit in inventory");
     }
+    public override string GetInteractPrompt()
+    {
+        return "[RMB] to pick up " + itemStack.count + " " + itemStack.item.displayName;
+    }
 }

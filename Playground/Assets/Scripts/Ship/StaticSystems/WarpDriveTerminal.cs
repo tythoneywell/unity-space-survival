@@ -13,4 +13,8 @@ public class WarpDriveTerminal : RepairableObject
         base.Repair();
         ShipController.main.Warp();
     }
+    public override string GetInteractPrompt()
+    {
+        return "[RMB] to repair warp drive";
+    }
 }

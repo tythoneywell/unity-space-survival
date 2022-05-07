@@ -22,5 +22,8 @@ public class CraftingStation : InteractableObject
             PlayerUIController.main.UpdateInventory();
         }
     }
-
+    public override string GetInteractPrompt()
+    {
+        return "[RMB] to open Crafting menu";
+    }
 }

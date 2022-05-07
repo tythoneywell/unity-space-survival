@@ -25,6 +25,7 @@ public class RoomWrapper : ShipSystem
         SHIELD,
     }
     public RoomRecipe startingRecipe = null;
+    public RoomRecipe roomRecipe = null;
 
     public ProcessingRecipe defaultOxyRecipe;
 
@@ -36,6 +37,8 @@ public class RoomWrapper : ShipSystem
     private void Start()
     {
         if (startingRecipe != null) {
+
+            roomRecipe = startingRecipe;
 
             switch (startingRecipe.roomType)
             {
@@ -97,6 +100,8 @@ public class RoomWrapper : ShipSystem
             return;
         }
         PlayerInventory.main.ConsumeRecipeIngredients(recipe);
+
+        roomRecipe = startingRecipe;
 
         roomBackend.Deconstruct();
         switch (recipe.roomType)
