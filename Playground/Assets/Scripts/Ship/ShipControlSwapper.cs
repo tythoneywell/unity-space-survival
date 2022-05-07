@@ -9,4 +9,8 @@ public class ShipControlSwapper : InteractableObject
     {
         ShipController.main.EnterShipMode();
     }
+    public override string GetInteractPrompt()
+    {
+        return "[RMB] to Pilot Ship";
+    }
 }

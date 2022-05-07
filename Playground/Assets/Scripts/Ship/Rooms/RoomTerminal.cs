@@ -37,4 +37,15 @@ public class RoomTerminal : InteractableObject
             return room.Repair(amount);
         }
     }
+    public override string GetInteractPrompt()
+    {
+        if (!room.built)
+        {
+            return "[RMB] to open Build menu";
+        }
+        else
+        {
+            return "[RMB] to open " + room.roomRecipe.recipeName;
+        }
+    }
 }

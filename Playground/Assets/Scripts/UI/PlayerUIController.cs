@@ -192,6 +192,10 @@ public class PlayerUIController : MonoBehaviour
         }
         //Debug.Log("unhovered " + slot.index);
     }
+    public void SetTooltip(string text)
+    {
+        tooltipText.text = text;
+    }
 
     public void ToggleShowSaveMenu()
     {
@@ -225,7 +229,6 @@ public class PlayerUIController : MonoBehaviour
     {
         playerInventoryObject.SetActive(true);
         invCursorStack.gameObject.SetActive(true);
-        tooltipObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         invShown = true;
         UpdateInventory();
@@ -236,7 +239,6 @@ public class PlayerUIController : MonoBehaviour
         invCursorStack.gameObject.SetActive(false);
         craftingMenuObject.SetActive(false);
         buildMenuObject.SetActive(false);
-        tooltipObject.SetActive(false);
         farmMenuObject.SetActive(false);
         forgeMenuObject.SetActive(false);
         generatorMenuObject.SetActive(false);

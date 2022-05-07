@@ -22,5 +22,15 @@ public class DoorController : RepairableObject
         Door doorPlate = gameObject.GetComponentInChildren<Door>();
         doorPlate.Open();
     }
-    
+    public override string GetInteractPrompt()
+    {
+        if (operational)
+        {
+            return "[RMB] to open Door";
+        }
+        else
+        {
+            return "[RMB] to repair Door";
+        }
+    }
 }
