@@ -109,6 +109,9 @@ public class PlayerInteraction : MonoBehaviour
             InteractableObject obj = hitObject.GetComponent<InteractableObject>();
             if (obj != null)
             {
+                if (obj is ShipSystem) {
+
+                }
                 PlayerUIController.main.SetTooltip(lmbPrompt + obj.GetInteractPrompt());
             }
             else
