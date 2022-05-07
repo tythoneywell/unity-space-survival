@@ -5529,6 +5529,11 @@ PrefabInstance:
       propertyPath: maxSpawnDist
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 2100193845583829367, guid: 016b3d314ae8ea345b44fdcc695c0138,
+        type: 3}
+      propertyPath: universalScale
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 016b3d314ae8ea345b44fdcc695c0138, type: 3}
 --- !u!1 &621005709 stripped
