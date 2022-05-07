@@ -40,4 +40,9 @@ public class OutroAudioScript : MonoBehaviour
             credits.enabled = true;
         }
     }
+
+    void OnClick()
+    {
+        SceneManager.LoadScene("CreateGameScreen");
+    }
 }
