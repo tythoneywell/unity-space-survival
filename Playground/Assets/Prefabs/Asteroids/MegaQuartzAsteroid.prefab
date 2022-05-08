@@ -152,9 +152,10 @@ MonoBehaviour:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
-  debrisScatterForce: 10
+  debrisScatterForce: 40
   miniAsteroid: {fileID: 0}
   collideDamage: 5
+  smashFX: {fileID: 8343253420959500863, guid: c4dede9293a7ec4439a383c981e59c8d, type: 3}
 --- !u!54 &-8582588136094557288
 Rigidbody:
   m_ObjectHideFlags: 0

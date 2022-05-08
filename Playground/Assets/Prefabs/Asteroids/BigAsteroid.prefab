@@ -247,6 +247,7 @@ MonoBehaviour:
   debrisScatterForce: 100
   miniAsteroid: {fileID: 0}
   collideDamage: 0
+  smashFX: {fileID: 8343253420959500863, guid: c4dede9293a7ec4439a383c981e59c8d, type: 3}
 --- !u!33 &7409237129593480306
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -19,12 +19,21 @@ public abstract class RecipeSelectGrid : UISlotGrid
 
     public void ShowRecipeProducts(int page)
     {
-        Recipe[] products = knownRecipes.recipeList;
-
-        for (int i = 0; i < gridSlots.Length; i++)
+        if (knownRecipes == null)
         {
-            if (i < products.Length) gridSlots[i].ShowSpriteWithTooltip(products[i].icon, products[i].recipeName);
-            else gridSlots[i].ShowSprite(null);
+            ProcessingRecipe product = ProcessingInventory.curr.recipe;
+            gridSlots[0].ShowSpriteWithTooltip(product.icon, product.recipeName, product.recipeDescription);
+            ingredientsGrid.ShowIngredients(new ItemStack[] { product.fuel });
+        }
+        else
+        {
+            Recipe[] products = knownRecipes.recipeList;
+
+            for (int i = 0; i < gridSlots.Length; i++)
+            {
+                if (i < products.Length) gridSlots[i].ShowSpriteWithTooltip(products[i].icon, products[i].recipeName, products[i].recipeDescription);
+                else gridSlots[i].ShowSprite(null);
+            }
         }
     }
     public void SelectRecipe(int index)

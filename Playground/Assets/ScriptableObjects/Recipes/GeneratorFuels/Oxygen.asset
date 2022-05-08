@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Oxygen
   m_EditorClassIdentifier: 
   ingredients: []
-  recipeName: Oxygen
-  icon: {fileID: 0}
+  recipeName: Electrolyzed Oxygen
+  recipeDescription: 'Oxygen produced via electrolyzing water contained in ice.
+
+    Oxygen
+    production: 5/s
+
+    Ice use time: 10s'
+  icon: {fileID: 21300000, guid: 1d92fedd13c88e04d85d8d19637cacf3, type: 3}
   result:
     item: {fileID: 0}
     count: 0

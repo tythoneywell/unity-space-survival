@@ -62,9 +62,9 @@ public class ShipSystemController : MonoBehaviour
             //Debug.Log("force " + collision.impulse.magnitude);
             //Debug.DrawLine(collision.transform.position, Vector3.Scale(collision.transform.position, collision.impulse / 1000), Color.red, 10f);
             Asteroid asteroid = collision.transform.GetComponent<Asteroid>();
-            if (asteroid != null && asteroid.collideDamage > 0)
+            if (asteroid != null)
             {
-                DamageSystems(asteroid.collideDamage);
+                if (asteroid.collideDamage > 0) DamageSystems(asteroid.collideDamage);
                 asteroid.BreakNoReward(collision.relativeVelocity);
             }
         }

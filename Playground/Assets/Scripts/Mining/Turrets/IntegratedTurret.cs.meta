@@ -3,7 +3,12 @@ guid: fd4920c26a346b1408088f92ac76ce03
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gunEnd: {instanceID: 0}
+  - swivelTransform: {instanceID: 0}
+  - barrelTransform: {instanceID: 0}
+  - startAudio: {fileID: 8300000, guid: ae6b4897cd9c847fca82354fb1a6892d, type: 3}
+  - turretCamObject: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

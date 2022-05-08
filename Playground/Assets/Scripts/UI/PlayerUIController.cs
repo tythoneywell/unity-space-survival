@@ -25,6 +25,7 @@ public class PlayerUIController : MonoBehaviour
     public GameObject repairMenuObject;
 
     public GameObject tooltipObject;
+    public GameObject extraTooltipObject;
     public GameObject tabsObject;
 
     InventorySlotGrid playerHotbarSlots;
@@ -41,6 +42,7 @@ public class PlayerUIController : MonoBehaviour
     RectTransform invCursorRect;
     Text tooltipText;
     RectTransform tooltipRect;
+    Text extraTooltipText;
 
     void Awake()
     {
@@ -52,6 +54,7 @@ public class PlayerUIController : MonoBehaviour
 
         tooltipText = tooltipObject.GetComponent<Text>();
         tooltipRect = tooltipObject.GetComponent<RectTransform>();
+        extraTooltipText = extraTooltipObject.GetComponent<Text>();
     }
 
     void Start()
@@ -175,12 +178,14 @@ public class PlayerUIController : MonoBehaviour
     {
         invCursorRect.position = context.ReadValue<Vector2>();
         tooltipRect.position = context.ReadValue<Vector2>();
+        tooltipRect.position = context.ReadValue<Vector2>();
     }
 
     public void UpdateHoveredSlot(UISlot slot)
     {
         hoveredSlot = slot;
-        tooltipText.text = hoveredSlot.descriptionText;
+        tooltipText.text = hoveredSlot.primaryText;
+        extraTooltipText.text = hoveredSlot.descriptionText;
         //Debug.Log("hovered " + slot.index);
     }
     public void ClearHoveredSlot(UISlot slot)
@@ -189,12 +194,14 @@ public class PlayerUIController : MonoBehaviour
         {
             hoveredSlot = null;
             tooltipText.text = "";
+            extraTooltipText.text = "";
         }
         //Debug.Log("unhovered " + slot.index);
     }
-    public void SetTooltip(string text)
+    public void SetTooltip(string mainText, string extraText = "")
     {
-        tooltipText.text = text;
+        tooltipText.text = mainText;
+        extraTooltipText.text = extraText;
     }
 
     public void ToggleShowSaveMenu()

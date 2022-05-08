@@ -74,6 +74,11 @@ public class AsteroidField : MonoBehaviour
 
     public void AddDebris(GameObject debris)
     {
+        if (debris.name == "TinyDebris")
+        {
+            debris.transform.localScale *= universalScale;
+            return;
+        }
         if (debrisList.Count >= maxDebris) // Might try making while, but runs the risk of infinite while
         {
             Destroy(debrisList[0]);

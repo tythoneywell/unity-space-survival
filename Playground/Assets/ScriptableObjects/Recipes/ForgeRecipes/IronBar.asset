@@ -18,6 +18,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 83bf3208216dfc045a774d5f7bd31cf3, type: 2}
     count: 1
   recipeName: Iron Bar
+  recipeDescription: 'Production time: 6s
+
+    Oxygen use: 4/s'
   icon: {fileID: 21300000, guid: 2841b7669b27a8b44bb7e13098c3cb93, type: 3}
   result:
     item: {fileID: 11400000, guid: b7d65a846e1bcfc4b97122735f51e388, type: 2}

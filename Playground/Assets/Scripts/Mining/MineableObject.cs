@@ -13,6 +13,8 @@ public class MineableObject : MonoBehaviour, IMineable
     public float debrisScatterForce = 100f;
     public GameObject miniAsteroid;
 
+    public GameObject smashFX;
+
     private float currHealth;
 
     // Start is called before the first frame update
@@ -53,6 +55,7 @@ public class MineableObject : MonoBehaviour, IMineable
 
         //Destroy the big asteroid
         //Debug.Log("asteroid destroyed");
+        Instantiate(smashFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     public void BreakNoReward(Vector3 debrisForceDirection)
@@ -63,7 +66,7 @@ public class MineableObject : MonoBehaviour, IMineable
             Vector3 chunkBreakDirection = Random.insideUnitSphere;
             GameObject instantiatedDebris = Instantiate(debrisPiece, transform.position + transform.rotation * Vector3.Scale(chunkBreakDirection, transform.localScale), Quaternion.identity);
             instantiatedDebris.GetComponent<Rigidbody>().AddForce(transform.rotation * chunkBreakDirection * debrisScatterForce + debrisForceDirection + gameObject.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
-            if (instantiatedDebris.name != "TinyDebris") AsteroidField.main.AddDebris(instantiatedDebris);
+            AsteroidField.main.AddDebris(instantiatedDebris);
         }
         //TODO: randomize whether or not medium chunks exist to continue mining
         //Instantiate(miniAsteroid, new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z), Quaternion.identity);
@@ -71,6 +74,7 @@ public class MineableObject : MonoBehaviour, IMineable
 
         //Destroy the big asteroid
         //Debug.Log("asteroid destroyed");
+        Instantiate(smashFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

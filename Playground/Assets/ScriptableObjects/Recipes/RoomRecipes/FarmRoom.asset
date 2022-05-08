@@ -18,6 +18,10 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: cf4a90a2475cfd940a652b932a080d81, type: 2}
     count: 10
   recipeName: Greenhouse
+  recipeDescription: 'Uses power, ice, and oxygen to grow crops.
+
+    Power draw:
+    1'
   icon: {fileID: 21300000, guid: d7feff1c743a1b245aff32ec00b78dec, type: 3}
   roomType: 2
   roomCenterpiece: {fileID: 196830641904235259, guid: 48720c349d5385349bcc1f5953d306fa,

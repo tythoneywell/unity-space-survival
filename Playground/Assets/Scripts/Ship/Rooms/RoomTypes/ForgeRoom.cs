@@ -9,7 +9,7 @@ public class ForgeRoom : RoomBackend
 {
     ProcessingInventory forgeInv;
 
-    const float powerDraw = 3f;
+    const float powerDraw = 2f;
 
     public override void Build()
     {

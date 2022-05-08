@@ -16,6 +16,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 78b2040491126cb47a2e8ca40640e886, type: 2}
     count: 1
   recipeName: Glass
+  recipeDescription: 'Production time: 5s
+
+    Oxygen use: 2/s'
   icon: {fileID: 21300000, guid: e0c3e07c79af2b54f8cfe4955ac112dc, type: 3}
   result:
     item: {fileID: 11400000, guid: ef4c395696c29274b98f1c2b51a7ecf5, type: 2}

@@ -20,6 +20,14 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 78b2040491126cb47a2e8ca40640e886, type: 2}
     count: 5
   recipeName: Oxygen Electrolyzer
+  recipeDescription: 'Uses power to diffuse oxygen from ice.
+
+    Power draw: 2
+
+    Oxygen
+    production: 5/s
+
+    Ice use time: 10s'
   icon: {fileID: 21300000, guid: 1d92fedd13c88e04d85d8d19637cacf3, type: 3}
   roomType: 3
   roomCenterpiece: {fileID: 196830641904235259, guid: 6a13faace49c7424187cb368ad1d9423,

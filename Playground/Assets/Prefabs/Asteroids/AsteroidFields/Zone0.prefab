@@ -237,7 +237,7 @@ MonoBehaviour:
   universalScale: 4
   baseDrift: {x: 10, y: 8, z: -100}
   maxDebris: 30
-  initMinSpawnDist: 700
+  initMinSpawnDist: 500
   minSpawnDist: 1600
   maxSpawnDist: 1700
   randomDriftMax: 50

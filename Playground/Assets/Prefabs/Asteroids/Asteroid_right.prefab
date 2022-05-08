@@ -49,6 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d78fd545429204b9737e68c986966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  rewardMaterials: []
+  debris: []
+  debrisScatterForce: 100
+  miniAsteroid: {fileID: 0}
+  collideDamage: 0
+  smashFX: {fileID: 8343253420959500863, guid: c4dede9293a7ec4439a383c981e59c8d, type: 3}
 --- !u!33 &1073230210950889531
 MeshFilter:
   m_ObjectHideFlags: 0

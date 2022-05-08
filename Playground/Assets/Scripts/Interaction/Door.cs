@@ -48,6 +48,7 @@ public class Door : MonoBehaviour
         if (isMoving){
             yield break;
         }
+        gameObject.GetComponent<AudioSource>().Play();
         while(openAmount >= 0 && openAmount <= 0.95){
 
             openAmount += openSpeed * moveDir * Time.deltaTime;

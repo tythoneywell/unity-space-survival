@@ -21,6 +21,7 @@ public class IntegratedTurret : MonoBehaviour
     public Transform barrelTransform;
 
     private AudioSource gunAudio;
+    public AudioClip startAudio;
     private LineRenderer laserLine; //holds two points wherein a line is drawn between them
 
     private bool firing;
@@ -93,22 +94,25 @@ public class IntegratedTurret : MonoBehaviour
     public void StartLaser()
     {
         firing = true;
+        gunAudio.Play();
         StartLaserFX();
+        gunAudio.PlayOneShot(startAudio);
     }
     public void StopLaser()
     {
         firing = false;
+        gunAudio.Stop();
         StopLaserFX();
     }
 
     private void StartLaserFX()
     {
-        gunAudio.Play(); //TODO: insert audio file
+        gunAudio.UnPause(); //TODO: insert audio file
         laserLine.enabled = true;
     }
     private void StopLaserFX()
     {
-        gunAudio.Stop(); //TODO: insert audio file
+        gunAudio.Pause(); //TODO: insert audio file
         laserLine.enabled = false;
     }
 

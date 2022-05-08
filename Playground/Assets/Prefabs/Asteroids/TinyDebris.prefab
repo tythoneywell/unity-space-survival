@@ -135,6 +135,8 @@ MonoBehaviour:
   debris: []
   debrisScatterForce: 100
   miniAsteroid: {fileID: 0}
+  collideDamage: 0
+  smashFX: {fileID: 8343253420959500863, guid: c4dede9293a7ec4439a383c981e59c8d, type: 3}
 --- !u!33 &2426390812116431793
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bbbe57fb854d6ea358c68152de8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToDestroy: 15
+  distanceToDestroy: 100
 --- !u!1 &8777107938918896289
 GameObject:
   m_ObjectHideFlags: 0

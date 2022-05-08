@@ -27,5 +27,6 @@ public class PlayerSurvival : MonoBehaviour
     public void Eat(ItemData item)
     {
         hunger += (float)item.hungerRestoreAmount / 10;
+        PlayerMovement.main.foodSprintBoost = item.foodSprintBoost;
     }
 }

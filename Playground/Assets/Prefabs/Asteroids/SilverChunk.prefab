@@ -306,6 +306,7 @@ MonoBehaviour:
   - {fileID: 6295059982368308397, guid: 1fd874a794e654280919320576bb8a93, type: 3}
   debrisScatterForce: 15
   miniAsteroid: {fileID: 0}
+  smashFX: {fileID: 8343253420959500863, guid: 818a96a77138f9f468799a21322b8c7c, type: 3}
   collideDamage: 1
 --- !u!54 &-8582588136094557288
 Rigidbody:

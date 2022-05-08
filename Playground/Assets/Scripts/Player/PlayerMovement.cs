@@ -38,6 +38,7 @@ public class PlayerMovement : GravityWellObject
     bool grounded = true;
 
     public float vertLookAngle = 0f;
+    public float foodSprintBoost = 0f;
     float sprintSpeedMul = 1;
     Vector2 hspeed = Vector2.zero;
     float vspeed = 0f;
@@ -78,7 +79,7 @@ public class PlayerMovement : GravityWellObject
     public void ToggleSprint(InputAction.CallbackContext context){
         if (context.performed)
         {
-            sprintSpeedMul = 2 * baseWalkingSpeed;
+            sprintSpeedMul = 1.5f * baseWalkingSpeed * (1 + foodSprintBoost);
         }
         else if (context.canceled)
         {

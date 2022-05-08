@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SystemFixer : MonoBehaviour
 {
-    const bool debug = false;
+    const bool debug = true;
 
     public void TryFixDoor()
     {

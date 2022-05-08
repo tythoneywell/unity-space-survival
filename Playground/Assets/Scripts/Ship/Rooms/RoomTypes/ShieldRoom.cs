@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class ShieldRoom : RoomBackend
 {
-    const float shieldCapacityAmt = 2f;
+    const float shieldCapacityAmt = 3f;
     const float shieldRechargeAmt = 0.4f;
     const float powerDraw = 3f;
 

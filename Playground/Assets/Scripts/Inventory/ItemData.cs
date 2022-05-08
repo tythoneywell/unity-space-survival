@@ -7,12 +7,15 @@ public class ItemData: ScriptableObject
 {
     public string itemName;
     public string displayName;
+    [TextArea]
+    public string itemDescription;
     public int maxStackSize;
 
     public GameObject model;
     public Sprite sprite;
 
     public int hungerRestoreAmount;
+    public float foodSprintBoost;
 
     public virtual void Use(PlayerInteraction presser)
     {

@@ -200,6 +200,7 @@ MonoBehaviour:
   gunEnd: {fileID: 6617981375097110954}
   swivelTransform: {fileID: 6617981374375433390}
   barrelTransform: {fileID: 6617981374284492763}
+  startAudio: {fileID: 8300000, guid: ae6b4897cd9c847fca82354fb1a6892d, type: 3}
   turretCamObject: {fileID: 0}
 --- !u!82 &6617981374983472650
 AudioSource:
@@ -211,11 +212,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 2e393144d334743738d5457cd507d4b9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -257,7 +258,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.4
       inSlope: 0
       outSlope: 0
       tangentMode: 0

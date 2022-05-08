@@ -24,6 +24,7 @@ public class Asteroid : MineableObject
     {
         CalculateShrink();
     }
+
     void CalculateShrink()
     {
         float shrinkFactor = transform.position.sqrMagnitude - shrinkStartDist * shrinkStartDist;

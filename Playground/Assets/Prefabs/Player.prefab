@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &188303084248239597
 Transform:
   m_ObjectHideFlags: 0
@@ -214,7 +214,6 @@ MonoBehaviour:
   unbound: 1
   lookSensitivity: {x: 0.3, y: 0.3}
   baseWalkingSpeed: 5
-  speedModifier: 0
   jumpSpeed: 6
   debugJump: 0
   testDebug: {fileID: 0}
@@ -222,6 +221,7 @@ MonoBehaviour:
     type: 3}
   grounded: 1
   vertLookAngle: 0
+  foodSprintBoost: 0
 --- !u!114 &1902320726290822321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hunger: 0
+  foodQuality: 0
 --- !u!114 &6331438476128779109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 3000
   field of view: 60
   orthographic: 0
   orthographic size: 5

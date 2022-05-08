@@ -14,6 +14,7 @@ public class UISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     protected Image itemSpriteDisplay;
     protected Text itemCount;
+    public string primaryText;
     public string descriptionText;
 
     void Awake()
@@ -45,13 +46,15 @@ public class UISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             itemSpriteDisplay.sprite = PlayerUIController.emptySprite.GetComponent<Image>().sprite;
             itemCount.text = "";
+            primaryText = "";
             descriptionText = "";
         }
         else
         {
             itemSpriteDisplay.sprite = stack.item.sprite;
             itemCount.text = stack.count.ToString();
-            descriptionText = stack.item.displayName;
+            primaryText = stack.item.displayName;
+            descriptionText = stack.item.itemDescription;
         }
     }
     public void ShowSprite(Sprite sprite)
@@ -65,12 +68,13 @@ public class UISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             itemSpriteDisplay.sprite = sprite;
         }
         itemCount.text = "";
-        descriptionText = "";
+        primaryText = "";
     }
-    public void ShowSpriteWithTooltip(Sprite sprite, string tooltipText)
+    public void ShowSpriteWithTooltip(Sprite sprite, string tooltipText, string descriptionText = "")
     {
         ShowSprite(sprite);
-        descriptionText = tooltipText;
+        primaryText = tooltipText;
+        this.descriptionText = descriptionText;
     }
 
     void OnDisable()
