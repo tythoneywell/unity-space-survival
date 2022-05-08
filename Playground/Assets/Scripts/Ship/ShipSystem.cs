@@ -5,8 +5,10 @@ using UnityEngine;
 /*
  * Class for any component of the ship
  */
-public class ShipSystem: MonoBehaviour
+public class ShipSystem : MonoBehaviour
 {
+    public static ShipSystem curr;
+
     public bool operational;
     public bool working;
     public int health;
@@ -14,6 +16,8 @@ public class ShipSystem: MonoBehaviour
     public float powerConsumption;
     public float shieldCapacity;
     public float shieldChargeRate;
+
+    protected bool[] installedUpgrades;
 
     public void TakeDamage(int damage)
     {
@@ -28,5 +32,9 @@ public class ShipSystem: MonoBehaviour
     {
         health = 10;
         operational = true;
+    }
+    public virtual void Upgrade(UpgradeRecipe upgrade)
+    {
+        Debug.Log("UPGRADE!");
     }
 }

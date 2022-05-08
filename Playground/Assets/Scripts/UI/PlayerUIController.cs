@@ -23,6 +23,7 @@ public class PlayerUIController : MonoBehaviour
     public GameObject forgeMenuObject;
     public GameObject generatorMenuObject;
     public GameObject repairMenuObject;
+    public GameObject upgradeMenuObject;
 
     public GameObject tooltipObject;
     public GameObject extraTooltipObject;
@@ -119,6 +120,12 @@ public class PlayerUIController : MonoBehaviour
         repairMenuObject.GetComponentInChildren<Text>().text = RepairableObject.curr.repairCost.recipeName;
         ShowInventory();
     }
+    public void OpenUpgradeMenu()
+    {
+        HideMenus();
+        upgradeMenuObject.SetActive(true);
+        ShowInventory();
+    }
     public void HideMenus()
     {
         craftingMenuObject.SetActive(false);
@@ -127,6 +134,7 @@ public class PlayerUIController : MonoBehaviour
         forgeMenuObject.SetActive(false);
         repairMenuObject.SetActive(false);
         generatorMenuObject.SetActive(false);
+        upgradeMenuObject.SetActive(false);
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -250,6 +258,7 @@ public class PlayerUIController : MonoBehaviour
         forgeMenuObject.SetActive(false);
         generatorMenuObject.SetActive(false);
         repairMenuObject.SetActive(false);
+        upgradeMenuObject.SetActive(false);
         tabsObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         invShown = false;

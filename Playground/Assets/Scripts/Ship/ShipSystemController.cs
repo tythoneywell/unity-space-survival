@@ -56,7 +56,7 @@ public class ShipSystemController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.impulse.magnitude > 3000)
+        if (collision.impulse.magnitude > 1500)
         {
             //Debug.Log("collided with " + collision.collider.name);
             //Debug.Log("force " + collision.impulse.magnitude);

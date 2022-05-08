@@ -17,13 +17,15 @@ public class ShipController : GravityWell
     public GameObject rocketCam;
     public GameObject hideableShipBody;
 
+    public ThrusterSystem thrusterSystem;
+
     public bool controllingShip = false;
 
     const float deadzone = .35f;
 
     AsteroidField asteroidField;
     public GameObject[] asteroidFieldList;
-    int currZone = 0;
+    public int currZone = 0;
 
     float targetSpeed;
     Vector3 shipTurnRate;
@@ -43,7 +45,7 @@ public class ShipController : GravityWell
 
     protected override void ManualFixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody>().MoveRotation(transform.rotation * Quaternion.Euler(turnSpeed * shipTurnRate * Time.fixedDeltaTime));
+        gameObject.GetComponent<Rigidbody>().MoveRotation(transform.rotation * Quaternion.Euler((turnSpeed + thrusterSystem.bonusTurnSpeed) * shipTurnRate * Time.fixedDeltaTime));
 
         speedVec += targetSpeed * transform.forward * Time.fixedDeltaTime;
         speedVec *= Mathf.Pow(1 / (1 + baseFriction), Time.fixedDeltaTime);
@@ -79,7 +81,7 @@ public class ShipController : GravityWell
     public void UpdateThrust(InputAction.CallbackContext context)
     {
         if (context.started)
-            targetSpeed = baseSpeed;
+            targetSpeed = baseSpeed + thrusterSystem.bonusSpeed;
         if (context.canceled)
             targetSpeed = 0;
     }
@@ -90,7 +92,7 @@ public class ShipController : GravityWell
             Vector3 dir = context.ReadValue<Vector3>();
             shipTurnRate.z = -dir.x;
 
-            targetSpeed = dir.y * baseSpeed;
+            targetSpeed = dir.y * (baseSpeed + thrusterSystem.bonusSpeed);
         }
     }
     public void UpdateMovementMouse(InputAction.CallbackContext context)

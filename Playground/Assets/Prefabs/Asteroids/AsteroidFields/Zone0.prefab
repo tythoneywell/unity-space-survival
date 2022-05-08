@@ -237,6 +237,9 @@ MonoBehaviour:
   universalScale: 4
   baseDrift: {x: 10, y: 8, z: -100}
   maxDebris: 30
+  dangerAsteroidDelay: 10
+  dangerAsteroidDelayRandomness: 15
+  dangerAsteroidVelocity: 100
   initMinSpawnDist: 500
   minSpawnDist: 1600
   maxSpawnDist: 1700

@@ -15,7 +15,7 @@ public class SolarRoom : RoomBackend
     }
     public override void Update()
     {
-        wrapper.powerProduction = powerAmt;
+        wrapper.powerProduction = powerAmt * (ShipController.main.currZone == 2 ? 0.25f : 1);
     }
     public override void Deconstruct()
     {

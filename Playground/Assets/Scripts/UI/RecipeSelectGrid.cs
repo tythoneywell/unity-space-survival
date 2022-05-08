@@ -17,7 +17,7 @@ public abstract class RecipeSelectGrid : UISlotGrid
         ShowRecipeProducts(0);
     }
 
-    public void ShowRecipeProducts(int page)
+    public virtual void ShowRecipeProducts(int page)
     {
         if (knownRecipes == null)
         {

@@ -143,17 +143,22 @@ MonoBehaviour:
   universalScale: 4
   baseDrift: {x: 10, y: 8, z: -100}
   maxDebris: 30
+  dangerAsteroidDelay: 1
+  dangerAsteroidDelayRandomness: 5
+  dangerAsteroidVelocity: 160
   initMinSpawnDist: 700
   minSpawnDist: 1800
   maxSpawnDist: 1900
-  randomDriftMax: 50
-  randomSpinMax: 240
+  randomDriftMax: 500
+  randomSpinMax: 800
   spawnList:
   - {fileID: 2428687701176628594, guid: a94eaafd27725ba4dad158cd2e1f5ebc, type: 3}
   - {fileID: 2428687701176628594, guid: 7682edeb78a2d0644973a1c716072890, type: 3}
-  - {fileID: 2428687701176628594, guid: 937a8d91346116342a2ed1927c445a64, type: 3}
+  - {fileID: 2428687701176628594, guid: 4ef4f2aa4bef6b24a8a41342cb9a0f7d, type: 3}
   - {fileID: 2428687701176628594, guid: da66c20831593e345863549c7631dff5, type: 3}
-  spawnListWeights: 140000000c0000000300000001000000
+  - {fileID: 2428687701176628594, guid: 8dac383b2c64e4d4e8112c6aa3d199dd, type: 3}
+  - {fileID: 2428687701176628594, guid: e1c3705bc7b0d3f4c9713357c837e062, type: 3}
+  spawnListWeights: 0a0000000500000003000000020000000200000002000000
   shrinkStartDist: 1500
   shrinkDist: 400
 --- !u!1 &4631623068693350436

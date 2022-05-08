@@ -15,6 +15,13 @@ public class AsteroidField : MonoBehaviour
 
     [SerializeField]
     float maxDebris = 30;
+    [SerializeField]
+    float dangerAsteroidDelay = 100;
+    [SerializeField]
+    float dangerAsteroidDelayRandomness = 100;
+    [SerializeField]
+    float dangerAsteroidVelocity = 100;
+    float dangerAsteroidTimer;
 
     [SerializeField]
     float initMinSpawnDist = 100;
@@ -70,6 +77,7 @@ public class AsteroidField : MonoBehaviour
     {
         CullField();
         GrowField();
+        dangerAsteroidTimer -= Time.deltaTime;
     }
 
     public void AddDebris(GameObject debris)
@@ -127,7 +135,6 @@ public class AsteroidField : MonoBehaviour
             // Add asteroid
             GameObject newAsteroid = MakeAsteroid();
             newAsteroid.transform.Translate(randomDir * randomDist);
-
         }
 
     }
@@ -162,6 +169,28 @@ public class AsteroidField : MonoBehaviour
     
     void GrowField()
     {
+        if (dangerAsteroidTimer < 0)
+        {
+            // Get random position from the direction of oncoming asteroids.
+            // Note that circle projection gives a more uniform distribution than
+            // making a hemisphere from onUnitSphere.
+            Vector3 randomDir = Random.insideUnitCircle; // Start with random point on circle
+            randomDir.z = Mathf.Sqrt(1 - randomDir.sqrMagnitude); // Project into a hemisphere on +z
+            float randomDist = Random.Range(minSpawnDist, maxSpawnDist);
+
+            // Rotate the position to the direction asteroids are coming from
+            Vector3 asteroidDir = baseDrift + shipSpeed + Random.insideUnitSphere * randomDriftMax;
+            Quaternion hemiRotation = Quaternion.FromToRotation(-Vector3.forward, asteroidDir);
+            randomDir = hemiRotation * randomDir;
+
+            // Add asteroid
+            GameObject newAsteroid = MakeAsteroid();
+            newAsteroid.transform.Translate(randomDir * randomDist);
+
+            newAsteroid.GetComponent<Rigidbody>().AddForce((-newAsteroid.transform.position.normalized + Random.insideUnitSphere * 0.4f) * dangerAsteroidVelocity, ForceMode.VelocityChange);
+
+            dangerAsteroidTimer += dangerAsteroidDelay + Random.value * dangerAsteroidDelayRandomness;
+        }
         for (int i = asteroidsList.Count; i < maxAsteroids; i++)
         {
             // Get random position from the direction of oncoming asteroids.

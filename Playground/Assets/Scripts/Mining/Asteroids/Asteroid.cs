@@ -5,6 +5,7 @@ using UnityEngine;
 public class Asteroid : MineableObject
 {
     public int collideDamage;
+    public bool danger;
 
     public static float shrinkStartDist;
     public static float shrinkDist;

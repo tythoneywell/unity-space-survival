@@ -18,7 +18,7 @@ public class FarmRoom : RoomBackend
     public override void Update()
     {
         float powerSatisfaction = ShipSystemController.main.powerSatisfaction;
-        if (farmInv.recipe != null && farmInv.ProcessTime(Time.deltaTime * powerSatisfaction))
+        if (farmInv.recipe != null && farmInv.ProcessTime(Time.deltaTime * powerSatisfaction * (ShipController.main.currZone == 1 ? 0.5f : 1)))
         {
             wrapper.working = true;
             wrapper.powerConsumption = powerDraw;

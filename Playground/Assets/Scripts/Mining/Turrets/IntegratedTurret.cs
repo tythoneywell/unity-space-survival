@@ -30,6 +30,7 @@ public class IntegratedTurret : MonoBehaviour
     private Camera turretCam;
     public GameObject turretCamObject;
 
+    public LaserSystem laserSystem;
 
     void Start()
     {
@@ -52,14 +53,14 @@ public class IntegratedTurret : MonoBehaviour
         }
         else
         {
-            laserTargetPoint = turretCam.transform.position + laserRay.direction * weaponRange * 1.1f;
+            laserTargetPoint = turretCam.transform.position + laserRay.direction * (weaponRange + laserSystem.bonusRange) * 1.2f;
         }
 
         if (firing)
         {
             // Set laser start point
             laserLine.SetPosition(0, gunEnd.position);
-            if (Vector3.Distance(gunEnd.position, laserTargetPoint) < weaponRange)
+            if (Vector3.Distance(gunEnd.position, laserTargetPoint) < (weaponRange + laserSystem.bonusRange))
             {
                 //Debug.Log("hit");
 
@@ -72,7 +73,7 @@ public class IntegratedTurret : MonoBehaviour
                     {
                         StartLaserFX();
                         if (hit.collider != null)
-                            hit.collider.GetComponent<IMineable>()?.DamageHealth(turretDamage);
+                            hit.collider.GetComponent<IMineable>()?.DamageHealth(turretDamage + laserSystem.bonusDamage);
                     }
                     else
                     {
@@ -84,7 +85,19 @@ public class IntegratedTurret : MonoBehaviour
             else
             {
                 //set laser end point to partway to target
-                SetLaserEndPoint(gunEnd.transform.position + (laserTargetPoint - gunEnd.transform.position).normalized * weaponRange);
+                SetLaserEndPoint(gunEnd.transform.position + (laserTargetPoint - gunEnd.transform.position).normalized * (weaponRange + laserSystem.bonusRange));
+                if (Time.time > nextFire)
+                {
+                    if (Random.value <= ShipSystemController.main.powerSatisfaction)
+                    {
+                        StartLaserFX();
+                    }
+                    else
+                    {
+                        StopLaserFX();
+                    }
+                    nextFire = Time.time + fireRate; //update next time gun can fire
+                }
             }
         }
 
@@ -97,12 +110,14 @@ public class IntegratedTurret : MonoBehaviour
         gunAudio.Play();
         StartLaserFX();
         gunAudio.PlayOneShot(startAudio);
+        laserSystem.powerConsumption = 0.5f * laserSystem.powerMul;
     }
     public void StopLaser()
     {
         firing = false;
         gunAudio.Stop();
         StopLaserFX();
+        laserSystem.powerConsumption = 0f;
     }
 
     private void StartLaserFX()

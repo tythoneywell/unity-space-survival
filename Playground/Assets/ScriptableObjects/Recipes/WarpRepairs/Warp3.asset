@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Warp3
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
+  - item: {fileID: 11400000, guid: a56d5ba1ff02c1d4c855803db9bc7fe6, type: 2}
     count: 20
   recipeName: Scans of next Sector indicate signs of human activity.
+  recipeDescription: 
   icon: {fileID: 0}
   result:
     item: {fileID: 0}
