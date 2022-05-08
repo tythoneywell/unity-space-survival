@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00e0816316591e498b1945846760e57, type: 3}
   m_Name: TurnSpeedUp
   m_EditorClassIdentifier: 
-  ingredients: []
+  ingredients:
+  - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    count: 20
   recipeName: Turn Speed Up
   recipeDescription: Increases turning speed.
   icon: {fileID: 21300000, guid: bf491d66fc46c32418f25e399b014254, type: 3}

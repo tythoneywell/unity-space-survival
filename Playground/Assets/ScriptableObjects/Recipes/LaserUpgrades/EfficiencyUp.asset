@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: EfficiencyUp
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: 1af6b3d62334363448f10ff3c31b26fa, type: 2}
-    count: 1
+  - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
+    count: 25
+  - item: {fileID: 11400000, guid: 83bf3208216dfc045a774d5f7bd31cf3, type: 2}
+    count: 25
   recipeName: Efficiency Up
   recipeDescription: Reduce power consumption of the mining laser.
   icon: {fileID: 21300000, guid: bf491d66fc46c32418f25e399b014254, type: 3}

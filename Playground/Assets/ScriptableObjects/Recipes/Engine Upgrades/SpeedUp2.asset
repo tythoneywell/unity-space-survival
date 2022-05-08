@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00e0816316591e498b1945846760e57, type: 3}
   m_Name: SpeedUp2
   m_EditorClassIdentifier: 
-  ingredients: []
+  ingredients:
+  - item: {fileID: 11400000, guid: a56d5ba1ff02c1d4c855803db9bc7fe6, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 524a48d4b21d1624ea401c3171cfd73e, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 8d472cdc676551e40af203fabe7d3a64, type: 2}
+    count: 30
   recipeName: Major Speed Boost
   recipeDescription: Greatly increases travel speed.
   icon: {fileID: 21300000, guid: bf491d66fc46c32418f25e399b014254, type: 3}
