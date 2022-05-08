@@ -44,13 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421048d52fc49394cbafa549797b3b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAsteroids: 10
+  maxAsteroids: 50
   universalScale: 3
-  baseDrift: {x: 10, y: 8, z: -100}
+  baseDrift: {x: 10, y: 8, z: -2000}
   maxDebris: 30
+  dangerAsteroidDelay: 100
+  dangerAsteroidDelayRandomness: 100
+  dangerAsteroidVelocity: 100
   initMinSpawnDist: 200
   minSpawnDist: 580
-  maxSpawnDist: 600
+  maxSpawnDist: 1000
   randomDriftMax: 50
   randomSpinMax: 240
   spawnList:
