@@ -43,14 +43,14 @@ public class ShipSystemController : MonoBehaviour
     void Start()
     {
         shipSystems = gameObject.GetComponentsInChildren<ShipSystem>();
-        oxygenAmount = 1;
+        oxygenAmount = 5;
     }
 
     void Update()
     {
         UpdateStats();
         currShields = Mathf.Clamp(currShields + shieldChargeRate * Time.deltaTime, 0, shieldCapacity);
-        oxygenAmount = Mathf.Clamp01(oxygenAmount - Time.deltaTime / 120);
+        oxygenAmount = Mathf.Clamp(oxygenAmount - Time.deltaTime / 300, 0, 5);
         damageInvulnTimer = Mathf.Clamp(damageInvulnTimer - Time.deltaTime, 0, 1);
     }
 

@@ -18,6 +18,6 @@ public class ShipStatusDisplay : MonoBehaviour
     void Update()
     {
         powerMeter.transform.localScale = Vector3.Scale(meterStartScale, new Vector3(ShipSystemController.main.powerSatisfaction, 1, 1));
-        oxygenMeter.transform.localScale = Vector3.Scale(meterStartScale, new Vector3(ShipSystemController.main.oxygenAmount, 1, 1));
+        oxygenMeter.transform.localScale = Vector3.Scale(meterStartScale, new Vector3(ShipSystemController.main.oxygenAmount / 5, 1, 1));
     }
 }

@@ -17,7 +17,7 @@ public class LowOxygenFlash : MonoBehaviour
 
     void Update()
     {
-        if (ShipSystemController.main.oxygenAmount < 0.5f)
+        if (ShipSystemController.main.oxygenAmount < 2.5f)
         {
             flashing = true;
             StartCoroutine(Flash());
