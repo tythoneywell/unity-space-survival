@@ -26,7 +26,8 @@ public class PlayerSurvival : MonoBehaviour
         hunger = Mathf.Clamp01(hunger);
         if (hunger == 0 || ShipSystemController.main.oxygenAmount == 0)
         {
-            SceneManager.LoadScene("TitleScreen");
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(6);
         }
     }
 
