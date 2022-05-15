@@ -35,7 +35,7 @@ public class ProcessingInventory : Inventory
         resourcesConsumed = false;
     }
     // Processes the recipe for scaled time time, returning whether it cannot process
-    public bool ProcessTime(float time)
+    public bool ProcessTime(float time, float efficiency = 1f)
     {
         if (!fuelConsumed)
         {
@@ -66,7 +66,7 @@ public class ProcessingInventory : Inventory
                 fuelConsumptionProgress -= fuelConsumptionDelay;
                 fuelConsumed = false;
             }
-            itemProductionProgress += time;
+            itemProductionProgress += time * efficiency;
             fuelConsumptionProgress += time;
             ShipSystemController.main.oxygenAmount -= recipe.oxygenConsumeRate * time;
             return true;

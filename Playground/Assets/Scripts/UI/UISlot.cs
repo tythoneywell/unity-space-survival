@@ -40,7 +40,7 @@ public class UISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.GetComponent<Image>().color = Color.white;
     }
 
-    public void ShowStack(ItemStack stack)
+    public void ShowStack(ItemStack stack, bool withDescription = false)
     {
         if (stack.item.itemName == null)
         {
@@ -54,7 +54,8 @@ public class UISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             itemSpriteDisplay.sprite = stack.item.sprite;
             itemCount.text = stack.count.ToString();
             primaryText = stack.item.displayName;
-            descriptionText = stack.item.itemDescription;
+            if (withDescription) descriptionText = stack.item.itemDescription;
+            else descriptionText = "";
         }
     }
     public void ShowSprite(Sprite sprite)

@@ -110,12 +110,12 @@ public class ShipSystemController : MonoBehaviour
         if (possibleTargets.Count > 0)
         {
             ShipSystem targetSys = possibleTargets[(int)Random.Range(0, (float)possibleTargets.Count - 0.001f)];
-            targetSys.TakeDamage(1);
+            targetSys.TakeDamage(damage);
         }
         else
         {
             print("ship is completely trashed");
         }
-        damageInvulnTimer = 1f;
+        damageInvulnTimer = 0.8f;
     }
 }

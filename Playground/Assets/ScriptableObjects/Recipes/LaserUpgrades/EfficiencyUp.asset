@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
-    count: 25
-  - item: {fileID: 11400000, guid: 83bf3208216dfc045a774d5f7bd31cf3, type: 2}
-    count: 25
-  recipeName: Efficiency Up
+    count: 15
+  - item: {fileID: 11400000, guid: ef4c395696c29274b98f1c2b51a7ecf5, type: 2}
+    count: 10
+  recipeName: Heat Sink Repair
   recipeDescription: Reduce power consumption of the mining laser.
   icon: {fileID: 21300000, guid: bf491d66fc46c32418f25e399b014254, type: 3}
   upgradeType: 1

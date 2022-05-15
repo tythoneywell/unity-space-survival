@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: glass
   displayName: Glass
+  itemDescription: Tough enough to withstand the vacuum of space.
   maxStackSize: 30
   model: {fileID: 0}
   sprite: {fileID: 21300000, guid: e0c3e07c79af2b54f8cfe4955ac112dc, type: 3}
   hungerRestoreAmount: 0
+  foodSprintBoost: 0

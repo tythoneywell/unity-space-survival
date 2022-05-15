@@ -94,28 +94,11 @@ public class Inventory
 
     public bool HasRecipeIngredients(Recipe recipe)
     {
-        foreach (ItemStack recipeStack in recipe.ingredients)
-        {
-            int invAmt = 0;
-            foreach (ItemStack invStack in inventory)
-            {
-                if (invStack.item.itemName == recipeStack.item.itemName) invAmt += invStack.count;
-            }
-            if (invAmt < recipeStack.count) return false;
-        }
-        return true;
+        return HasRecipeIngredients(recipe.ingredients);
     }
     public void ConsumeRecipeIngredients(Recipe recipe)
     {
-        foreach (ItemStack recipeStack in recipe.ingredients)
-        {
-            int remaining = recipeStack.count;
-            foreach (ItemStack invStack in inventory)
-            {
-                if (invStack.item.itemName == recipeStack.item.itemName) remaining -= invStack.TakeAmount(remaining).count;
-            }
-            if (remaining > 0) Debug.Log("recipe was crafted without sufficient ingredients");
-        }
+        ConsumeRecipeIngredients(recipe.ingredients);
     }
     public bool HasRecipeIngredients(ItemStack[] ingredients)
     {

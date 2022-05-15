@@ -22,7 +22,7 @@ MonoBehaviour:
   recipeName: Concentrated Unobtanium (2)
   recipeDescription: 'Production time: 10s
 
-    Oxygen use: 5/s'
+    Oxygen use: 8/s'
   icon: {fileID: 21300000, guid: a988e859f698ba94eaa4fd78638feeca, type: 3}
   result:
     item: {fileID: 11400000, guid: a56d5ba1ff02c1d4c855803db9bc7fe6, type: 2}
@@ -30,6 +30,6 @@ MonoBehaviour:
   fuel:
     item: {fileID: 0}
     count: 0
-  oxygenConsumeRate: 0.1
+  oxygenConsumeRate: 0.08
   productionTime: 10
   fuelConsumeTime: 0

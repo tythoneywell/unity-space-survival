@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: lichen
   displayName: Nutrient Lichen
+  itemDescription: What food group is this?
   maxStackSize: 10
   model: {fileID: 8777574507773902548, guid: 05b8ace74c9f549939060a014fae1b38, type: 3}
   sprite: {fileID: 21300000, guid: 6af7baf8e24435b449f1234f977c5117, type: 3}
-  hungerRestoreAmount: 1
+  hungerRestoreAmount: 2
+  foodSprintBoost: 0

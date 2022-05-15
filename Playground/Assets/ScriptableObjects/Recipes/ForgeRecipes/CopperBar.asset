@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - item: {fileID: 11400000, guid: 5adbc79fbb1834367b98e6949942392d, type: 2}
-    count: 4
+    count: 3
   recipeName: Copper Bar
   recipeDescription: 'Production time: 5s
 

@@ -15,10 +15,8 @@ MonoBehaviour:
   ingredients:
   - item: {fileID: 11400000, guid: 41e6e2044bd798446b150a1368e42f2f, type: 2}
     count: 4
-  - item: {fileID: 11400000, guid: b7d65a846e1bcfc4b97122735f51e388, type: 2}
-    count: 1
   - item: {fileID: 11400000, guid: 51f03ef507accf34db9be3efaf9e591c, type: 2}
-    count: 1
+    count: 2
   - item: {fileID: 11400000, guid: 83bf3208216dfc045a774d5f7bd31cf3, type: 2}
     count: 2
   recipeName: Alloyed Silver (3)

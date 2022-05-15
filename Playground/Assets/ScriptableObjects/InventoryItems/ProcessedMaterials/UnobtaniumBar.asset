@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7db0f187cfe6f44b5506eed1028551, type: 3}
   m_Name: UnobtaniumBar
   m_EditorClassIdentifier: 
-  itemName: silverBar
+  itemName: unobtaniumBar
   displayName: Concentrated Unobtanium
-  itemDescription: 
+  itemDescription: The green glow must be from... chlorophyll.
   maxStackSize: 30
   model: {fileID: 0}
   sprite: {fileID: 21300000, guid: a988e859f698ba94eaa4fd78638feeca, type: 3}

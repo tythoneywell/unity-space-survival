@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: meat
   displayName: Synthetic Meat
-  itemDescription: 
+  itemDescription: Juicy and tender. Or, maybe just damp.
   maxStackSize: 10
   model: {fileID: 8777574507773902548, guid: 05b8ace74c9f549939060a014fae1b38, type: 3}
   sprite: {fileID: 21300000, guid: 9fc2b29645a3772459f0b06d1eb0157e, type: 3}
-  hungerRestoreAmount: 5
+  hungerRestoreAmount: 4
   foodSprintBoost: 0.4

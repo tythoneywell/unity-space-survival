@@ -19,7 +19,7 @@ MonoBehaviour:
     count: 10
   - item: {fileID: 11400000, guid: 8d472cdc676551e40af203fabe7d3a64, type: 2}
     count: 30
-  recipeName: Major Speed Boost
+  recipeName: Reactor Enhancement
   recipeDescription: Greatly increases travel speed.
   icon: {fileID: 21300000, guid: bf491d66fc46c32418f25e399b014254, type: 3}
   upgradeType: 0
