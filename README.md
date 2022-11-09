@@ -2,7 +2,7 @@
 
 <h2>Overview</h2>
 
-![A view from inside the ship](/screenshots/salvage-preview.png?raw=true)
+![A view from inside the ship](/screenshots/salvage-preview.PNG?raw=true)
 
 <i>Salvage</i> is a game project created over the course of the UMD Spring '22 semester using the Unity engine. In Salvage, the player must repair their damaged spaceship in order to return to return to civilized space, all the while balancing the integrity of ship systems, the level of oxygen in the ship, energy generation, and their own hunger.
 
